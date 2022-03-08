@@ -19,7 +19,7 @@
             <br>
             <h2>Your credits: <span id="credits">{{ game[player + "_credits"] }}</span></h2>
             <br>
-            <h2>Your reveal
+            <h2>Your protected cards: <span id="procCards">{{ game[player + "_protected"] }}</span></h2>
             <br>
         </div>
 
@@ -36,6 +36,8 @@
             <h2><span id="opponent_card_username">{{ opponent["username"] }}</span> has <span id="opponent_cards">{{ opponent["cards"] }}</span> cards.</h2>
             <br>
             <h2><span id="opponent_credit_username">{{ opponent["username"] }}</span> has <span id="opponent_credits">{{ opponent["credits"] }}</span> credits.</h2>
+            <br>
+            <h2><span id="opponent_credit_username">{{ opponent["username"] }}</span> <span id="procCards">{{ game[player + "_protected"] }}</span></h2>
             <br>
         </div>
     </div>
