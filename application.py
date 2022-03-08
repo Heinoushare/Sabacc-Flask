@@ -6,7 +6,6 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import *
 from flask_socketio import SocketIO, send, emit
-import random
 
 # Configure application
 app = Flask(__name__)
@@ -29,7 +28,7 @@ app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-socketio = SocketIO(app, cors_allowed_origins=["https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws", "https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws/chat", "https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws/game", "https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws/bet", "https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws/card", "https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws/shift"])
+socketio = SocketIO(app, cors_allowed_origins=["https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/chat", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/game", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/bet", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/card", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/shift"])
 
 # Declare dictionary to store key-value pairs of user ids and session ids
 users = {}
@@ -45,9 +44,9 @@ def index():
     # Get the user's id for later use
     user_id = session.get("user_id")
 
+    usernames = {}
     games = db.execute(f"SELECT * FROM games WHERE (player1_id = ? OR player2_id = ?) AND completed = 0 ORDER BY game_id DESC", user_id, user_id)
     users = db.execute("SELECT * FROM users")
-    usernames = {}
     for user in users:
         usernames[user["id"]] = user["username"]
 
@@ -227,9 +226,13 @@ def login():
         if not username:
             return apology("must provide username", 403)
 
-        # Ensure password was submitted
-        elif not request.form.get("password"):
+        # Ensure password is valid
+        if not request.form.get("password"):
             return apology("must provide password", 403)
+
+        orHash = db.execute(f"SELECT * FROM users WHERE username = ?", username)[0]["hash"]
+        if check_password_hash(orHash, request.form.get("password")) == False:
+            return apology("invalid password")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))

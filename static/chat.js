@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-	var socket = io.connect('https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws');
-	var chat_socket = io('https://ide-cc53314679134f648784a767fd9887a4-8080.cs50.ws/chat');
+	var socket = io.connect('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev');
+	var chat_socket = io('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/chat');
 
 	let user = document.getElementById("user");
 
