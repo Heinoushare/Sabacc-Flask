@@ -81,6 +81,7 @@ $(document).ready(function() {
 	else
 	{
 		hide("betDiv");
+		throw '';
 	}
 
 	// When client recieves a message through the bet_socket
