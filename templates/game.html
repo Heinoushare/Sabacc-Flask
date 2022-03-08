@@ -37,7 +37,7 @@
             <br>
             <h2>{{ opponent["username"] }} has <span id="opponent_credits">{{ opponent["credits"] }}</span> credits.</h2>
             <br>
-            <h2>{{ opponent["username"] }} <span id="opponent_proc">{{ game[player + "_protected"] }}</span></h2>
+            <h2>{{ opponent["username"] }}'s protected cards: <span id="opponent_proc">{{ game[opponent["player"] + "_protected"] }}</span></h2>
             <br>
         </div>
     </div>
