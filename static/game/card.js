@@ -108,7 +108,7 @@ $(document).ready(function() {
 			let data = {"game_id": game_id, "action": "draw"};
 			card_socket.emit("card", data);
 		}
-		else if (form == "trade")
+		else if (form === "trade")
 		{
 			for (card in opCards)
 			{
