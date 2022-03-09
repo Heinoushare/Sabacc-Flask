@@ -112,7 +112,7 @@ $(document).ready(function() {
 		{
 			for (card in opCards)
 			{
-				$("#p1Trade").append('<option value=\"' + card + '\">'+msg+'</p>');
+				$("#p1Trade").append('<option value=\"' + card + '\">' + card + '</option>');
 			}
 			show("p1TradeDiv");
 		}
