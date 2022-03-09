@@ -100,24 +100,23 @@ $(document).ready(function() {
 		let form = document.getElementById("p1CardAction").value;
 		if (form === "stand")
 		{
-			hide("p1CardActionDiv");
 			let data = {"game_id": game_id, "action": "stand"};
 			card_socket.emit("card", data);
 		}
 		else if (form === "draw")
 		{
-			hide("p1CardActionDiv");
 			let data = {"game_id": game_id, "action": "draw"};
 			card_socket.emit("card", data);
 		}
 		else if (form == "trade")
 		{
-
+			hide("p1CardAction)
 		}
 		else
 		{
 			document.getElementById("p1InvalidCardAction").innerHTML == "Invalid action, please Draw, Trade, Stand, or call Alderaan";
 		}
+		hide("p1CardActionDiv");
 	});
 
 });
