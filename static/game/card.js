@@ -126,7 +126,7 @@ $(document).ready(function() {
 	});
 
 	$("#p1TradeBtn").on("click", function() {
-
+		let card = document.getElementById("p1Trade").value;
 	});
 
 });
