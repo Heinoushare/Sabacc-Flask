@@ -3,6 +3,7 @@ from functools import wraps
 import random
 from flask_socketio import emit
 
+# Helper functions for application.py
 
 def apology(message, code=400):
     """Render message as an apology to user."""
@@ -67,7 +68,7 @@ def reshuffleDeck(game, outCards):
     for card in outCards:
         deckList.remove(card)
     return deckList
-    
+
 def foldCards(game, p1Hand, p2Hand):
     player1_hand = ""
     player2_hand = ""
@@ -75,7 +76,7 @@ def foldCards(game, p1Hand, p2Hand):
     if len(deckList) < 4:
         outCards = list(p1Hand.split(",")) + list(p2Hand.split(","))
         deckList = reshuffleDeck(game, outCards)
-    
+
     deck = ""
 
     for i in range(2):
@@ -99,7 +100,7 @@ def foldCards(game, p1Hand, p2Hand):
             deck = card
         else:
             deck = deck + "," + card
-            
+
     returnDict = {"deck": deck, "player1_hand": player1_hand, "player2_hand": player2_hand}
     return returnDict
 
