@@ -23,6 +23,8 @@ $(document).ready(function() {
 	let opponent_username = opponent.getAttribute("username");
 	var opponent_phrase = opponent.getAttribute("player");
 
+	var opCards = game.getAttribute(opponent_phrase + "_hand");
+
 	// Define show/hide functions
 	function show(id)
 	{
@@ -89,7 +91,7 @@ $(document).ready(function() {
 
 		// Update HTML
 		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
-		var opCards = data[opponent_phrase + "_hand"].split(",").length;
+		opCards = data[opponent_phrase + "_hand"].split(",");
 		document.getElementById("opponent_cards").innerHTML = opCards.length;
 
 		return;
