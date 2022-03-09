@@ -43,6 +43,10 @@ $(document).ready(function() {
 			{
 				hide("p1Card");
 			}
+			else
+			{
+				hide("p1TradeDiv")
+			}
 		}
 		else if (player_phrase === "player2")
 		{
