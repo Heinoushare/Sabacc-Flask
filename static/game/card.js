@@ -89,8 +89,8 @@ $(document).ready(function() {
 
 		// Update HTML
 		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
-		let opCards = data[opponent_phrase + "_hand"].split(",").length;
-		document.getElementById("opponent_cards").innerHTML = opCards;
+		var opCards = data[opponent_phrase + "_hand"].split(",").length;
+		document.getElementById("opponent_cards").innerHTML = opCards.length;
 
 		return;
 
@@ -110,7 +110,8 @@ $(document).ready(function() {
 		}
 		else if (form == "trade")
 		{
-			$("#p1Trade").append('<p>'+msg+'</p>');
+			for (card in o)
+			$("#p1Trade").append('<option value=\"' + >'+msg+'</p>');
 			show("p1TradeDiv");
 		}
 		else
