@@ -245,6 +245,7 @@ def card(data):
         # Trade
         elif action == "trade":
             card = data["card"] # If there's gonna be a KeyError, get it done early
+            
 
     return
 
