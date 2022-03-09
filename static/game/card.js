@@ -86,6 +86,7 @@ $(document).ready(function() {
 		// Update card HTML
 		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
 		let opCards = data[opponent_phrase + "_hand"].split(",").length;
+		console.log(opCards)
 		document.getElementById("opponent_cards").innerHTML = opCards;
 
 		return;
