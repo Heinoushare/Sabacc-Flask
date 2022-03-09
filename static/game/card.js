@@ -108,7 +108,11 @@ $(document).ready(function() {
 		}
 		else if (form == "trade")
 		{
-			
+
+		}
+		else
+		{
+			document.getElementById("p1InvalidCardAction").innerHTML == "Invalid action, please Draw, Trade, Stand, or call Alderaan";
 		}
 	});
 

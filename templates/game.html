@@ -143,7 +143,17 @@
                 </div>
 
                 <div id="p1TradeDiv">
-                    
+                    <h4>Which card would you like to trade?</h4>
+                    <form>
+                        <select id="p1Trade" class="form-control form-group" required>
+                            <option value="" disabled selected>Card</option>
+                            {# JavaScript will add the options here #}
+                        </select>
+
+                        <button type="button" id="p1CardActionBtn" class="btn btn-primary">Next</button>
+
+                        <p class="red" id="p1InvalidCardAction"></p>
+                    </form>
                 </div>
 
             </div>
