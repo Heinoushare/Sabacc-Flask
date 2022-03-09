@@ -112,8 +112,9 @@ $(document).ready(function() {
 		}
 		else if (form === "trade")
 		{
-			for (card in opCards)
+			for (let card in opCards)
 			{
+				console.log(card);
 				$("#p1Trade").append('<option value=\"' + card + '\">' + card + '</option>');
 			}
 			show("p1TradeDiv");
