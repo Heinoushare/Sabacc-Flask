@@ -112,7 +112,7 @@ $(document).ready(function() {
 		}
 		else if (form === "trade")
 		{
-			for (let card in hand)
+			for (card in hand)
 			{
 				$("#p1Trade").append('<option value=\"' + hand[card] + '\">' + hand[card] + '</option>');
 			}
@@ -120,13 +120,26 @@ $(document).ready(function() {
 		}
 		else
 		{
-			document.getElementById("p1InvalidCardAction").innerHTML == "Invalid action, please Draw, Trade, Stand, or call Alderaan";
+			document.getElementById("p1InvalidCardAction").innerHTML = "Invalid action, please Draw, Trade, Stand, or call Alderaan";
 		}
 		hide("p1CardActionDiv");
 	});
 
 	$("#p1TradeBtn").on("click", function() {
 		let card = document.getElementById("p1Trade").value;
+		let cardIn = false;
+		for (c in hand)
+		{
+			if (card === hand[c])
+			{
+				cardIn = true;
+				break;
+			}
+		}
+		if (cardIn === false)
+		{
+			document.getElementById("p1InvalidTrade").innerHTML = "Invalid selection.";
+		}
 	});
 
 });
