@@ -45,7 +45,7 @@ $(document).ready(function() {
 			}
 			else
 			{
-				hide("p1TradeDiv")
+				hide("p1TradeDiv");
 			}
 		}
 		else if (player_phrase === "player2")
