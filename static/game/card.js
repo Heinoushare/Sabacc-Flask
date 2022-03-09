@@ -19,11 +19,11 @@ $(document).ready(function() {
 	let playerID = parseInt(player.getAttribute("player_id"));
 	let player_phrase = player.getAttribute("player");
 
+	var hand = game.getAttribute(player_phrase + "_hand").split(",");
+
 	let opponent_id = parseInt(opponent.getAttribute("opponent_id"));
 	let opponent_username = opponent.getAttribute("username");
 	var opponent_phrase = opponent.getAttribute("player");
-
-	var opCards = game.getAttribute(opponent_phrase + "_hand").split(",");
 
 	// Define show/hide functions
 	function show(id)
@@ -91,7 +91,7 @@ $(document).ready(function() {
 
 		// Update HTML
 		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
-		opCards = data[opponent_phrase + "_hand"].split(",");
+		let opCards = data[opponent_phrase + "_hand"].split(",");
 		document.getElementById("opponent_cards").innerHTML = opCards.length;
 
 		return;
@@ -112,11 +112,9 @@ $(document).ready(function() {
 		}
 		else if (form === "trade")
 		{
-			console.log(opCards);
-			for (let card in opCards)
+			for (let card in hand)
 			{
-				console.log(card);
-				$("#p1Trade").append('<option value=\"' + card + '\">' + card + '</option>');
+				$("#p1Trade").append('<option value=\"' + hand[card] + '\">' + hand[card] + '</option>');
 			}
 			show("p1TradeDiv");
 		}
