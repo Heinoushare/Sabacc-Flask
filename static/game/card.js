@@ -110,8 +110,10 @@ $(document).ready(function() {
 		}
 		else if (form == "trade")
 		{
-			for (card in o)
-			$("#p1Trade").append('<option value=\"' + >'+msg+'</p>');
+			for (card in opCards)
+			{
+				$("#p1Trade").append('<option value=\"' + card + '\">'+msg+'</p>');
+			}
 			show("p1TradeDiv");
 		}
 		else
