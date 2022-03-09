@@ -209,12 +209,16 @@ def card(data):
     if game["phase"] != "card":
         return
 
+    # Player 1
     if player == "player1" and game["player_turn"] == game["player1_id"]:
+
+        # Stand
         if action == "stand":
             db.execute(f"UPDATE games SET player1_card = ?, player_turn = ? WHERE game_id = {game_id}", action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
+        # Draw
         elif action == "draw":
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
@@ -237,6 +241,10 @@ def card(data):
             db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
+
+        # Trade
+        elif action == "trade":
+            
 
     return
 
