@@ -21,11 +21,30 @@ $(document).ready(function() {
 	let opponent_id = parseInt(opponent.getAttribute("opponent_id"));
 	let opponent_username = opponent.getAttribute("username");
 
+	// Define show/hide functions
+	function show(id)
+	{
+		document.getElementById(id).hidden = false;
+	}
+
+	function hide(id)
+	{
+		document.getElementById(id).hidden = true;
+	}
+
+	// Figure out which HTML needs to be shown
 	if (phase === "card")
 	{
-		if (carded === 0)
+		if (player_phrase === "player1")
 		{
-			
+			if (carded === 0)
+			{
+
+			}
+		}
+		else if (player_phrase === "player2")
+		{
+			hide("p1Card");
 		}
 	}
 	else
