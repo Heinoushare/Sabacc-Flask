@@ -140,6 +140,8 @@ $(document).ready(function() {
 		{
 			document.getElementById("p1InvalidTrade").innerHTML = "Invalid selection.";
 		}
+		let data = {"game_id": game_id, "action": "draw", "card": card};
+		card_socket.emit("card", data);
 	});
 
 });
