@@ -20,6 +20,13 @@ $(document).ready(function() {
 	let opponent_id = parseInt(opponent.getAttribute("opponent_id"));
 	let opponent_username = opponent.getAttribute("username");
 
-	if ()
+	if (phase === "card")
+	{
+
+	}
+	else
+	{
+		throw "";
+	}
 
 });
