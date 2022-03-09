@@ -6,6 +6,7 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import *
 from flask_socketio import SocketIO, send, emit
+import random
 
 # Configure application
 app = Flask(__name__)
@@ -130,7 +131,7 @@ def bet(data):
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
-        emitGame(game, users)
+        emitGame("bet", game, users)
 
     elif action == "call" and player == "player2" and game["player_turn"] == game["player2_id"] and amount >= 0 and amount <= game["player2_credits"]:
 
@@ -138,7 +139,7 @@ def bet(data):
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
-        emitGame(game, users)
+        emitGame("bet", game, users)
 
     elif action == "call" and player == "player1" and game["player_turn"] == game["player1_id"] and amount >= 0 and amount <= game["player1_credits"]:
 
@@ -146,7 +147,7 @@ def bet(data):
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
-        emitGame(game, users)
+        emitGame("bet", game, users)
 
     elif action == "fold" and player == "player2" and game["player_turn"] == game["player2_id"]:
 
@@ -159,7 +160,7 @@ def bet(data):
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
-        emitGame(game, users)
+        emitGame("bet", game, users)
 
     elif action == "fold" and player == "player1" and game["player_turn"] == game["player1_id"]:
 
@@ -172,7 +173,7 @@ def bet(data):
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
-        emitGame(game, users)
+        emitGame("bet", game, users)
 
     elif action == "raise" and player == "player2" and game["player_turn"] == game["player2_id"] and amount >= game["player1_bet"] and amount <= game["player2_credits"]:
 
@@ -180,7 +181,62 @@ def bet(data):
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
-        emitGame(game, users)
+        emitGame("bet", game, users)
+
+    return
+
+@socketio.on("card", namespace="/card")
+def card(data):
+    # Set some variables for the whole function
+    game_id = data["game_id"]
+    action = data["action"]
+    game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
+    user_id = session.get("user_id")
+    player1_hand = game["player1_hand"]
+    player2_hand = game["player2_hand"]
+
+    player = ""
+    opponent = ""
+    if user_id == game["player1_id"]:
+        player = "player1"
+        opponent = "player2"
+    elif user_id == game["player2_id"]:
+        player = "player2"
+        opponent = "player1"
+    else:
+        return
+
+    if game["phase"] != "card":
+        return
+
+    if player == "player1" and game["player_turn"] == game["player1_id"]:
+        if action == "stand":
+            db.execute(f"UPDATE games SET player1_card = ?, player_turn = ? WHERE game_id = {game_id}", action, game["player2_id"])
+            game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
+            emitGame("card", game, users)
+
+        elif action == "draw":
+            deckList = list(game["deck"].split(","))
+            if len(deckList) == 0:
+                outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
+                deckList = reshuffleDeck(game, outCards)
+
+            drawn = deckList[random.randint(0, len(deckList))]
+            if player1_hand == "":
+                player1_hand = drawn
+            else:
+                player1_hand = player1_hand + "," + drawn
+
+            deck = ""
+            for card in deckList:
+                if deck == "":
+                    deck = card
+                else:
+                    deck = deck + "," + card
+
+            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"])
+            game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
+            emitGame("card", game, users)
 
     return
 

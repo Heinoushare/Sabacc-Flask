@@ -104,13 +104,13 @@ def foldCards(game, p1Hand, p2Hand):
     returnDict = {"deck": deck, "player1_hand": player1_hand, "player2_hand": player2_hand}
     return returnDict
 
-def emitGame(game, users):
+def emitGame(namespace, game, users):
     try:
-        emit("bet", game, room=users[game["player1_id"]])
+        emit(namespace, game, room=users[game["player1_id"]])
     except KeyError:
         pass
 
     try:
-        emit("bet", game, room=users[game["player2_id"]])
+        emit(namespace, game, room=users[game["player2_id"]])
     except KeyError:
         pass
