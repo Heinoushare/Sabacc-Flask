@@ -123,22 +123,26 @@
     {% elif game["phase"] == "card" %}
 
         <div id="cardPhase">
+
             <div id="p1Card">
-                <div id="betActionDiv">
-                        <h4><span id="followFolded"></span>What would you like to do in the betting phase?</h4>
-                        <form>
-                            <select id="betAction" class="form-control form-group" required>
-                                <option value="" disabled selected>Action</option>
-                                <option value="bet">Bet</option>
-                                <option value="check">Check (Do nothing)</option>
-                            </select>
+                <div id="p1CardActionDiv">
+                    <h4>What would you like to do in the card phase?</h4>
+                    <form>
+                        <select id="p1CardAction" class="form-control form-group" required>
+                            <option value="" disabled selected>Action</option>
+                            <option value="draw">Draw</option>
+                            <option value="trade">Trade</option>
+                            <option value="stand">Stand (Skip)</option>
+                        </select>
 
-                            <button type="button" id="betActionBtn" class="btn btn-primary">Next</button>
+                        <button type="button" id="p1CardActionBtn" class="btn btn-primary">Next</button>
 
-                            <p class="red" id="invalidBetAction"></p>
-                        </form>
-                    </div>
+                        <p class="red" id="invalidBetAction"></p>
+                    </form>
+                </div>
             </div>
+
+        </div>
 
     {% endif %}
 
