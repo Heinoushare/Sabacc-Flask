@@ -13,6 +13,7 @@ $(document).ready(function() {
 	let game_id = parseInt(game.getAttribute("game_id"));
 	let phase = game.getAttribute("phase");
 	let player_turn = parseInt(game.getAttribute("player_turn"));
+	let carded = parseInt(game.getAttribute("carded"));
 
 	let playerID = parseInt(player.getAttribute("player_id"));
 	let player_phrase = player.getAttribute("player");
@@ -22,7 +23,10 @@ $(document).ready(function() {
 
 	if (phase === "card")
 	{
-
+		if (carded === 0)
+		{
+			
+		}
 	}
 	else
 	{
