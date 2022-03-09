@@ -87,10 +87,12 @@ $(document).ready(function() {
 			location.reload();
 		}
 
-		// Update card HTML
+		// Update HTML
 		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
 		let opCards = data[opponent_phrase + "_hand"].split(",").length;
 		document.getElementById("opponent_cards").innerHTML = opCards;
+
+		
 
 		return;
 
