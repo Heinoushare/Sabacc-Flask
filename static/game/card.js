@@ -125,4 +125,8 @@ $(document).ready(function() {
 		hide("p1CardActionDiv");
 	});
 
+	$("#p1TradeBtn").on("click", function() {
+
+	});
+
 });
