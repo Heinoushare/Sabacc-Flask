@@ -92,8 +92,6 @@ $(document).ready(function() {
 		let opCards = data[opponent_phrase + "_hand"].split(",").length;
 		document.getElementById("opponent_cards").innerHTML = opCards;
 
-		
-
 		return;
 
 	});
