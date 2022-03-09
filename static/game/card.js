@@ -110,6 +110,7 @@ $(document).ready(function() {
 		}
 		else if (form == "trade")
 		{
+			$("#p1Trade").append('<p>'+msg+'</p>');
 			show("p1TradeDiv");
 		}
 		else
