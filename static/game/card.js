@@ -110,7 +110,7 @@ $(document).ready(function() {
 		}
 		else if (form == "trade")
 		{
-			hide("p1CardAction)
+			show("p1TradeDiv");
 		}
 		else
 		{
