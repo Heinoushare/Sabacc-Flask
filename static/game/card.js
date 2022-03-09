@@ -112,6 +112,7 @@ $(document).ready(function() {
 		}
 		else if (form === "trade")
 		{
+			console.log(opCards);
 			for (let card in opCards)
 			{
 				console.log(card);
