@@ -232,7 +232,7 @@ def card(data):
                 player1_hand = player1_hand + "," + drawn
 
             deck = ""
-            for card in deckList:
+            for card in deckList: 
                 if deck == "":
                     deck = card
                 else:
@@ -245,7 +245,7 @@ def card(data):
         # Trade
         elif action == "trade":
             card = data["card"] # If there's gonna be a KeyError, get it done early
-            
+
 
     return
 
