@@ -255,7 +255,7 @@ def card(data):
             print(discard)
             print(drawn)
             print(player1_hand)
-            player1_hand.replace(discard, drawn)
+            player1_hand.replace(str(discard), str(drawn))
             print(player1_hand)
 
             deck = ""
