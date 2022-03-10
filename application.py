@@ -7,14 +7,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import *
 from flask_socketio import SocketIO, send, emit
 import random
-# import sys
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
 
 # Configure application
 app = Flask(__name__)
-app.run(debug=True)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
