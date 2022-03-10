@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Configure application
 app = Flask(__name__)
+app.run(debug=True)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
@@ -256,9 +257,9 @@ def card(data):
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList[random.randint(0, len(deckList))]
-            app.logger.info("ALOT OF BIG TEXT " + player1_hand)
+            print("ALOT OF BIG TEXT " + player1_hand)
             player1_hand.replace(discard, drawn)
-            app.logger.info("ALOT OF BIG TEXT " + player1_hand, file=sys.stderr)
+            print("ALOT OF BIG TEXT " + player1_hand)
 
             deck = ""
             for card in deckList:
