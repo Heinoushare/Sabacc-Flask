@@ -7,6 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import *
 from flask_socketio import SocketIO, send, emit
 import random
+# import sys
 
 # Configure application
 app = Flask(__name__)
@@ -252,9 +253,9 @@ def card(data):
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList[random.randint(0, len(deckList))]
-            print("ALOT OF BIG TEXT " + player1_hand)
+            print("ALOT OF BIG TEXT " + player1_hand, file=sys.stdout)
             player1_hand.replace(discard, drawn)
-            print("ALOT OF BIG TEXT " + player1_hand)
+            print("ALOT OF BIG TEXT " + player1_hand, file=sys.stdout)
 
             deck = ""
             for card in deckList:
