@@ -253,9 +253,9 @@ def card(data):
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList[random.randint(0, len(deckList))]
-            print("ALOT OF BIG TEXT " + player1_hand, file=sys.stdout)
+            print("ALOT OF BIG TEXT " + player1_hand, file=sys.stderr)
             player1_hand.replace(discard, drawn)
-            print("ALOT OF BIG TEXT " + player1_hand, file=sys.stdout)
+            print("ALOT OF BIG TEXT " + player1_hand, file=sys.stderr)
 
             deck = ""
             for card in deckList:
