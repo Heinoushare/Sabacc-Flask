@@ -252,11 +252,7 @@ def card(data):
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList[random.randint(0, len(deckList))]
-            print(discard)
-            print(drawn)
-            print(player1_hand)
             player1_hand = player1_hand.replace(str(discard), str(drawn))
-            print(player1_hand)
 
             deck = ""
             for card in deckList:

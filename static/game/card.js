@@ -139,9 +139,12 @@ $(document).ready(function() {
 		if (cardIn === false)
 		{
 			document.getElementById("p1InvalidTrade").innerHTML = "Invalid selection.";
+			return;
 		}
+		hide("p1TradeDiv");
 		let data = {"game_id": game_id, "action": "trade", "card": card};
 		card_socket.emit("card", data);
+		return;
 	});
 
 });
