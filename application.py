@@ -7,7 +7,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import *
 from flask_socketio import SocketIO, send, emit
 import random
-# import sys
+import sys
 
 # Configure application
 app = Flask(__name__)
