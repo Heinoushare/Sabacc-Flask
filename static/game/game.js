@@ -8,6 +8,9 @@ $(document).ready(function() {
 	});
 
 	// Reduce website hackability by defining variables pulled from the HTML as soon as possible
-	let game = document.getElementById("game");
+	var game = document.getElementById("game");
+
+	// Create variables off of attributes of "meta" variables
+	var completed = parseInt(game.getAttribute("completed"))
 
 });
