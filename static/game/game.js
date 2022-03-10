@@ -9,8 +9,17 @@ $(document).ready(function() {
 
 	// Reduce website hackability by defining variables pulled from the HTML as soon as possible
 	var game = document.getElementById("game");
+	var player = document.getElementById("player");
+	var opponent = document.getElementById("opponent");
 
 	// Create variables off of attributes of "meta" variables
-	var completed = parseInt(game.getAttribute("completed"))
+	var completed = parseInt(game.getAttribute("completed"));
+	var winner = parseInt()
+
+	let playerID = parseInt(player.getAttribute("player_id"));
+	var username = plyaer.getAttribute("username");
+
+	let opponent_id = parseInt(opponent.getAttribute("opponent_id"));
+	let opponent_username = opponent.getAttribute("username");
 
 });
