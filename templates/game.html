@@ -160,9 +160,13 @@
 
         </div>
 
-    {% elif phase == "completed" %}
+    {% elif phase == "completed" and game["winner"] == game[player + "_id"]%}
 
-        <h4>This game has been completed, {{ }}
+        <h4>This game has been completed, you won!</h4>
+
+    {% elif phase == "completed" and game["winner"] == game[opponent["player"] + "_id"] %}
+
+        <h4>This game has been completed, {{ opponent["username"] }} won!</h4>
 
     {% endif %}
 
