@@ -7,4 +7,7 @@ $(document).ready(function() {
 		game_socket.emit("game");
 	});
 
+	// Reduce website hackability by defining variables pulled from the HTML as soon as possible
+	let game = document.getElementById("game");
+
 });
