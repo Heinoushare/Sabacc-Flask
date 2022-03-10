@@ -118,6 +118,11 @@ $(document).ready(function() {
 			}
 			show("p1TradeDiv");
 		}
+		else if (form === "alderaan")
+		{
+			let data = {"game_id": game_id, "action": "alderaan"};
+			card_socket.emit("card", data);
+		}
 		else
 		{
 			document.getElementById("p1InvalidCardAction").innerHTML = "Invalid action, please Draw, Trade, Stand, or call Alderaan";
