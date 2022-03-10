@@ -232,7 +232,7 @@ def card(data):
                 player1_hand = player1_hand + "," + drawn
 
             deck = ""
-            for card in deckList: 
+            for card in deckList:
                 if deck == "":
                     deck = card
                 else:
@@ -244,8 +244,25 @@ def card(data):
 
         # Trade
         elif action == "trade":
-            card = data["card"] # If there's gonna be a KeyError, get it done early
+            drawn = data["card"] # If there's gonna be a KeyError, get it done early
 
+            deckList = list(game["deck"].split(","))
+            if len(deckList) == 0:
+                outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
+                deckList = reshuffleDeck(game, outCards)
+
+            drawn = deckList[random.randint(0, len(deckList))]
+            if player1_hand == "":
+                player1_hand = drawn
+            else:
+                player1_hand = player1_hand + "," + drawn
+
+            deck = ""
+            for card in deckList:
+                if deck == "":
+                    deck = card
+                else:
+                    deck = deck + "," + card
 
     return
 
