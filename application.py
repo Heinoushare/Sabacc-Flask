@@ -255,8 +255,7 @@ def card(data):
             print(discard)
             print(drawn)
             print(player1_hand)
-            discDex = player1_hand.index(str(discard))
-            player1_hand[discDex:discDex + len(str(discard))] = str(drawn)
+            player1_hand = player1_hand.replace(str(discard), str(drawn))
             print(player1_hand)
 
             deck = ""
