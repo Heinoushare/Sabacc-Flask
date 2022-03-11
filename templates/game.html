@@ -158,6 +158,27 @@
 
             </div>
 
+            <div id="p2Card">
+
+                <div id="p2CardActionDiv">
+                    <h4>What would you like to do in the card phase?</h4>
+                    <form>
+                        <select id="p2CardAction" class="form-control form-group" required>
+                            <option value="" disabled selected>Action</option>
+                            <option value="draw">Draw</option>
+                            <option value="trade">Trade</option>
+                            <option value="stand">Stand (Skip)</option>
+                            <option value="alderaan">Alderaan</option>
+                        </select>
+
+                        <button type="button" id="p2CardActionBtn" class="btn btn-primary">Next</button>
+
+                        <p class="red" id="p2InvalidCardAction"></p>
+                    </form>
+                </div>
+
+            </div>
+
         </div>
 
     {% elif phase == "completed" and game["winner"] == game[player + "_id"]%}
