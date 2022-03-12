@@ -106,7 +106,23 @@ $(document).ready(function() {
 
 		if (playerID === game["player2_id"] && playerID === game["player_turn"])
 		{
-			
+			let p1Txt = document.getElementById("p1CardActionTxt");
+			if (data["player1_card"] === "draw")
+			{
+				p1Txt.innerHTML = "drew.";
+			}
+			else if (data["player1_card"] === "trade")
+			{
+				p1Txt.innerHTML = "traded.";
+			}
+			else if (data["player1_card"] === "stand")
+			{
+				p1Txt.innerHTML = "stood (skipped).";
+			}
+			else if (data["player1_card"] === "alderaan")
+			{
+				p1Txt.innerHTML = "called Alderaan, this is your last turn!";
+			}
 		}
 
 		return;
