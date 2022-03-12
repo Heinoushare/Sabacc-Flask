@@ -282,6 +282,26 @@ def card(data):
 
         # Draw
         elif action == "draw":
+            deckList = list(game["deck"].split(","))
+            if len(deckList) == 0:
+                outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
+                deckList = reshuffleDeck(game, outCards)
+
+            drawn = deckList[random.randint(0, len(deckList))]
+            if player1_hand == "":
+                player1_hand = drawn
+            else:
+                player1_hand = player1_hand + "," + drawn
+
+            deck = ""
+            for card in deckList:
+                if deck == "":
+                    deck = card
+                else:
+                    deck = deck + "," + card
+
+            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"])
+            game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
     return
 
