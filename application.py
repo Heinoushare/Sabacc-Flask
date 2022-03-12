@@ -277,6 +277,11 @@ def card(data):
 
         # Stand
         if action == "stand":
+            db.execute(f"UPDATE games SET player1_card = ?, player_turn = ? WHERE game_id = {game_id}", action, game["player2_id"])
+            game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
+
+        # Draw
+        elif action == "draw":
 
     return
 
