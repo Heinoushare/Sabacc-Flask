@@ -105,9 +105,8 @@ $(document).ready(function() {
 		let opCards = data[opponent_phrase + "_hand"].split(",");
 		document.getElementById("opponent_cards").innerHTML = opCards.length;
 
-		if (playerID === game["player2_id"] && playerID === game["player_turn"])
+		if (playerID === data["player2_id"] && playerID === data["player_turn"])
 		{
-			console.log("in");
 			let p1Txt = document.getElementById("p1CardActionTxt");
 			if (data["player1_card"] === "draw")
 			{
