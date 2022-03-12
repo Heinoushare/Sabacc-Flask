@@ -5,7 +5,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import *
-from flask_socketio import SocketIO, send, emit
+from Flask_SocketIO import SocketIO, send, emit
 import random
 
 # Configure application
