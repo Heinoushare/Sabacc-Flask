@@ -66,6 +66,7 @@ $(document).ready(function() {
 	}
 	else
 	{
+		hide("cardPhase");
 		throw "";
 	}
 
