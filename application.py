@@ -275,6 +275,9 @@ def card(data):
     # Player 2
     elif player == "player2" and game["player_turn"] == game["player2_id"]:
 
+        # Stand
+        if game["player1_card"] == "alderaan"
+
     return
 
 @app.route("/game/<game_id>")
