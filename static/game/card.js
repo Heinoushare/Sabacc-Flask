@@ -123,6 +123,7 @@ $(document).ready(function() {
 			{
 				p1Txt.innerHTML = "called Alderaan, this is your last turn!";
 			}
+			show("p2CardActionDiv");
 		}
 
 		return;
