@@ -104,6 +104,11 @@ $(document).ready(function() {
 		let opCards = data[opponent_phrase + "_hand"].split(",");
 		document.getElementById("opponent_cards").innerHTML = opCards.length;
 
+		if (playerID === game["player2_id"] && playerID === game["player_turn"])
+		{
+			
+		}
+
 		return;
 
 	});
