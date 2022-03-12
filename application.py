@@ -272,6 +272,9 @@ def card(data):
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
+    # Player 2
+    elif player == "player2" and game["player_turn"] == game["player2_id"]:
+
     return
 
 @app.route("/game/<game_id>")
