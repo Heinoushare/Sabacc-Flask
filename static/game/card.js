@@ -56,6 +56,23 @@ $(document).ready(function() {
 			hide("p1Card");
 			if (player1_card != "None" && player1_card != "null" && (player2_card === "None" || player2_card === "null"))
 			{
+				let p1Txt = document.getElementById("p1CardActionTxt");
+				if (game.getAttribute("player1_card") === "draw")
+				{
+					p1Txt.innerHTML = "drew.";
+				}
+				else if (game.getAttribute("player1_card") === "trade")
+				{
+					p1Txt.innerHTML = "traded.";
+				}
+				else if (game.getAttribute("player1_card") === "stand")
+				{
+					p1Txt.innerHTML = "stood (skipped).";
+				}
+				else if (game.getAttribute("player1_card") === "alderaan")
+				{
+					p1Txt.innerHTML = "called Alderaan, this is your last turn!";
+				}
 				hide("p2TradeDiv");
 			}
 			else
