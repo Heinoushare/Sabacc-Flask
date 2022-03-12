@@ -152,4 +152,6 @@ $(document).ready(function() {
 		return;
 	});
 
+	$("#p2CardActionBtn").on("click", function() )
+
 });
