@@ -107,6 +107,7 @@ $(document).ready(function() {
 
 		if (playerID === game["player2_id"] && playerID === game["player_turn"])
 		{
+			console.log("in");
 			let p1Txt = document.getElementById("p1CardActionTxt");
 			if (data["player1_card"] === "draw")
 			{
