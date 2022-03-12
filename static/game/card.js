@@ -60,7 +60,8 @@ $(document).ready(function() {
 			}
 			else
 			{
-				hide("p2Card");
+				hide("p2CardActionDiv");
+				hide("p2TradeDiv");
 			}
 		}
 	}
