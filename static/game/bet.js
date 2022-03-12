@@ -185,7 +185,6 @@ $(document).ready(function() {
 			{
 				if (playerID === data["player1_id"])
 				{
-					alert("they raised");
 					document.getElementById("raiseCredits").innerHTML = data["player2_bet"] + " credits";
 					hide("betActionDiv");
 					show("p1Bet");

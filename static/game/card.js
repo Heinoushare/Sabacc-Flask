@@ -41,6 +41,7 @@ $(document).ready(function() {
 	{
 		if (player_phrase === "player1")
 		{
+			hide("p2Card");
 			if (player1_card != "None" && player1_card != "null")
 			{
 				hide("p1Card");
