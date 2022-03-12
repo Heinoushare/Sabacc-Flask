@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, session
 from functools import wraps
 import random
-from Flask_SocketIO import emit
+from flask_socketio import emit
 
 # Helper functions for application.py
 
