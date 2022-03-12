@@ -53,6 +53,14 @@ $(document).ready(function() {
 		else if (player_phrase === "player2")
 		{
 			hide("p1Card");
+			if ((player1_card === "None" || player1_card === "null") && player2_card != "None" && player2_card != "null")
+			{
+				hide("p2Trade");
+			}
+			else
+			{
+				hide("p2Card");
+			}
 		}
 	}
 	else
