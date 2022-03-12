@@ -184,4 +184,26 @@ $(document).ready(function() {
 		hide("p2CardActionDiv");
 	});
 
+	$("#p2TradeBtn").on("click", function() {
+		let card = document.getElementById("p2Trade").value;
+		let cardIn = false;
+		for (c in hand)
+		{
+			if (card === hand[c])
+			{
+				cardIn = true;
+				break;
+			}
+		}
+		if (cardIn === false)
+		{
+			document.getElementById("p2InvalidTrade").innerHTML = "Invalid selection.";
+			return;
+		}
+		hide("p2TradeDiv");
+		let data = {"game_id": game_id, "action": "trade", "card": card};
+		card_socket.emit("card", data);
+		return;
+	});
+
 });
