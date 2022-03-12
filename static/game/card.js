@@ -152,6 +152,36 @@ $(document).ready(function() {
 		return;
 	});
 
-	$("#p2CardActionBtn").on("click", function() )
+	$("#p2CardActionBtn").on("click", function() {
+		let form = document.getElementById("p2CardAction").value;
+		if (form === "stand")
+		{
+			let data = {"game_id": game_id, "action": "stand"};
+			card_socket.emit("card", data);
+		}
+		else if (form === "draw")
+		{
+			let data = {"game_id": game_id, "action": "draw"};
+			card_socket.emit("card", data);
+		}
+		else if (form === "trade")
+		{
+			for (card in hand)
+			{
+				$("#p2Trade").append('<option value=\"' + hand[card] + '\">' + hand[card] + '</option>');
+			}
+			show("p2TradeDiv");
+		}
+		else if (form === "alderaan")
+		{
+			let data = {"game_id": game_id, "action": "alderaan"};
+			card_socket.emit("card", data);
+		}
+		else
+		{
+			document.getElementById("p2InvalidCardAction").innerHTML = "Invalid action, please Draw, Trade, Stand, or call Alderaan";
+		}
+		hide("p2CardActionDiv");
+	});
 
 });

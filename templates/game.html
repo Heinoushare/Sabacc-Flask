@@ -177,6 +177,20 @@
                     </form>
                 </div>
 
+                <div id="p2TradeDiv">
+                    <h4>Which card would you like to trade?</h4>
+                    <form>
+                        <select id="p2Trade" class="form-control form-group" required>
+                            <option value="" disabled selected>Card</option>
+                            {# JavaScript will add the options here #}
+                        </select>
+
+                        <button type="button" id="p2TradeBtn" class="btn btn-primary">Next</button>
+
+                        <p class="red" id="p2InvalidTrade"></p>
+                    </form>
+                </div>
+
             </div>
 
         </div>
