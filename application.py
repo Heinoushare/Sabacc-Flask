@@ -144,7 +144,7 @@ def bet(data):
 
     elif action == "call" and player == "player1" and game["player_turn"] == game["player1_id"] and amount >= 0 and amount <= game["player1_credits"]:
 
-        db.execute(f"UPDATE games SET player1_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", game["player1_credits"] - (game["player2_bet"] - game["player1_bet"]), None, None, game["hand_pot"] + (amount * 2) - game["player1_bet"], "card", game["player1_id"])
+        db.execute(f"UPDATE games SET player1_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", game["player1_credits"] - (game["player2_bet"] - game["player1_bet"]), None, None, game["hand_pot"] + amount - game["player1_bet"], "card", game["player1_id"])
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
