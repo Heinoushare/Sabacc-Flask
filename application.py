@@ -327,12 +327,12 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
-            p1Sum = 0
+            p1Hand = []
             for card in list(player1_hand.split(",")):
-                p1Sum += int(card)
-            p2Sum = 0
+                p1Hand.append(int(card)
+            p2Hand = []
             for card in list(player2_hand.split(",")):
-                p2Sum += int(card)
+                p2Hand.append(int(card)
 
 
     return
