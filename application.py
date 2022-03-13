@@ -268,7 +268,8 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
-            p1Sum
+            p1Sum = 0
+            p2Sum = 0
             db.execute(f"UPDATE games SET player2_card = ?, player_turn = 'completed' WHERE game_id = {game_id}", action)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
