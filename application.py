@@ -303,7 +303,30 @@ def card(data):
             db.execute(f"UPDATE games SET player2_hand = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
-        # 
+        # Trade
+        elif action == "trade":
+            discard = data["card"] # If there's gonna be a KeyError, get it done early
+
+            deckList = list(game["deck"].split(","))
+            if len(deckList) == 0:
+                outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
+                deckList = reshuffleDeck(game, outCards)
+
+            drawn = deckList[random.randint(0, len(deckList))]
+            player2_hand = player2_hand.replace(str(discard), str(drawn))
+
+            deck = ""
+            for card in deckList:
+                if deck == "":
+                    deck = card
+                else:
+                    deck = deck + "," + card
+
+            db.execute(f"UPDATE games SET player2_hand = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
+            game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
+
+        # Alderaan
+        elif action == "alderaan":
 
     return
 
