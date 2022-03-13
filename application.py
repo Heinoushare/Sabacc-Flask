@@ -277,7 +277,7 @@ def card(data):
 
         # Stand
         if action == "stand":
-            db.execute(f"UPDATE games SET player1_card = ?, player_turn = ? WHERE game_id = {game_id}", action, game["player2_id"])
+            db.execute(f"UPDATE games SET player2_card = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", action, "shift", game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Draw
@@ -300,7 +300,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player2_hand = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
+            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, "shift", action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Trade
@@ -322,7 +322,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player2_hand = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
+            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, "shift", action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Alderaan
@@ -338,7 +338,7 @@ def card(data):
             p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
             winner = winner(game)
 
-            db.execute(f"UPDATE games SET player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
+            db.execute(f"UPDATE games SET player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, -1)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
 
