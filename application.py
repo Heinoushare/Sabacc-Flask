@@ -338,15 +338,6 @@ def card(data):
             p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
             winner = winner(game)
 
-            winnerPhrase = ""
-
-            if winner == game["player1_id"]:
-                winnerPhrase = "player1"
-            elif winner == game["player2_id"]:
-                winnerPhrase = "player2"
-
-            if p1
-
             db.execute(f"UPDATE games SET player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
