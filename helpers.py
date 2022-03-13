@@ -114,3 +114,24 @@ def emitGame(namespace, game, users):
         emit(namespace, game, room=users[game["player2_id"]])
     except KeyError:
         pass
+
+def intHand(strHand):
+    intHand = []
+    for card in list(strHand.split(",")):
+        intHand.append(int(card))
+    intHand.sort()
+    return intHand
+
+def calcHandVal(hand):
+    sum = 0
+    for card in hand:
+        sum += card
+
+    val = str(sum)
+
+    if len(hand) == 3 and hand[0] == 0 and hand[1] == 2 and hand[2] == 3:
+        val = "023"
+    if len(hand) == 2 and hand[0] == -2 and hand[1] == -2:
+        val = "-22"
+
+    return val

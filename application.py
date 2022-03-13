@@ -327,36 +327,13 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
-            p1Hand = []
-            for card in list(player1_hand.split(",")):
-                p1Hand.append(int(card))
-            p1Hand.sort()
+            p1Hand = intHand(list(player1_hand.split(",")))
 
-            p2Hand = []
-            for card in list(player2_hand.split(",")):
-                p2Hand.append(int(card))
-            p2Hand.sort()
+            p2Hand = intHand(list(player2_hand.split(",")))
 
-            p1Sum = 0
-            for card in p1Hand:
-                p1Sum += card
-            p1Val = str(p1Sum)
+            p1Val = calcHandVal(p1Hand)
 
-            if len(p1Hand) == 3 and p1Hand[0] == 0 and p1Hand[1] == 2 and p1Hand[2] == 3:
-                p1Val = "023"
-            if len(p1Hand) == 2 and p1Hand[0] == -2 and p1Hand[1] == -2:
-                p1Val = "-22"
-
-            p2Sum = 0
-            for card in p1Hand:
-                p2Sum += card
-            p2Val = str(p2Sum)
-
-            if len(p2Hand) == 3 and p2Hand[0] == 0 and p2Hand[1] == 2 and p2Hand[2] == 3:
-                p2Val = "023"
-            if len(p2Hand) == 2 and p2Hand[0] == -2 and p2Hand[1] == -2:
-                p1Val = "-22"
-
+            p2Val = calcHandVal(p2Hand)
 
     return
 
