@@ -328,7 +328,7 @@ def card(data):
         # Alderaan
         elif action == "alderaan":
 
-            winner = winner
+            winner = winner(game)
 
     return
 
