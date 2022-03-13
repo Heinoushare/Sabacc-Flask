@@ -303,6 +303,8 @@ def card(data):
             db.execute(f"UPDATE games SET player2_hand = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
+        # 
+
     return
 
 @app.route("/game/<game_id>")
