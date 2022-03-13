@@ -327,13 +327,15 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
-            bombOut = 0
+            p1BombOut = 0
+            p2Bo
             p1Abs = abs(int(calcHandVal(list(game["player1_hand"].split(",")))))
             p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
             if p1Abs > 23 or p2Abs > 2:
                 bombOut = 0.1
             p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
             winner = winner(game)
+
 
     return
 
