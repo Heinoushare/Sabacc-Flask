@@ -288,10 +288,10 @@ def card(data):
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList[random.randint(0, len(deckList))]
-            if player1_hand == "":
-                player1_hand = drawn
+            if player2_hand == "":
+                player2_hand = drawn
             else:
-                player1_hand = player1_hand + "," + drawn
+                player2_hand = player2_hand + "," + drawn
 
             deck = ""
             for card in deckList:
@@ -300,7 +300,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"])
+            db.execute(f"UPDATE games SET player2_hand = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
     return
