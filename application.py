@@ -340,9 +340,12 @@ def card(data):
             p1Sum = 0
             for card in p1Hand:
                 p1Sum += card
+            p1Val = str(p1Sum)
 
             if len(p1Hand) == 3 and p1Hand[0] == 0 and p1Hand[1] == 2 and p1Hand[2] == 3:
-                p1Sum = 23
+                p1Val = "023"
+            if len(p1Hand) == 2 and p1Hand[0] == -2 and p1Hand[1] == -2:
+                p1Val = "-22"
 
 
     return
