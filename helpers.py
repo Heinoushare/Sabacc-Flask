@@ -134,5 +134,36 @@ def calcHandVal(strHand):
 
     return val
 
-def winner(p1StrHand, p2StrHand):
-    p1Han
+def winner(game):
+    p1Val = calcHandVal(list(game["player1_hand"].split(",")))
+    p2Val = calcHandVal(list(game["player2_hand"].split(",")))
+
+    # Check if anybody has the Idiot's Array
+    if p1Val == "023" and p2Val == "023":
+        return -1
+    elif p1Val == "023":
+        return game["player1_id"]
+    elif p2Val == "023":
+        return game["player2_id"]
+
+    p1Abs = abs(int(p1Val))
+    p2Abs = abs(int(p2Val))
+
+    # Check if anyone has bombed out
+    if p1Abs > 23 and p2Abs > 23:
+        return -1
+    elif p1Abs > 23:
+        return game["player2_id"]
+    elif p2Abs > 23:
+        return game["player1_id"]
+
+    # If there are no special conditions, find the winner
+    if p1Abs > p2Abs:
+        return game["player1_id"]
+    elif p2Abs > p1Abs:
+        return game["player2_id"]
+    elif p1Abs == p2Abs:
+        if int(p1Val) > int(p2Val):
+            return game["player1_id"]
+        elif int(p2Val) > int(p1Val):
+            return game["player2_id"]
