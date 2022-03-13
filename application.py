@@ -345,7 +345,7 @@ def card(data):
             elif winner == game["player2_id"]:
                 winnerPhrase = "player2"
 
-            if game[winnerPhrase + "_]
+            if game[winnerPhrase + "_hand"]
 
             db.execute(f"UPDATE games SET player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
