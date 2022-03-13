@@ -328,9 +328,7 @@ def card(data):
         # Alderaan
         elif action == "alderaan":
 
-            p1Val = calcHandVal(player1_hand)
-
-            p2Val = calcHandVal(player2_hand)
+            winner = winner
 
     return
 
