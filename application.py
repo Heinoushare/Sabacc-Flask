@@ -327,7 +327,8 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
-
+            p1Abs = abs(int(calcHandVal(list(game["player1_hand"].split(",")))))
+            p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
             winner = winner(game)
 
     return
