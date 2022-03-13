@@ -330,9 +330,19 @@ def card(data):
             p1Hand = []
             for card in list(player1_hand.split(",")):
                 p1Hand.append(int(card)
+            p1Hand.sort()
+
             p2Hand = []
             for card in list(player2_hand.split(",")):
                 p2Hand.append(int(card)
+            p2Hand.sort()
+
+            p1Sum = 0
+            for card in p1Hand:
+                p1Sum += card
+
+            if len(p1Hand) == 3 and p1Hand[0] == 0 and p1Hand[1] == 2 and p1Hand[2] == 3:
+                p1Sum = 23
 
 
     return
