@@ -135,4 +135,4 @@ def calcHandVal(strHand):
     return val
 
 def winner(p1StrHand, p2StrHand):
-    # TODO Get winner of the game
+    p1Han
