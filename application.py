@@ -327,13 +327,10 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
-            p1Hand = intHand(list(player1_hand.split(",")))
 
-            p2Hand = intHand(list(player2_hand.split(",")))
+            p1Val = calcHandVal(player1_hand)
 
-            p1Val = calcHandVal(p1Hand)
-
-            p2Val = calcHandVal(p2Hand)
+            p2Val = calcHandVal(player2_hand)
 
     return
 

@@ -115,14 +115,12 @@ def emitGame(namespace, game, users):
     except KeyError:
         pass
 
-def intHand(strHand):
-    intHand = []
+def calcHandVal(strHand):
+    hand = []
     for card in list(strHand.split(",")):
-        intHand.append(int(card))
-    intHand.sort()
-    return intHand
+        hand.append(int(card))
+    hand.sort()
 
-def calcHandVal(hand):
     sum = 0
     for card in hand:
         sum += card
