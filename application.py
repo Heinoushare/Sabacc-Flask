@@ -338,7 +338,7 @@ def card(data):
             p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
             winner = winner(game)
 
-            db.execute(f"UPDATE games SET player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, -1)
+            db.execute(f"UPDATE games SET phase = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, action, -1)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
 
