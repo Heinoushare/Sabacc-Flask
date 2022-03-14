@@ -256,11 +256,13 @@ $(document).ready(function() {
 				document.getElementById("invalidFollowBetAction").innerHTML = "You can't call, you don't have enough credits!";
 				return;
 			}
+			$("#followBetActionDiv").hide();
 			data = {"game_id": game_id, "action": "call", "amount": parseInt(player1_bet)};
 			bet_socket.emit("bet", data);
 		}
 		else if (document.getElementById("followBetAction").value === "fold")
 		{
+			$("#followBetActionDiv").hide();
 			data = {"game_id": game_id, "action": "fold", "amount": 0};
 			bet_socket.emit("bet", data);
 		}
@@ -274,13 +276,13 @@ $(document).ready(function() {
 			document.getElementById("followRaise").min = player1_bet + 1;
 			document.getElementById("followRaise").max = game.getAttribute("player2_credits");
 			show("followBetDiv");
+			$("#followBetActionDiv").hide();
 		}
 		else
 		{
 			document.getElementById("invalidFollowBetAction").innerHTML = "Invalid bet action - Please input a valid value (raise, call, or fold)";
 		}
 
-		$("#followBetActionDiv").hide();
 		return;
 
 	});
