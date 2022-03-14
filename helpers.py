@@ -167,3 +167,5 @@ def getWinner(game):
             return game["player1_id"]
         elif int(p2Val) > int(p1Val):
             return game["player2_id"]
+        else:
+            return -1

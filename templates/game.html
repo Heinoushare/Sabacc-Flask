@@ -203,6 +203,10 @@
 
         <h4>This game has been completed, {{ opponent["username"] }} won!</h4>
 
+    {% elif game["completed"] == 1 and game["winner"] == -1 %}
+
+        <h4>This game has been completed, it was a tie!</h4>
+
     {% endif %}
 
     <!--Put script tags at end to load page faster-->

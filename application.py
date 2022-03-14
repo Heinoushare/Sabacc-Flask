@@ -331,16 +331,16 @@ def card(data):
         elif action == "alderaan":
             p1BombOut = 0
             p2BombOut = 0
-            p1Abs = abs(int(calcHandVal(list(game["player1_hand"].split(",")))))
-            p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
+            p1Abs = abs(int(calcHandVal(game["player1_hand"])))
+            p2Abs = abs(int(calcHandVal(game["player2_hand"])))
             if p1Abs > 23:
                 p1BombOut = 0.1
             if p2Abs > 23:
                 p2BombOut = 0.1
-            p2Abs = abs(int(calcHandVal(list(game["player2_hand"].split(",")))))
-            winner = winner(game)
+            p2Abs = abs(int(calcHandVal(game["player2_hand"])))
+            winner = getWinner(game)
 
-            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ? WHERE game_id = {game_id}", game["player1_credits"] - (game["hand_pot"] * p1BombOut), game["player2_credits"] - (game["hand_pot"] * p2BombOut), game["hand_pot"] + (game["player1_credits"] * (game["hand_pot"] * p1BombOut)) + (game["player2_credits"] * (game["hand_pot"] * p2BombOut)),"completed", player2_hand, action, -1, 1)
+            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - (game["hand_pot"] * p1BombOut), game["player2_credits"] - (game["hand_pot"] * p2BombOut), game["hand_pot"] + (game["player1_credits"] * (game["hand_pot"] * p1BombOut)) + (game["player2_credits"] * (game["hand_pot"] * p2BombOut)), "completed", action, -1, 1, winner)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         if game["player1_card"] == "alderaan":
