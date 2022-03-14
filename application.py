@@ -357,6 +357,8 @@ def card(data):
             db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ? WHERE game_id = {game_id}", game["player1_credits"] - (game["hand_pot"] * p1BombOut), game["player2_credits"] - (game["hand_pot"] * p2BombOut), game["hand_pot"] + (game["player1_credits"] * (game["hand_pot"] * p1BombOut)) + (game["player2_credits"] * (game["hand_pot"] * p2BombOut)),"completed", player2_hand, action, -1, 1)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
+        db.execute(f"UPDATE games SET player1_card = ?, player2_card = ? WHERE game_id = {game_id}", None, None)
+
         emitGame("card", game, users)
 
     return
