@@ -170,7 +170,7 @@ $(document).ready(function() {
 					document.getElementById("hand").innerHTML = data["player1_hand"];
 					document.getElementById("opponent_cards").innerHTML = "2";
 
-					document.getElementById("followFolded").innerHTML = opponent_username + " folded. ";
+					document.getElementById("followFolded").innerHTML = "Someone folded. ";
 					document.getElementById("betAction").innerHTML = '<option value="" disabled selected>Action</option> <option value="bet">Bet</option> <option value="check">Check (Do nothing)</option>'
 					document.getElementById("betCredits").value = "";
 
