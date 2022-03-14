@@ -297,7 +297,7 @@ $(document).ready(function() {
 		{
 			document.getElementById("invalidRaise").innerHTML = "Invalid amount of credits - Please input a valid number of credits (a positive integer from " + (parseInt(player1_bet) + 1) + " to " + userCredits + ")";
 		}
-		else if (raise < player1_bet || raise > parseInt(userCredits))
+		else if (parseInt(raise) < player1_bet || parseInt(raise) > parseInt(userCredits))
 		{
 			document.getElementById("invalidRaise").innerHTML = "Invalid amount of credits - Please input a valid number of credits (a positive integer from " + (parseInt(player1_bet) + 1) + " to " + userCredits + ")";
 		}
