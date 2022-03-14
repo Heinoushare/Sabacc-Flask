@@ -79,7 +79,7 @@ def host():
 
     elif request.method == "POST":
         player2Username = request.form.get("player2")
-        player2 = db.execute(f"SELECT * FROM users WHERE username = ? AND user_id != {session.get["user_id"]}", player2Username)
+        player2 = db.execute(f"SELECT * FROM users WHERE username = ? AND id != {session.get['user_id']}", player2Username)
         if len(player2) == 0:
             return apology("Invalid player 2 username")
 
