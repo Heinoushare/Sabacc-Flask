@@ -100,7 +100,7 @@ $(document).ready(function() {
 
 	$("#shiftBtn").on("click", function() {
 
-		if (playerID === game.getAttribute("player1_id"))
+		if (playerID === parseInt(game.getAttribute("player1_id")))
 		{
 			let revealed = [];
 			for (card in player1_hand)
@@ -114,7 +114,7 @@ $(document).ready(function() {
 			shift_socket.emit("shift", data);
 		}
 
-		else if (playerID === game.getAttribute("player2_id"))
+		else if (playerID === parseInt(game.getAttribute("player2_id")))
 		{
 			let revealed = [];
 			for (card in player2_hand)
