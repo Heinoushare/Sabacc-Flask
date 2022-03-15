@@ -249,8 +249,9 @@ def card(data):
 
             # Update shift protected cards
             p1_proced = game["player2_protected"]
-            p1_proced = p1_proced.replace(discard, "")
-            p1_proced = p1_proced.replace(",,", ",")
+            if p1_proced != None:
+                p1_proced = p1_proced.replace(discard, "")
+                p1_proced = p1_proced.replace(",,", ",")
 
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
@@ -316,8 +317,9 @@ def card(data):
 
             # Update shift protected cards
             p2_proced = game["player2_protected"]
-            p2_proced = p2_proced.replace(discard, "")
-            p2_proced = p2_proced.replace(",,", ",")
+            if p2_proced != None:
+                p2_proced = p2_proced.replace(discard, "")
+                p2_proced = p2_proced.replace(",,", ",")
 
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
