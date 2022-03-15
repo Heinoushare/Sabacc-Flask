@@ -481,6 +481,8 @@ def card(data):
                 if len(deckList) < drawCnt:
                     deckList = reshuffleDeck(game, game["player1_hand"].split(",") + game["player2_hand"].split(","))
 
+                for i in range(drawCnt):
+                    if p
 
         db.execute(f'UPDATE games SET phase = "betting", player_turn = {game["player1_id"]}, player2_protected = {revealed} WHERE game_id = {game_id}')
 
