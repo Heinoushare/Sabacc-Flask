@@ -204,7 +204,7 @@
                 <h4>Which cards would you like to reveal to protect them from the Sabacc shift (if any)?</h4>
                 <form id="p1ShiftCards">
 
-                    {% for card in list(str(game[player + "_protected"]).split(",")) %}
+                    {% for card in list(game[player + "_protected"].split(",")) %}
 
                         <input type="checkbox" id="{{ card }}" name="{{ card }}" value="{{ card }}">
                         <label for="{{ card }}"> {{ card }}</label><br>
