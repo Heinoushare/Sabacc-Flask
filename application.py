@@ -492,6 +492,8 @@ def card(data):
                             player2_hand = deckList.pop(random.randint(0, len(deckList)))
                         else:
                             player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList)))
+                for 
+
             for card in deckList:
                 if deck == "":
                     deck = card
