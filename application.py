@@ -258,9 +258,10 @@ def card(data):
 
                 p1_proced = ""
                 for card in p1ProcList:
-
-                p1_proced = p1_proced.replace(discard, "")
-                p1_proced = p1_proced.replace(",,", ",")
+                    if p1_proced == "":
+                        p1_proced = card
+                    else:
+                        p1_proced = p1_proced + "," + card
 
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
