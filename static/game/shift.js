@@ -77,8 +77,7 @@ $(document).ready(function() {
 
 		// Update HTML
 		document.getElementById("procCards").innerHTML = data[player_phrase + "_protected"];
-		let opProc = data[opponent_phrase + "_hand"].split(",");
-		document.getElementById("opponent_cards").innerHTML = opCards.length;
+		document.getElementById("opponent_cards").innerHTML = data[opponent_phrase + "_protected"];
 
 		return;
 
