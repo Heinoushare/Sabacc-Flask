@@ -434,8 +434,6 @@ def card(data):
     action = data["action"]
     game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
     user_id = session.get("user_id")
-    player1_hand = game["player1_hand"]
-    player2_hand = game["player2_hand"]
 
     player = ""
     opponent = ""
@@ -454,8 +452,14 @@ def card(data):
     if action != "shift":
         return
 
-    if user_id == game["player1_id"]:
-        
+    revealed = ""
+    for card in data["cards"]:
+        if revealed == "":
+            revealed = card
+        else:
+            revealed = revealed + "," + card
+
+    db
 
     return
 
