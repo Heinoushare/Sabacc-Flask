@@ -492,7 +492,12 @@ def card(data):
                             player2_hand = deckList.pop(random.randint(0, len(deckList)))
                         else:
                             player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList)))
-                for 
+
+                for card in game["player" + p + "_protected"]:
+                    if p == "1":
+                        player1_hand = player1_hand + "," + card
+                    elif p == "2":
+                        player2_hand = player2_hand + "," + card
 
             for card in deckList:
                 if deck == "":
@@ -503,6 +508,8 @@ def card(data):
         rolls = rollsList[0] + "," + rollsList[1]
 
         db.execute(f'UPDATE games SET player1_hand = {player1_hand}, player2_hand = {player2_hand}, deck = {deck}, phase = "betting", player_turn = {game["player1_id"]}, player2_protected = {revealed}, dice_rolls = {rolls} WHERE game_id = {game_id}')
+
+    emitGame("shift", game, users)
 
     return
 
