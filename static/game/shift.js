@@ -110,7 +110,7 @@ $(document).ready(function() {
 					revealed.push(card);
 				}
 			}
-			data = {"game_id": game_id, "action": "trade", "cards": revealed};}
+			data = {"game_id": game_id, "action": "trade", "cards": revealed};
 			shift_socket.emit("shift", data);
 		}
 
@@ -124,7 +124,7 @@ $(document).ready(function() {
 					revealed.push(card);
 				}
 			}
-			data = {"game_id": game_id, "action": "trade", "cards": revealed};}
+			data = {"game_id": game_id, "action": "trade", "cards": revealed};
 			shift_socket.emit("shift", data);
 		}
 
