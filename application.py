@@ -472,14 +472,14 @@ def card(data):
 
         rollsList = [random.randint(1, 6), random.randint(1, 6)]
         deck = game["deck"]
-        player1_hand = game["player1_hand"]
-        player2_hand = game["player2_hand"]
+        player1_hand = ""
+        player2_hand = ""
         if rollsList[0] == rollsList[1]:
             for p in ["1", "2"]:
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
                 deckList = deck.split(",")
                 if len(deckList) < drawCnt:
-                    deckList = reshuffleDeck(game, game["player1_hand"].split(",") + game["player2_hand"].split(","))
+                    deckList = reshuffleDeck(game, game["player1_protected"].split(",") + game["player2_protected"].split(","))
 
                 for i in range(drawCnt):
                     if p == "1":
