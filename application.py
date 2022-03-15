@@ -270,8 +270,8 @@ def card(data):
 
             drawn = deckList[random.randint(0, len(deckList))]
 
-            player1_hand = ""
             p1HandList = list(player1_hand.split(","))
+            player1_hand = ""
             for card in p1HandList:
                 if card == discard:
                     card = drawn
@@ -340,8 +340,18 @@ def card(data):
             # Update shift protected cards
             p2_proced = game["player2_protected"]
             if p2_proced != None:
-                p2_proced = p2_proced.replace(discard, "")
-                p2_proced = p2_proced.replace(",,", ",")
+                p2ProcList = list(p2_proced.split(","))
+                for card in p2ProcList:
+                    if card == discard:
+                        p2ProcList.pop(card)
+                        break
+
+                p2_proced = ""
+                for card in p1ProcList:
+                    if p1_proced == "":
+                        p1_proced = card
+                    else:
+                        p1_proced = p1_proced + "," + card
 
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
