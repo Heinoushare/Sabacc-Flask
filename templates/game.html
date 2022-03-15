@@ -202,7 +202,7 @@
         <div id="shiftPhase">
 
                 <h4>Which cards would you like to reveal to protect them from the Sabacc shift (if any)?</h4>
-                <form id="p1ShiftCards">
+                <form id="shiftCards">
 
                     {% for card in game[player + "_hand"].split(",") %}
 
@@ -211,7 +211,7 @@
 
                     {% endfor %}
 
-                    <button type="button" id="p1ShiftBtn" class="btn btn-primary">Protect</button>
+                    <button type="button" id="shiftBtn" class="btn btn-primary">Protect</button>
 
                 </form>
 

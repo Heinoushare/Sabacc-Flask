@@ -48,8 +48,7 @@ $(document).ready(function() {
         throw "";
     }
 
-	shift_socket.on("shift", function(data)
-	{
+	shift_socket.on("shift", function(data) {
 
 		// If this is not the correct game, return
 		if (data["game_id"] != game_id)
@@ -94,6 +93,10 @@ $(document).ready(function() {
 		}
 
 		return;
+
+	});
+
+	$("#shiftBtn").on("click", function() {
 
 	});
 
