@@ -250,6 +250,7 @@ def card(data):
             # Update shift protected cards
             p1_proced = game["player2_protected"]
             if p1_proced != None:
+                p1ProcList = list(p1_proced.split(","))
                 p1_proced = p1_proced.replace(discard, "")
                 p1_proced = p1_proced.replace(",,", ",")
 
