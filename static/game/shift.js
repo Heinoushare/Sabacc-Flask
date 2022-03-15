@@ -12,8 +12,8 @@ $(document).ready(function() {
 	let game_id = parseInt(game.getAttribute("game_id"));
 	let phase = game.getAttribute("phase");
 	let player_turn = parseInt(game.getAttribute("player_turn"));
-	let player1_hand = game.getAttribute("player1_hand");
-	let player2_hand = game.getAttribute("player2_hand");
+	let player1_hand = game.getAttribute("player1_hand").split(",");
+	let player2_hand = game.getAttribute("player2_hand").split(",");
 	let player1_protected = game.getAttribute("player1_protected");
 	let player2_protected = game.getAttribute("player2_protected");
 
@@ -103,9 +103,10 @@ $(document).ready(function() {
 		if (playerID = game.getAttribute("player1_id"))
 		{
 			let revealed = [];
-			for (card in player1_hand.split(","))
+			for (card in player1_hand)
 			{
-				if (document.getElementById(card).checked === true)
+				console.log(player1_hand[card]);
+				if (document.getElementById(player1_hand[card]).checked === true)
 				{
 					revealed.push(card);
 				}
@@ -117,9 +118,9 @@ $(document).ready(function() {
 		else if (playerID = game.getAttribute("player2_id"))
 		{
 			let revealed = [];
-			for (card in player2_hand.split(","))
+			for (card in player2_hand)
 			{
-				if (document.getElementById(card).checked === true)
+				if (document.getElementById(player2_hand[card]).checked === true)
 				{
 					revealed.push(card);
 				}
