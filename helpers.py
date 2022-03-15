@@ -64,7 +64,6 @@ def constructDeck():
 
 def reshuffleDeck(game, outCards):
     deckList = list(game["deck"].split(","))
-    print(deckList)
     for card in outCards:
         deckList.remove(card)
     return deckList

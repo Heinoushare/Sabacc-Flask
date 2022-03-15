@@ -474,6 +474,9 @@ def card(data):
         if rollsList[0] == rollsList[1]:
             for p in ["1", "2"]:
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
+                deckList = game["deck"].split(",")
+                if len(deckList) < drawCnt:
+                    
 
         db.execute(f'UPDATE games SET phase = "betting", player_turn = {game["player1_id"]}, player2_protected = {revealed} WHERE game_id = {game_id}')
 
