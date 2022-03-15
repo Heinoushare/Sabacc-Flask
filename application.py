@@ -476,9 +476,11 @@ def card(data):
         rollsList = [random.randint(1, 6), random.randint(1, 6)]
         deck = ""
         deckList = game["deck"].split(",")
-        player1_hand = ""
-        player2_hand = ""
+        player1_hand = game["player1_hand"]
+        player2_hand = game["player2_hand"]
         if rollsList[0] == rollsList[1]:
+            player1_hand = ""
+            player2_hand = ""
             for p in ["1", "2"]:
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
                 if len(deckList) < drawCnt:
