@@ -105,7 +105,10 @@ $(document).ready(function() {
 			let revealed = [];
 			for (card in player1_hand)
 			{
-				
+				if (document.getElementById.checked === true)
+				{
+					revealed.push(card);
+				}
 			}
 		}
 
