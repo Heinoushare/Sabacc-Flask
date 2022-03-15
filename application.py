@@ -451,6 +451,14 @@ def card(data):
     if game["phase"] != "card":
         return
 
+    if action != "shift":
+        return
+
+    if user_id == game["player1_id"]:
+        
+
+    return
+
 @app.route("/game/<game_id>")
 @login_required
 def game(game_id):
