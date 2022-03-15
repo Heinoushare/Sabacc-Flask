@@ -37,7 +37,10 @@ $(document).ready(function() {
 
     if (phase === "shift")
     {
-		if (playerID === player_turn)
+		if (playerID != player_turn)
+		{
+			hide("shiftPhase");
+		}
     }
     else
     {
@@ -45,7 +48,8 @@ $(document).ready(function() {
         throw "";
     }
 
-	shift_socket.on("shift", function(data) {
+	shift_socket.on("shift", function(data)
+	{
 
 		// If this is not the correct game, return
 		if (data["game_id"] != game_id)
