@@ -37,7 +37,7 @@ $(document).ready(function() {
 
     if (phase === "shift")
     {
-
+		if (playerID === player_turn)
     }
     else
     {
