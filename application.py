@@ -268,7 +268,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player1_protected, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, p1_proced, game["player2_id"])
+            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player1_protected = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, p1_proced, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
