@@ -100,7 +100,14 @@ $(document).ready(function() {
 
 	$("#shiftBtn").on("click", function() {
 
-
+		if (playerID = game.getAttribute("player1_id"))
+		{
+			let revealed = [];
+			for (card in player1_hand)
+			{
+				
+			}
+		}
 
 	});
 
