@@ -482,7 +482,16 @@ def card(data):
                     deckList = reshuffleDeck(game, game["player1_hand"].split(",") + game["player2_hand"].split(","))
 
                 for i in range(drawCnt):
-                    if p
+                    if p == "1":
+                        if player1_hand == 0:
+                            player1_hand = deckList.pop(random.randint(0, len(deckList)))
+                        else:
+                            player1_hand = player1_hand + "," + deckList.pop(random.randint(0, len(deckList)))
+                    elif p == "2":
+                        if player2_hand == 0:
+                            player2_hand = deckList.pop(random.randint(0, len(deckList)))
+                        else:
+                            player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList)))
 
         db.execute(f'UPDATE games SET phase = "betting", player_turn = {game["player1_id"]}, player2_protected = {revealed} WHERE game_id = {game_id}')
 
