@@ -463,7 +463,7 @@ def card(data):
             else:
                 revealed = revealed + "," + card
 
-        db.execute(f"UPDATE games SET player_turn = {game['player2_id']}, player1_protected = {revealed} WHERE game_id = {game_id}")
+        db.execute(f"UPDATE games SET player_turn = ?, player1_protected = ? WHERE game_id = {game_id}", game['player2_id'], revealeed)
 
     elif user_id == game["player2_id"]:
         revealed = ""
