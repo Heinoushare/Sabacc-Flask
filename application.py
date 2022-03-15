@@ -470,6 +470,8 @@ def card(data):
             else:
                 revealed = revealed + "," + card
 
+        rollsList = [random.randint(1, 6), random.randint(1, 6)]
+
         db.execute(f'UPDATE games SET phase = "betting", player_turn = {game["player1_id"]}, player2_protected = {revealed} WHERE game_id = {game_id}')
 
     return
