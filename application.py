@@ -471,11 +471,15 @@ def card(data):
                 revealed = revealed + "," + card
 
         rollsList = [random.randint(1, 6), random.randint(1, 6)]
+        deck = game["deck"]
+        player1_hand = game["player1_hand"]
+        player2_hand = game["player2_hand"]
         if rollsList[0] == rollsList[1]:
             for p in ["1", "2"]:
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
-                deckList = game["deck"].split(",")
+                deckList = deck.split(",")
                 if len(deckList) < drawCnt:
+                    deckList = reshuffleDeck(game, game["player1_hand"].split(",") + game["player2_hand"].split(","))
 
 
         db.execute(f'UPDATE games SET phase = "betting", player_turn = {game["player1_id"]}, player2_protected = {revealed} WHERE game_id = {game_id}')
