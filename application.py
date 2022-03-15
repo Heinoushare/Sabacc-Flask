@@ -427,6 +427,30 @@ def card(data):
 
     return
 
+@socketio.on("shift", namespace="/shift")
+def card(data):
+    # Set some variables for the whole function
+    game_id = data["game_id"]
+    action = data["action"]
+    game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
+    user_id = session.get("user_id")
+    player1_hand = game["player1_hand"]
+    player2_hand = game["player2_hand"]
+
+    player = ""
+    opponent = ""
+    if user_id == game["player1_id"]:
+        player = "player1"
+        opponent = "player2"
+    elif user_id == game["player2_id"]:
+        player = "player2"
+        opponent = "player1"
+    else:
+        return
+
+    if game["phase"] != "card":
+        return
+
 @app.route("/game/<game_id>")
 @login_required
 def game(game_id):
