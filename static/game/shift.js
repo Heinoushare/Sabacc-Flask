@@ -105,13 +105,12 @@ $(document).ready(function() {
 			let revealed = [];
 			for (card in player1_hand)
 			{
-				console.log(player1_hand[card]);
 				if (document.getElementById(player1_hand[card]).checked === true)
 				{
 					revealed.push(card);
 				}
 			}
-			data = {"game_id": game_id, "action": "trade", "cards": revealed};
+			data = {"game_id": game_id, "action": "shift", "cards": revealed};
 			shift_socket.emit("shift", data);
 		}
 
@@ -125,7 +124,7 @@ $(document).ready(function() {
 					revealed.push(card);
 				}
 			}
-			data = {"game_id": game_id, "action": "trade", "cards": revealed};
+			data = {"game_id": game_id, "action": "shift", "cards": revealed};
 			shift_socket.emit("shift", data);
 		}
 

@@ -446,7 +446,7 @@ def card(data):
     else:
         return
 
-    if game["phase"] != "card":
+    if game["phase"] != "shift":
         return
 
     if action != "shift":
