@@ -248,7 +248,7 @@ def card(data):
             discard = data["card"] # If there's gonna be a KeyError, get it done early
 
             # Update shift protected cards
-            p1_proced = game["player2_protected"]
+            p1_proced = game["player1_protected"]
             if p1_proced != None:
                 p1ProcList = list(p1_proced.split(","))
                 for card in p1ProcList:
@@ -270,6 +270,7 @@ def card(data):
 
             drawn = deckList[random.randint(0, len(deckList))]
 
+            # Update player hand
             p1HandList = list(player1_hand.split(","))
             player1_hand = ""
             for card in p1HandList:
@@ -283,6 +284,7 @@ def card(data):
                 else:
                     player1_hand = player1_hand + "," + card
 
+            # Reconstruct deck
             deck = ""
             for card in deckList:
                 if deck == "":
@@ -359,8 +361,22 @@ def card(data):
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList[random.randint(0, len(deckList))]
-            player2_hand = player2_hand.replace(str(discard), str(drawn), 1)
 
+            # Update player hand
+            p2HandList = list(player2_hand.split(","))
+            player2_hand = ""
+            for card in p2HandList:
+                if card == discard:
+                    card = drawn
+                    break
+
+            for card in p2HandList:
+                if player2_hand == "":
+                    player2_hand = card
+                else:
+                    player2_hand = player2_hand + "," + card
+
+            # Reconstruct deck
             deck = ""
             for card in deckList:
                 if deck == "":
