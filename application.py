@@ -253,7 +253,12 @@ def card(data):
                 p1ProcList = list(p1_proced.split(","))
                 for card in p1ProcList:
                     if card == discard:
-                        
+                        p1ProcList.pop(card)
+                        break
+
+                p1_proced = ""
+                for card in p1ProcList:
+
                 p1_proced = p1_proced.replace(discard, "")
                 p1_proced = p1_proced.replace(",,", ",")
 
