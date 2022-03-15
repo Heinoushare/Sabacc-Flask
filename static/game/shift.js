@@ -103,7 +103,7 @@ $(document).ready(function() {
 		if (playerID = game.getAttribute("player1_id"))
 		{
 			let revealed = [];
-			for (card in player1_hand)
+			for (card in player1_hand.split(","))
 			{
 				if (document.getElementById(card).checked === true)
 				{
@@ -117,7 +117,7 @@ $(document).ready(function() {
 		else if (playerID = game.getAttribute("player2_id"))
 		{
 			let revealed = [];
-			for (card in player2_hand)
+			for (card in player2_hand.split(","))
 			{
 				if (document.getElementById(card).checked === true)
 				{
