@@ -253,7 +253,7 @@ def card(data):
                 p1ProcList = list(p1_proced.split(","))
                 for card in p1ProcList:
                     if card == discard:
-                        p1ProcList.pop(card)
+                        p1ProcList.remove(card)
                         break
 
                 p1_proced = ""
@@ -345,7 +345,7 @@ def card(data):
                 p2ProcList = list(p2_proced.split(","))
                 for card in p2ProcList:
                     if card == discard:
-                        p2ProcList.pop(card)
+                        p2ProcList.remove(card)
                         break
 
                 p2_proced = ""
@@ -476,7 +476,7 @@ def card(data):
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
                 deckList = game["deck"].split(",")
                 if len(deckList) < drawCnt:
-                    
+
 
         db.execute(f'UPDATE games SET phase = "betting", player_turn = {game["player1_id"]}, player2_protected = {revealed} WHERE game_id = {game_id}')
 
