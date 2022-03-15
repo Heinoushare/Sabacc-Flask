@@ -12,6 +12,8 @@ $(document).ready(function() {
 	let game_id = parseInt(game.getAttribute("game_id"));
 	let phase = game.getAttribute("phase");
 	let player_turn = parseInt(game.getAttribute("player_turn"));
+	let player1_hand = game.getAttribute("player1_hand");
+	let player2_hand = game.getAttribute("player2_hand");
 	let player1_protected = game.getAttribute("player1_protected");
 	let player2_protected = game.getAttribute("player2_protected");
 
@@ -97,6 +99,8 @@ $(document).ready(function() {
 	});
 
 	$("#shiftBtn").on("click", function() {
+
+
 
 	});
 
