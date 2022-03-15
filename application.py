@@ -444,12 +444,15 @@ def card(data):
         player = "player2"
         opponent = "player1"
     else:
+        print("NaP " + user_id)
         return
 
     if game["phase"] != "shift":
+        print("wrong phase " + game["phase"])
         return
 
     if action != "shift":
+        print("wrong action " + action)
         return
 
     if user_id == game["player1_id"]:
