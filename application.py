@@ -247,6 +247,11 @@ def card(data):
         elif action == "trade":
             discard = data["card"] # If there's gonna be a KeyError, get it done early
 
+            # Update shift protected cards
+            p1_proced = game["player2_protected"]
+            p1_proced = p1_proced.replace(discard, "")
+            p1_proced = p1_proced.replace(",,", ",")
+
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
@@ -262,7 +267,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"])
+            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player1_protected, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, p1_proced, game["player2_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
@@ -309,6 +314,11 @@ def card(data):
             print("trade")
             discard = data["card"] # If there's gonna be a KeyError, get it done early
 
+            # Update shift protected cards
+            p2_proced = game["player2_protected"]
+            p2_proced = p2_proced.replace(discard, "")
+            p2_proced = p2_proced.replace(",,", ",")
+
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
@@ -324,7 +334,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, "shift", action, game["player1_id"])
+            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player2_protected = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, "shift", action, p2_proced, game["player1_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Alderaan

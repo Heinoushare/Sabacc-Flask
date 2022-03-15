@@ -195,6 +195,31 @@
 
         </div>
 
+    {% elif game["phase"] == "shift" %}
+
+        <div id="shiftPhase">
+
+            <div id="p1Shift">
+
+                <h4>Which cards would you like to reveal to protect them from the Sabacc shift (if any)?</h4>
+                <form id="p1ShiftCards">
+
+                    {% for card in list(game[player + "protected"].split(",")) %}
+
+                        <input type="checkbox" id="{{ card }}" name="{{ card }}" value="{{ card }}">
+
+                    {% endfor %}
+
+                </form>
+
+            </div>
+
+            <div id="p2Shift">
+
+            </div>
+
+        </div>
+
     {% elif game["completed"] == 1 and game["winner"] == game[player + "_id"]%}
 
         <h4>This game has been completed, you won!</h4>
@@ -215,6 +240,6 @@
     <script src="/static/game/game.js"></script>
     <script src="/static/game/bet.js"></script>
     <script src="/static/game/card.js"></script>
-    <!--<script src="/static/game/shift.js"></script>-->
+    <script src="/static/game/shift.js"></script>
 
 {% endblock %}
