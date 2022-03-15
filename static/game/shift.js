@@ -45,4 +45,43 @@ $(document).ready(function() {
         throw "";
     }
 
+	shift_socket.on("shift", function(data) {
+
+		// If this is not the correct game, return
+		if (data["game_id"] != game_id)
+		{
+			return;
+		}
+
+		for (pair in data)
+		{
+			if (data[pair] === null)
+			{
+				game.setAttribute(pair.toString(), data[pair]);
+			}
+			else
+			{
+				game.setAttribute(pair.toString(), data[pair].toString());
+			}
+		}
+
+		game = document.getElementById("game");
+		game_id = parseInt(game.getAttribute("game_id"));
+		phase = game.getAttribute("phase");
+		player_turn = parseInt(game.getAttribute("player_turn"));
+
+		if (phase != "card")
+		{
+			location.reload();
+		}
+
+		// Update HTML
+		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
+		let opCards = data[opponent_phrase + "_hand"].split(",");
+		document.getElementById("opponent_cards").innerHTML = opCards.length;
+
+		return;
+
+	});
+
 });
