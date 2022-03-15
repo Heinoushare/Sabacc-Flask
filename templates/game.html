@@ -207,8 +207,11 @@
                     {% for card in list(game[player + "protected"].split(",")) %}
 
                         <input type="checkbox" id="{{ card }}" name="{{ card }}" value="{{ card }}">
+                        <label for="{{ card }}"> {{ card }}</label><br>
 
                     {% endfor %}
+
+                    <button type="button" id="p1ShiftBtn" class="btn btn-primary">Protect</button>
 
                 </form>
 

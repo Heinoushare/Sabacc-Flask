@@ -12,8 +12,8 @@ $(document).ready(function() {
 	let game_id = parseInt(game.getAttribute("game_id"));
 	let phase = game.getAttribute("phase");
 	let player_turn = parseInt(game.getAttribute("player_turn"));
-	let player1_card = game.getAttribute("player1_card");
-	let player2_card = game.getAttribute("player2_card");
+	let player1_protected = game.getAttribute("player1_protected");
+	let player2_protected = game.getAttribute("player2_protected");
 
 	let playerID = parseInt(player.getAttribute("player_id"));
 	let player_phrase = player.getAttribute("player");
