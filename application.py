@@ -251,6 +251,9 @@ def card(data):
             p1_proced = game["player2_protected"]
             if p1_proced != None:
                 p1ProcList = list(p1_proced.split(","))
+                for card in p1ProcList:
+                    if card == discard:
+                        
                 p1_proced = p1_proced.replace(discard, "")
                 p1_proced = p1_proced.replace(",,", ",")
 
