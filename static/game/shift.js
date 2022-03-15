@@ -84,6 +84,15 @@ $(document).ready(function() {
 		document.getElementById("opponent_cards").innerHTML = data[opponent_phrase + "_protected"];
 		document.getElementById("lastRolls").inerHTML = data["dice_rolls"];
 
+		if (playerID === player_turn)
+		{
+			show("shiftPhase");
+		}
+		else
+		{
+			hide("shiftPhase");
+		}
+
 		return;
 
 	});
