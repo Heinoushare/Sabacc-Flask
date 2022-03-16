@@ -249,6 +249,7 @@ def card(data):
 
             # Update shift protected cards
             p1_proced = game["player1_protected"]
+            p1ProcList = []
             if p1_proced != None:
                 p1ProcList = list(p1_proced.split(","))
                 for card in p1ProcList:
@@ -341,6 +342,7 @@ def card(data):
 
             # Update shift protected cards
             p2_proced = game["player2_protected"]
+            p2ProcList = []
             if p2_proced != None:
                 p2ProcList = list(p2_proced.split(","))
                 for card in p2ProcList:
@@ -349,11 +351,11 @@ def card(data):
                         break
 
                 p2_proced = ""
-                for card in p1ProcList:
-                    if p1_proced == "":
-                        p1_proced = card
+                for card in p2ProcList:
+                    if p2_proced == "":
+                        p2_proced = card
                     else:
-                        p1_proced = p1_proced + "," + card
+                        p2_proced = p2_proced + "," + card
 
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
