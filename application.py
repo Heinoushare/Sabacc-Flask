@@ -359,7 +359,7 @@ def card(data):
 
             deckList = list(game["deck"].split(","))
             if len(deckList) == 0:
-                outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
+                outCards = list(game["player1_hand"].split(",")) + list(game["player2_hand"].split(","))
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList[random.randint(0, len(deckList) - 1)]
