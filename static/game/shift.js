@@ -121,7 +121,7 @@ $(document).ready(function() {
 			{
 				if (document.getElementById(player2_hand[card]).checked === true)
 				{
-					revealed.push(card);
+					revealed.push(player2_hand[card]);
 				}
 			}
 			data = {"game_id": game_id, "action": "shift", "cards": revealed};
