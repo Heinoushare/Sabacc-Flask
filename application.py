@@ -226,7 +226,7 @@ def card(data):
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
 
-            drawn = deckList[random.randint(0, len(deckList))]
+            drawn = deckList[random.randint(0, len(deckList) - 1)]
             if player1_hand == "":
                 player1_hand = drawn
             else:
@@ -269,7 +269,7 @@ def card(data):
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
 
-            drawn = deckList[random.randint(0, len(deckList))]
+            drawn = deckList[random.randint(0, len(deckList) - 1)]
 
             # Update player hand
             p1HandList = list(player1_hand.split(","))
@@ -319,7 +319,7 @@ def card(data):
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
 
-            drawn = deckList[random.randint(0, len(deckList))]
+            drawn = deckList[random.randint(0, len(deckList) - 1)]
             if player2_hand == "":
                 player2_hand = drawn
             else:
@@ -493,14 +493,14 @@ def card(data):
                 for i in range(drawCnt):
                     if p == "1":
                         if player1_hand == "":
-                            player1_hand = deckList.pop(random.randint(0, len(deckList)))
+                            player1_hand = deckList.pop(random.randint(0, len(deckList) - 1))
                         else:
-                            player1_hand = player1_hand + "," + deckList.pop(random.randint(0, len(deckList)))
+                            player1_hand = player1_hand + "," + deckList.pop(random.randint(0, len(deckList) - 1))
                     elif p == "2":
                         if player2_hand == "":
-                            player2_hand = deckList.pop(random.randint(0, len(deckList)))
+                            player2_hand = deckList.pop(random.randint(0, len(deckList) - 1))
                         else:
-                            player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList)))
+                            player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList) - 1))
 
                 for card in game["player" + p + "_protected"]:
                     if p == "1":
