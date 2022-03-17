@@ -478,7 +478,7 @@ def shift(data):
             else:
                 revealed = revealed + "," + card
 
-        rollsList = [random.randint(1, 6), random.randint(1, 6)]
+        rollsList = [1, 1]
         deck = ""
         deckList = game["deck"].split(",")
         player1_hand = game["player1_hand"]
