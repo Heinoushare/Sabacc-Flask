@@ -54,12 +54,12 @@ $(document).ready(function() {
 	let pHand = game.getAttribute(player_phrase + "_hand").split(",");
 	for (card in pHand)
 	{
-		let check = false;
+		let check = "false";
 		for (c in proced)
 		{
 			if (proced[c] == pHand[card])
 			{
-				check = true;
+				check = "true";
 				proced.splice(proced.indexOf(proced[c]), 1)
 				break;
 			}
