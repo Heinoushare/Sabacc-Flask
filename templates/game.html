@@ -207,8 +207,8 @@
                     <div id="shiftable">
                         {% for i in range(len(game[player + "_hand"].split(","))) %}
 
-                            <input type="checkbox" id="{{ game[player + '_hand'].split(',')[i] }}">
-                            <label for="{{ game[player + '_hand'].split(',')[i] }}"> {{ game[player + '_hand'].split(',')[i] }}</label><br>
+                            <input type="checkbox" id="{{ i }}">
+                            <label for="{{ i }}"> {{ game[player + '_hand'].split(',')[i] }}</label><br>
 
                         {% endfor %}
 
