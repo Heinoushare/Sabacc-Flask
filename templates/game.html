@@ -204,10 +204,10 @@
                 <h4>Which cards would you like to reveal to protect them from the Sabacc shift (if any)?</h4>
                 <form id="shiftCards">
 
-                    {% for i in range(game[player + "_hand"].split(",")) %}
+                    {% for i in range(len(game[player + "_hand"].split(","))) %}
 
-                        <input type="checkbox" id="{{ game[player + '_hand'].split(',')[i] }}" name="{{ card }}" value="{{ card }}">
-                        <label for="{{ card }}"> {{ card }}</label><br>
+                        <input type="checkbox" id="{{ game[player + '_hand'].split(',')[i] }}" name="{{ game[player + '_hand'].split(',')[i] }}" value="{{ game[player + '_hand'].split(',')[i] }}">
+                        <label for="{{ game[player + '_hand'].split(',')[i] }}"> {{ game[player + '_hand'].split(',')[i] }}</label><br>
 
                     {% endfor %}
 
@@ -217,7 +217,7 @@
 
         </div>
 
-    {% elif game["completed"] == 1 and game["winner"] == game[player + "_id"]%}
+    {% elif game["completed"] == 1 and game["winner"] == game[player + "_id"] %}
 
         <h4>This game has been completed, you won!</h4>
 
