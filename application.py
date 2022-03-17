@@ -276,6 +276,7 @@ def card(data):
             player1_hand = ""
             p1HandList.append(drawn)
             p1HandList.remove(discard)
+            print(p1HandList)
 
             for card in p1HandList:
                 if player1_hand == "":
