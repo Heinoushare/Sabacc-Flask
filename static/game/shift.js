@@ -52,7 +52,12 @@ $(document).ready(function() {
 
 	for (card in game.getAttribute(player_phrase + "_hand"))
 	{
-		
+		let check = false;
+		let proced = game.getAttribute(player_phrase + "_protected");
+		for (c in proced)
+		{
+			if (c == card)
+		}
 	}
 
 	shift_socket.on("shift", function(data) {
