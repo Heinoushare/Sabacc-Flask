@@ -50,6 +50,8 @@ $(document).ready(function() {
         throw "";
     }
 
+	
+
 	shift_socket.on("shift", function(data) {
 
 		// If this is not the correct game, return

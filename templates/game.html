@@ -204,12 +204,14 @@
                 <h4>Which cards would you like to reveal to protect them from the Sabacc shift (if any)?</h4>
                 <form id="shiftCards">
 
-                    {% for i in range(len(game[player + "_hand"].split(","))) %}
+                    {# {% for i in range(len(game[player + "_hand"].split(","))) %}
 
                         <input type="checkbox" id="{{ game[player + '_hand'].split(',')[i] }}" name="{{ game[player + '_hand'].split(',')[i] }}" value="{{ game[player + '_hand'].split(',')[i] }}">
                         <label for="{{ game[player + '_hand'].split(',')[i] }}"> {{ game[player + '_hand'].split(',')[i] }}</label><br>
 
-                    {% endfor %}
+                    {% endfor %} #}
+
+                    {# Leave the cards to JavaScript #}
 
                     <button type="button" id="shiftBtn" class="btn btn-primary">Protect</button>
 
