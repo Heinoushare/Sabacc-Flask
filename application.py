@@ -274,7 +274,9 @@ def card(data):
 
             # Update player hand
             p1HandList = list(player1_hand.split(","))
+            print(p1HandList)
             p1HandList.append(drawn)
+            print(p1HandList)
             p1HandList.remove(discard)
             print(p1HandList)
 
