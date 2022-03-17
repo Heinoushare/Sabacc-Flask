@@ -488,6 +488,7 @@ def shift(data):
             player2_hand = ""
             for p in ["1", "2"]:
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
+                print(drawCnt)
                 if len(deckList) < drawCnt:
                     print("drawCnt too high")
                     deckList = reshuffleDeck(game, game["player1_protected"].split(",") + game["player2_protected"].split(","))
