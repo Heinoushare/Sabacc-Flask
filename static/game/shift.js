@@ -54,17 +54,18 @@ $(document).ready(function() {
 	let pHand = game.getAttribute(player_phrase + "_hand").split(",");
 	for (card in pHand)
 	{
-		let check = "false";
+		let check = false;
 		for (c in proced)
 		{
 			if (proced[c] == pHand[card])
 			{
-				check = "true";
+				check = true;
 				proced.splice(proced.indexOf(proced[c]), 1)
 				break;
 			}
 		}
-		$("#shiftable").append('<input type="checkbox" id="' + card + '" name="' + pHand[card] + '" value="' + pHand[card] + '" checked=">'+msg+'</p>');
+		$("#shiftable").append('<input type="checkbox" id="' + card + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + phand[card] + '</input>');
+		document.getElementById(card).checked = check
 	}
 
 	shift_socket.on("shift", function(data) {
