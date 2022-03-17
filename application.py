@@ -269,7 +269,7 @@ def card(data):
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
 
-            drawn = deckList[random.randint(0, len(deckList) - 1)]
+            drawn = deckList.pop(random.randint(0, len(deckList) - 1)))
 
             # Update player hand
             p1HandList = list(player1_hand.split(","))
