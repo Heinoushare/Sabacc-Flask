@@ -276,7 +276,8 @@ def card(data):
             player1_hand = ""
             for card in p1HandList:
                 if card == discard:
-                    p2HandList.insert(p2HandList.index(card), drawn)
+                    p1HandList.insert(p1HandList.index(card), drawn)
+                    p1HandList.remove(discard)
                     break
 
             for card in p1HandList:
@@ -373,6 +374,7 @@ def card(data):
                 if card == discard:
                     print(p2HandList[p2HandList.index(card)])
                     p2HandList.insert(p2HandList.index(card), drawn)
+                    p2HandList.remove(discard)
                     break
 
             for card in p2HandList:
