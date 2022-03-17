@@ -478,7 +478,7 @@ def shift(data):
             else:
                 revealed = revealed + "," + card
 
-        db.execute(f"UPDATE games SET player2_protected = {revealed} WHERE game_id = {game_id}")
+        db.execute(f"UPDATE games SET player2_protected = ? WHERE game_id = {game_id}", revealed)
 
         rollsList = [1, 1]
         deck = ""
