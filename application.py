@@ -503,7 +503,7 @@ def shift(data):
                         else:
                             player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList) - 1))
 
-                for card in game["player" + p + "_protected"]:
+                for card in game["player" + p + "_protected"].split(","):
                     if p == "1":
                         player1_hand = player1_hand + "," + card
                     elif p == "2":
