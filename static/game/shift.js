@@ -60,12 +60,12 @@ $(document).ready(function() {
 			if (proced[c] == pHand[card])
 			{
 				check = true;
-				proced.splice(proced.indexOf(proced[c]), 1)
+				proced.splice(c, 1)
 				break;
 			}
 		}
 		$("#shiftable").append('<input type="checkbox" id="' + card + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + phand[card] + '</input>');
-		document.getElementById(card).checked = check
+		document.getElementById(card).checked = check;
 	}
 
 	shift_socket.on("shift", function(data) {
