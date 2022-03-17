@@ -54,7 +54,7 @@ $(document).ready(function() {
 	let pHand = game.getAttribute(player_phrase + "_hand").split(",");
 	for (card in pHand)
 	{
-		console.log("thing");
+		console.log(card);
 		let check = false;
 		for (c in proced)
 		{
