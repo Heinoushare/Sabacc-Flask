@@ -433,7 +433,7 @@ def card(data):
     return
 
 @socketio.on("shift", namespace="/shift")
-def card(data):
+def shift(data):
     # Set some variables for the whole function
     game_id = data["game_id"]
     action = data["action"]
