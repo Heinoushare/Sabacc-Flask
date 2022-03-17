@@ -64,7 +64,7 @@ $(document).ready(function() {
 				break;
 			}
 		}
-		$("#shiftable").append('<input type="checkbox" id="' + card + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + pHand[card] + '</input>');
+		$("#shiftable").append('<input type="checkbox" id="' + card.toString + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + pHand[card] + '</input>');
 		document.getElementById(card.toString()).checked = check;
 	}
 
