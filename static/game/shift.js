@@ -65,9 +65,10 @@ $(document).ready(function() {
 				break;
 			}
 		}
-		$("#shiftable").append('<input type="checkbox" id="' + card.toString() + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + pHand[card] + '</input>');
-		$("#shiftable").append('<label for="' + card.toString() + '"> ' + pHand[card] + '</label><br>');
-		// document.getElementById(card.toString()).checked = check;
+		let cardBox = document.getElementById(card.toString());
+		cardBox.name = pHand[card];
+		cardBox.value = pHand[card];
+		cardBox.checked = check;
 	}
 
 	shift_socket.on("shift", function(data) {
