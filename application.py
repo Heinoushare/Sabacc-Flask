@@ -554,7 +554,9 @@ def game(game_id):
     opponent["cards"] = len(list(game[opponent["player"] + "_hand"].split(",")))
     opponent["credits"] = game[opponent["player"] + "_credits"]
 
-    return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"])
+    pHandLen = len(game[player + "_hand"].split(","))
+
+    return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHanndLen=pHandLen)
 
 
 @app.route("/login", methods=["GET", "POST"])
