@@ -206,7 +206,7 @@
 
                     {% for card in game[player + "_hand"].split(",") %}
 
-                        <input type="checkbox" id="{{ card }}" name="{{ card }}" value="{{ card }}">
+                        <input type="checkbox" id="{{ game[player + '_hand'].split(',').index(card) }}" name="{{ card }}" value="{{ card }}">
                         <label for="{{ card }}"> {{ card }}</label><br>
 
                     {% endfor %}
