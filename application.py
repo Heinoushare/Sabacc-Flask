@@ -530,7 +530,7 @@ def shift(data):
 
     return
 
-@app.route("/game/<game_id>")
+@app.route("/game/<game_id>", methods=["GET", "POST"])
 @login_required
 def game(game_id):
     """Play Sabacc!"""
@@ -550,13 +550,18 @@ def game(game_id):
     else:
         return apology("This is not one of your games")
 
-    opponent["username"] = db.execute("SELECT username FROM users WHERE id = ?", game[opponent["player"] + "_id"])[0]["username"]
-    opponent["cards"] = len(list(game[opponent["player"] + "_hand"].split(",")))
-    opponent["credits"] = game[opponent["player"] + "_credits"]
+    if request.method == "GET":
 
-    pHandLen = len(game[player + "_hand"].split(","))
+        opponent["username"] = db.execute("SELECT username FROM users WHERE id = ?", game[opponent["player"] + "_id"])[0]["username"]
+        opponent["cards"] = len(list(game[opponent["player"] + "_hand"].split(",")))
+        opponent["credits"] = game[opponent["player"] + "_credits"]
 
-    return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen)
+        pHandLen = len(game[player + "_hand"].split(","))
+
+        return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen)
+
+    elif request.method == "POST":
+
 
 
 @app.route("/login", methods=["GET", "POST"])
