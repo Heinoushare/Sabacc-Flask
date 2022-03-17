@@ -50,7 +50,10 @@ $(document).ready(function() {
         throw "";
     }
 
-	
+	for (card in game.getAttribute(player_phrase + "_hand"))
+	{
+		
+	}
 
 	shift_socket.on("shift", function(data) {
 
