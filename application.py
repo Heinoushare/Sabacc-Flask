@@ -521,6 +521,7 @@ def shift(data):
 
         db.execute(f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ?, phase = ?, player_turn = ?, player2_protected = ?, dice_rolls = ? WHERE game_id = {game_id}", player1_hand, player2_hand, deck, "betting", game["player1_id"], revealed, rolls)
 
+    game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
     emitGame("shift", game, users)
 
     return
