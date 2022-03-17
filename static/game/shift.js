@@ -65,7 +65,7 @@ $(document).ready(function() {
 			}
 		}
 		$("#shiftable").append('<input type="checkbox" id="' + card.toString + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + pHand[card] + '</input>');
-		document.getElementById(card.toString()).checked = check;
+		// document.getElementById(card.toString()).checked = check;
 	}
 
 	shift_socket.on("shift", function(data) {
