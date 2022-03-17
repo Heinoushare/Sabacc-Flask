@@ -562,6 +562,14 @@ def game(game_id):
 
     elif request.method == "POST":
 
+        deckData = constructDeck()
+        deck = deckData["deck"]
+        player1_hand = deckData["player1_hand"]
+        player2_hand = deckData["player2_hand"]
+
+        db.execute("INSERT INTO games (player1_id, player2_id, player1_credits, player2_credits, hand_pot, sabacc_pot, deck, player1_hand, player2_hand, player_turn) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", session.get("user_id"), player2[0]["id"], 985, 985, 10, 20, deck, player1_hand, player2_hand, session.get("user_id"))
+        game_id = db.execute("SELECT game_id FROM games WHERE player2_id = ? ORDER BY game_id DESC", player2[0]["id"])[0]["game_id"]
+        return redirect(f"/game/{game_id}")
 
 
 @app.route("/login", methods=["GET", "POST"])
