@@ -366,9 +366,8 @@ def card(data):
                 outCards = list(game["player1_hand"].split(",")) + list(game["player2_hand"].split(","))
                 deckList = reshuffleDeck(game, outCards)
 
-            drawn = deckList[random.randint(0, len(deckList) - 1)]
+            drawn = deckList.pop(random.randint(0, len(deckList) - 1)])
             print(drawn)
-            deckList.remove(drawn)
 
             # Update player hand
             p2HandList = list(player2_hand.split(","))
@@ -510,11 +509,11 @@ def shift(data):
                     elif p == "2":
                         player2_hand = player2_hand + "," + card
 
-            for card in deckList:
-                if deck == "":
-                    deck = card
-                else:
-                    deck = deck + "," + card
+        for card in deckList:
+            if deck == "":
+                deck = card
+            else:
+                deck = deck + "," + card
 
         rolls = str(rollsList[0]) + "," + str(rollsList[1])
 
