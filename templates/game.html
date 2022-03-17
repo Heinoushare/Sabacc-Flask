@@ -205,12 +205,12 @@
                 <form id="shiftCards">
 
                     <div id="shiftable">
-                        {# {% for i in range(len(game[player + "_hand"].split(","))) %}
+                        {% for i in range(len(game[player + "_hand"].split(","))) %}
 
-                            <input type="checkbox" id="{{ game[player + '_hand'].split(',')[i] }}" name="{{ game[player + '_hand'].split(',')[i] }}" value="{{ game[player + '_hand'].split(',')[i] }}">
+                            <input type="checkbox" id="{{ game[player + '_hand'].split(',')[i] }}">
                             <label for="{{ game[player + '_hand'].split(',')[i] }}"> {{ game[player + '_hand'].split(',')[i] }}</label><br>
 
-                        {% endfor %} #}
+                        {% endfor %}
 
                         {# Leave the cards to JavaScript #}
                     </div>
