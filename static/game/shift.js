@@ -65,8 +65,8 @@ $(document).ready(function() {
 				break;
 			}
 		}
-		$("#shiftable").append('<input type="checkbox" id="' + card.toString + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + pHand[card] + '</input>');
-		$("#shiftable").append('<label for="' + card.toString + '"> ' + pHand[card] + '</label><br>');
+		$("#shiftable").append('<input type="checkbox" id="' + card.toString() + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + pHand[card] + '</input>');
+		$("#shiftable").append('<label for="' + card.toString() + '"> ' + pHand[card] + '</label><br>');
 		// document.getElementById(card.toString()).checked = check;
 	}
 
