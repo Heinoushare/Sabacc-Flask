@@ -54,7 +54,7 @@ $(document).ready(function() {
 	let pHand = game.getAttribute(player_phrase + "_hand").split(",");
 	for (card in pHand)
 	{
-		console.log(card);
+		console.log(pHandcard);
 		let check = false;
 		for (c in proced)
 		{
@@ -66,6 +66,7 @@ $(document).ready(function() {
 			}
 		}
 		$("#shiftable").append('<input type="checkbox" id="' + card.toString + '" name="' + pHand[card] + '" value="' + pHand[card] + '>' + pHand[card] + '</input>');
+		$("shiftable").append('<label for="' + p1'"> {{ game[player + '_hand'].split(',')[i] }}</label><br>')
 		// document.getElementById(card.toString()).checked = check;
 	}
 
