@@ -478,6 +478,8 @@ def shift(data):
             else:
                 revealed = revealed + "," + card
 
+        db.execute(f"UPDATE games SET player2_protected = {revealed} WHERE game_id = {game_id}")
+
         rollsList = [1, 1]
         deck = ""
         deckList = game["deck"].split(",")
@@ -521,7 +523,7 @@ def shift(data):
 
         rolls = str(rollsList[0]) + "," + str(rollsList[1])
 
-        db.execute(f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ?, phase = ?, player_turn = ?, player2_protected = ?, dice_rolls = ? WHERE game_id = {game_id}", player1_hand, player2_hand, deck, "betting", game["player1_id"], revealed, rolls)
+        db.execute(f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ?, phase = ?, player_turn = ? dice_rolls = ? WHERE game_id = {game_id}", player1_hand, player2_hand, deck, "betting", game["player1_id"], rolls)
 
     game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
     emitGame("shift", game, users)
