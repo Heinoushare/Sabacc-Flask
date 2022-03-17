@@ -274,11 +274,11 @@ def card(data):
 
             # Update player hand
             p1HandList = list(player1_hand.split(","))
-            player1_hand = ""
             p1HandList.append(drawn)
             p1HandList.remove(discard)
             print(p1HandList)
 
+            player1_hand = ""
             for card in p1HandList:
                 if player1_hand == "":
                     player1_hand = card
