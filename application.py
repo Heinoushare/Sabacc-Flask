@@ -493,6 +493,7 @@ def shift(data):
                     deckList = reshuffleDeck(game, game["player1_protected"].split(",") + game["player2_protected"].split(","))
 
                 for i in range(drawCnt):
+                    print(i)
                     if p == "1":
                         if player1_hand == "":
                             player1_hand = deckList.pop(random.randint(0, len(deckList) - 1))
