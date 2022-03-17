@@ -121,7 +121,8 @@ $(document).ready(function() {
 		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
 		let opCards = data[opponent_phrase + "_hand"].split(",");
 		document.getElementById("opponent_cards").innerHTML = opCards.length;
-		document.getElementById
+		document.getElementById("procCards").innerHTML = data[player_phrase + "_protected"];
+		document.getElementById("opponent_proc").innerHTML = data[opponent_phrase + "_protected"];
 
 		if (playerID === data["player2_id"] && playerID === data["player_turn"])
 		{
