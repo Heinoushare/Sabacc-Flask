@@ -367,12 +367,8 @@ def card(data):
             # Update player hand
             p2HandList = list(player2_hand.split(","))
             player2_hand = ""
-            for card in p2HandList:
-                if card == discard:
-                    print(p2HandList[p2HandList.index(card)])
-                    p2HandList.insert(p2HandList.index(card), drawn)
-                    p2HandList.remove(discard)
-                    break
+            p2HandList.append(drawn)
+            p2HandList.remove(discard)
 
             for card in p2HandList:
                 if player2_hand == "":
