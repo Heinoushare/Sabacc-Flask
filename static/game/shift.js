@@ -50,14 +50,21 @@ $(document).ready(function() {
         throw "";
     }
 
-	for (card in game.getAttribute(player_phrase + "_hand"))
+	let proced = game.getAttribute(player_phrase + "_protected").split(",");
+	let pHand = game.getAttribute(player_phrase + "_hand").split(",");
+	for (card in pHand)
 	{
 		let check = false;
-		let proced = game.getAttribute(player_phrase + "_protected");
 		for (c in proced)
 		{
-			if (c == card)
+			if (proced[c] == pHand[card])
+			{
+				check = true;
+				proced.splice(proced.indexOf(proced[c]), 1)
+				break;
+			}
 		}
+		$("#shiftable").append('<input type="checkbox" id="' + card + '" name="' + pHand[card] + '" value="' + pHand[card] + '" checked=">'+msg+'</p>');
 	}
 
 	shift_socket.on("shift", function(data) {
