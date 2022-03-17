@@ -372,7 +372,7 @@ def card(data):
             for card in p2HandList:
                 if card == discard:
                     print(p2HandList[p2HandList.index(card)])
-                    p2HandList[p2HandList.index(card)] = drawn
+                    p2HandList.insert(p2HandList.index(card)) = drawn
                     break
 
             for card in p2HandList:
