@@ -121,6 +121,7 @@ $(document).ready(function() {
 		document.getElementById("hand").innerHTML = data[player_phrase + "_hand"];
 		let opCards = data[opponent_phrase + "_hand"].split(",");
 		document.getElementById("opponent_cards").innerHTML = opCards.length;
+		document.getElementById
 
 		if (playerID === data["player2_id"] && playerID === data["player_turn"])
 		{

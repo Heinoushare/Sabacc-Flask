@@ -119,7 +119,7 @@ $(document).ready(function() {
 			let revealed = [];
 			for (card in player2_hand)
 			{
-				if (document.getElementById(player2_hand[card]).checked === true)
+				if (document.getElementById(card).checked === true)
 				{
 					revealed.push(player2_hand[card]);
 				}
