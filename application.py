@@ -567,7 +567,7 @@ def game(game_id):
         player1_hand = deckData["player1_hand"]
         player2_hand = deckData["player2_hand"]
 
-        db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ?, phase = ? WHERE game_id = {game_id}", game["player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"], "betting")
+        db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ?, phase = ?, completed = ?, player1_card = ?, player2_card = ?, winner = ?,  WHERE game_id = {game_id}", game["player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"], "betting", 0, None, None, None)
         return redirect(f"/game/{game_id}")
 
 
