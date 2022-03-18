@@ -401,9 +401,9 @@ def card(data):
             p1Abs = abs(int(calcHandVal(game["player1_hand"])))
             p2Abs = abs(int(calcHandVal(game["player2_hand"])))
 
-            if p1Abs > 23:
+            if p1Abs > 23 or p1Abs == 0:
                 p1BombOut = 0.1
-            if p2Abs > 23:
+            if p2Abs > 23 or p2Abs == 0:
                 p2BombOut = 0.1
             sabGain = 0
             if p1BombOut == 0.1 and p2BombOut == 0.1:
