@@ -492,6 +492,7 @@ def shift(data):
                 print("p " + p)
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
                 if game["player" + p + "_protected"].split(",") == "":
+                    print("procnone")
                     drawCnt += 1
                 print(drawCnt)
                 if len(deckList) < drawCnt:
