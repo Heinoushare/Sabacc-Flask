@@ -223,7 +223,8 @@
 
     {% elif game["completed"] == 1 and game["winner"] == game[player + "_id"] %}
 
-        <h4>This game has been completed, you won!</h4>
+        <h4>This round has been completed, you won!</h4>
+        <form action="/game
 
     {% elif game["completed"] == 1 and game["winner"] == game[opponent["player"] + "_id"] %}
 
