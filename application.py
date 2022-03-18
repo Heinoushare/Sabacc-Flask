@@ -567,9 +567,8 @@ def game(game_id):
         player1_hand = deckData["player1_hand"]
         player2_hand = deckData["player2_hand"]
 
-        db.execute("INSERT INTO games (player1_id, player2_id, player1_credits, player2_credits, hand_pot, sabacc_pot, deck, player1_hand, player2_hand, player_turn) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", game["player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"])
-        gameID = db.execute("SELECT game_id FROM games WHERE player1_id = ? ORDER BY game_id DESC", game["player2_id"])[0]["game_id"]
-        return redirect(f"/game/{gameID}")
+        db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ? WHERE game_id = {game_id}", game["player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"])
+        return redirect(f"/game/{game_id}")
 
 
 @app.route("/login", methods=["GET", "POST"])
