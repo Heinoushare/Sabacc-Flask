@@ -405,9 +405,28 @@ def card(data):
             p2Abs = abs(int(calcHandVal(game["player2_hand"])))
             winner = getWinner(game)
 
+            p1Gain = 0
+            p2Gain = 0
+            handPotLoss = 0
+            sabPotLoss = 0
+            if winner == -1:
+                pass
+            elif winner == game["player1_id"]:
+                p1Gain += game["hand_pot"]
+                handPotLoss = game["hand_pot"]
+                if abs(int(calcHandVal(game["player1_hand"]))) == 23:
+                    p1Gain += game["sabacc_pot"]
+                    sabPotLoss = game["sabacc_pot"]
+            elif winner == game["player2_id"]:
+                p2Gain += game["hand_pot"]
+                handPotLoss = game["hand_pot"]
+                if abs(int(calcHandVal(game["player2_hand"]))) == 23:
+                    p1Gain += game["sabacc_pot"]
+                    sabPotLoss = game["sabacc_pot"]
+
             # TODO Sudden demise, rounding bomb out, winning and losing credits players and pots
 
-            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - (game["hand_pot"] * p1BombOut), game["player2_credits"] - (game["hand_pot"] * p2BombOut), game["hand_pot"] + (game["player1_credits"] * (game["hand_pot"] * p1BombOut)) + (game["player2_credits"] * (game["hand_pot"] * p2BombOut)), "completed", action, -1, 1, winner)
+            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)), game["player2_credits"] - round((game["hand_pot"] * p2BombOut)), game["hand_pot"] + round((game["player1_credits"] * (game["hand_pot"] * p1BombOut))) + round((game["player2_credits"] * (game["hand_pot"] * p2BombOut))), "completed", action, -1, 1, winner)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         if game["player1_card"] == "alderaan":
