@@ -433,7 +433,7 @@ def card(data):
                     handPotLoss = game["hand_pot"]
                     sabPotLoss = game["sabacc_pot"]
 
-            # TODO Sudden demise, rounding bomb out, winning and losing credits players and pots
+            # TODO Sudden demise
 
             db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain - round((game["hand_pot"] * sabBomb)), game["player2_credits"] - round((game["hand_pot"] * p2BombOut)) + p2Gain - round((game["hand_pot"] * sabBomb)), game["hand_pot"] + round((game["player1_credits"] * (game["hand_pot"] * p1BombOut))) + round((game["player2_credits"] * (game["hand_pot"] * p2BombOut))) - handPotLoss, game["sabacc_pot"] + round((game["hand_pot"] * sabGain)) - sabPotLoss, "completed", action, -1, 1, winner)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
