@@ -2,6 +2,10 @@ from flask import redirect, render_template, request, session
 from functools import wraps
 import random
 from flask_socketio import emit
+from cs50 import SQL
+
+# Configure CS50 Library to use SQLite database
+db = SQL("sqlite:///sabacc.db")
 
 # Helper functions for application.py
 
