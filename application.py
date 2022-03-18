@@ -400,6 +400,7 @@ def card(data):
             p2BombOut = 0
             p1Abs = abs(int(calcHandVal(game["player1_hand"])))
             p2Abs = abs(int(calcHandVal(game["player2_hand"])))
+
             if p1Abs > 23:
                 p1BombOut = 0.1
             if p2Abs > 23:
@@ -407,13 +408,16 @@ def card(data):
             sabGain = 0
             if p1BombOut == 0.1 and p2BombOut == 0.1:
                 sabGain = 0.2
+                p1BombOut = 0
+                p2BombOut = 0
 
             p1Gain = 0
             p2Gain = 0
             handPotLoss = 0
             sabPotLoss = 0
+            sabBomb = 0
             if winner == -1:
-                pass
+                sabBomb = 0.1
             elif winner == game["player1_id"]:
                 p1Gain += game["hand_pot"]
                 handPotLoss = game["hand_pot"]
@@ -431,7 +435,7 @@ def card(data):
 
             # TODO Sudden demise, rounding bomb out, winning and losing credits players and pots
 
-            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain, game["player2_credits"] - round((game["hand_pot"] * p2BombOut)) + p2Gain, game["hand_pot"] + round((game["player1_credits"] * (game["hand_pot"] * p1BombOut))) + round((game["player2_credits"] * (game["hand_pot"] * p2BombOut))) - handPotLoss - sabGain, game["sabacc_pot"] + (game["hand_pot"] * sabGain), "completed", action, -1, 1, winner)
+            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain - (game["hand_pot"] * sabBomb), game["player2_credits"] - round((game["hand_pot"] * p2BombOut)) + p2Gain - (game["hand_pot"] * sabBomb), game["hand_pot"] + round((game["player1_credits"] * (game["hand_pot"] * p1BombOut))) + round((game["player2_credits"] * (game["hand_pot"] * p2BombOut))) - handPotLoss - sabGain, game["sabacc_pot"] + (game["hand_pot"] * sabGain), "completed", action, -1, 1, winner)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         if game["player1_card"] == "alderaan":
