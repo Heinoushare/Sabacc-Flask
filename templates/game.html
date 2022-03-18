@@ -224,15 +224,32 @@
     {% elif game["completed"] == 1 and game["winner"] == game[player + "_id"] %}
 
         <h4>This round has been completed, you won!</h4>
-        <form action="/game
+        <br>
+        <form action="/game/{{ game['game_id'] }}" method="post">
+
+            <h5>Would you like to <button type="submit">continue</button> this game?</h5>
+
+        </form>
 
     {% elif game["completed"] == 1 and game["winner"] == game[opponent["player"] + "_id"] %}
 
-        <h4>This game has been completed, {{ opponent["username"] }} won!</h4>
+        <h4>This round has been completed, {{ opponent["username"] }} won!</h4>
+        <br>
+        <form action="/game/{{ game['game_id'] }}" method="post">
+
+            <h5>Would you like to <button type="submit">continue</button> this game?</h5>
+
+        </form>
 
     {% elif game["completed"] == 1 and game["winner"] == -1 %}
 
-        <h4>This game has been completed, it was a tie!</h4>
+        <h4>This round has been completed, it was a tie!</h4>
+        <br>
+        <form action="/game/{{ game['game_id'] }}" method="post">
+
+            <h5>Would you like to <button type="submit">continue</button> this game?</h5>
+
+        </form>
 
     {% endif %}
 
