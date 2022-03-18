@@ -492,7 +492,7 @@ def shift(data):
                 print("p " + p)
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
                 print(game["player" + p + "_protected"].split(","))
-                if game["player" + p + "_protected"].split(",") == "":
+                if game["player" + p + "_protected"].split(",") == [""]:
                     print("procnone")
                     drawCnt += 1
                 print(drawCnt)
@@ -513,7 +513,7 @@ def shift(data):
                         else:
                             player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList) - 1))
 
-                if game["player" + p + "_protected"].split(",") != "":
+                if game["player" + p + "_protected"].split(",") != [""]:
                     for card in game["player" + p + "_protected"].split(","):
                         if p == "1":
                             player1_hand = player1_hand + "," + card
