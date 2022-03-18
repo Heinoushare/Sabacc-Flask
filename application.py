@@ -565,7 +565,7 @@ def game(game_id):
 
         return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen)
 
-    elif request.method == "POST":
+    elif request.method == "POST" and game["completed"] == 1:
 
         deckData = constructDeck()
         deck = deckData["deck"]
