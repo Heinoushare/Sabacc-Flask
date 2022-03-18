@@ -480,7 +480,7 @@ def shift(data):
 
         db.execute(f"UPDATE games SET player2_protected = ? WHERE game_id = {game_id}", revealed)
 
-        rollsList = [6, 6]
+        rollsList = [random.randint(1, 6), random.randint(1, 6)]
         deck = ""
         deckList = game["deck"].split(",")
         player1_hand = game["player1_hand"]
