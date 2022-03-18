@@ -7,4 +7,8 @@ $(document).ready(function() {
 		game_socket.emit("game");
 	});
 
+	game_socket.on("game", function(data) {
+		location.reload();
+	});
+
 });
