@@ -405,6 +405,8 @@ def card(data):
             p2Abs = abs(int(calcHandVal(game["player2_hand"])))
             winner = getWinner(game)
 
+            # TODO Sudden demise, rounding bomb out, winning and losing credits players and pots
+
             db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - (game["hand_pot"] * p1BombOut), game["player2_credits"] - (game["hand_pot"] * p2BombOut), game["hand_pot"] + (game["player1_credits"] * (game["hand_pot"] * p1BombOut)) + (game["player2_credits"] * (game["hand_pot"] * p2BombOut)), "completed", action, -1, 1, winner)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
