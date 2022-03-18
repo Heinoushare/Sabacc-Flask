@@ -155,7 +155,7 @@ def getWinner(game):
 
     # Check if anyone has bombed out
     if (p1Abs > 23 or p1Abs == 0) and (p2Abs > 23 or p2Abs == 0):
-        return -1
+        
     elif p1Abs > 23 or p1Abs == 0:
         return game["player2_id"]
     elif p2Abs > 23 or p2Abs == 0:
