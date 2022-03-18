@@ -394,6 +394,8 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
+            winner = getWinner(game)
+
             p1BombOut = 0
             p2BombOut = 0
             p1Abs = abs(int(calcHandVal(game["player1_hand"])))
@@ -402,8 +404,9 @@ def card(data):
                 p1BombOut = 0.1
             if p2Abs > 23:
                 p2BombOut = 0.1
-            p2Abs = abs(int(calcHandVal(game["player2_hand"])))
-            winner = getWinner(game)
+            sabGain = 0
+            if p1BombOut == 0.1 and p2BombOut == 0.1:
+                sabGain = game["hand_pot"]
 
             p1Gain = 0
             p2Gain = 0
