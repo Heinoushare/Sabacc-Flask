@@ -628,27 +628,7 @@ def game(game_id):
         player1_hand = deckData["player1_hand"]
         player2_hand = deckData["player2_hand"]
 
-        winner = getWinner(game)
-        p1Gain = 0
-        p2Gain = 0
-        handPotLoss = 0
-        sabPotLoss = 0
-        if winner == -1:
-            pass
-        elif winner == game["player1_id"]:
-            p1Gain += game["hand_pot"]
-            handPotLoss = game["hand_pot"]
-            if abs(int(calcHandVal(game["player1_hand"]))) == 23:
-                p1Gain += game["sabacc_pot"]
-                sabPotLoss = game["sabacc_pot"]
-        elif winner == game["player2_id"]:
-            p2Gain += game["hand_pot"]
-            handPotLoss = game["hand_pot"]
-            if abs(int(calcHandVal(game["player2_hand"]))) == 23:
-                p1Gain += game["sabacc_pot"]
-                sabPotLoss = game["sabacc_pot"]
-
-        db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ?, phase = ?, completed = ?, player1_card = ?, player2_card = ?, winner = ?, player1_protected = ?, player2_protected = ?, dice_rolls = ? WHERE game_id = {game_id}", game["player2_id"], game["player1_id"], game["player2_credits"] - 15 + p2Gain, game["player1_credits"] - 15 + p1Gain, game["hand_pot"] + 10 - handPotLoss, game["sabacc_pot"] + 20 - sabPotLoss, deck, player1_hand, player2_hand, game["player2_id"], "betting", 0, None, None, None, "", "", None)
+        db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ?, phase = ?, completed = ?, player1_card = ?, player2_card = ?, winner = ?, player1_protected = ?, player2_protected = ?, dice_rolls = ? WHERE game_id = {game_id}", game["player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"], "betting", 0, None, None, None, "", "", None)
         emitGame("game", game, users)
 
 
