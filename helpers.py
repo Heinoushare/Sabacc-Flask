@@ -155,10 +155,7 @@ def getWinner(game):
 
     # Check if anyone has bombed out
     if (p1Abs > 23 or p1Abs == 0) and (p2Abs > 23 or p2Abs == 0):
-        deckList = game["deck"].split(",")
-        if len(deckList) < 2:
-            deckList = reshuffleDeck(game, game["player1_hand"].split(",") + game["player2_hand"].split(","))
-        player1_hand = game["player1_hand"] + "," + deckList.pop(# TODO)
+        return -1
     elif p1Abs > 23 or p1Abs == 0:
         return game["player2_id"]
     elif p2Abs > 23 or p2Abs == 0:
@@ -175,4 +172,16 @@ def getWinner(game):
         elif int(p2Val) > int(p1Val):
             return game["player2_id"]
         else:
-            return -1
+            deckList = game["deck"].split(",")
+            if len(deckList) < 2:
+                deckList = reshuffleDeck(game, game["player1_hand"].split(",") + game["player2_hand"].split(","))
+            player1_hand = game["player1_hand"] + "," + deckList.pop(random.randint(0, len(deckList) - 1))
+            player2_hand = game["player2_hand"] + "," + deckList.pop(random.randint(0, len(deckList) - 1))
+            deck = ""
+            for c in deckList:
+                if deck == "":
+                    deck = c
+                else:
+                    deck = deck + "," + c
+            db.execute(f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ? WHERE game_id = {game['game_id']}", player1_hand, player2_hand, deck)
+            return getWinner(game)
