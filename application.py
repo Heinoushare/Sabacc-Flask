@@ -619,7 +619,9 @@ def game(game_id):
 
         return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen)
 
-    elif request.method == "POST" and game["completed"] == 1:
+    elif request.method == "POST":
+        if game["completed"] == 0:
+            return apology("This round has not ended")
 
         deckData = constructDeck()
         deck = deckData["deck"]
