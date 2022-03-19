@@ -417,7 +417,7 @@ def card(data):
             sabPotLoss = 0
             sabBomb = 0
             if winner == -1:
-                sabBomb = 0.1
+                sabBomb = 0.2
             elif winner == game["player1_id"]:
                 p1Gain += game["hand_pot"]
                 handPotLoss = game["hand_pot"]
