@@ -179,7 +179,7 @@ $(document).ready(function() {
 			show("betDiv");
 		} else if (document.getElementById("betAction").value === "check") {
 			hide("betActionDiv");
-			data = {"game_id": game_id, "action": "bet", "amount": 0};
+			data = { "game_id": game_id, "action": "bet", "amount": 0 };
 			bet_socket.emit("bet", data);
 		} else {
 			document.getElementById("invalidBetAction").innerHTML =
@@ -192,7 +192,8 @@ $(document).ready(function() {
 	$('#betBtn').on('click', function() {
 		let credits = document.getElementById("betCredits").value;
 		if (credits === "") {
-			document.getElementById("invalidBetCredits").innerHTML = "Please input a number of credits you would like to bet(a positive integer 1 to " + userCredits + ")";
+			document.getElementById("invalidBetCredits").innerHTML =
+		  "Please input a number of credits you would like to bet(a positive integer 1 to " + userCredits + ")";
 		} else if (isNaN(parseInt(credits))) {
 			document.getElementById("invalidBetCredits").innerHTML = "Invalid amount of credits - Please input a valid number of credits (a positive integer 1 to " + userCredits + ")";
 		} else if (credits < 1 || credits > parseInt(userCredits)) {
