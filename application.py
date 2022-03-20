@@ -594,7 +594,7 @@ def game(game_id):
 
         usernames = {}
         for name in db.execute("SELECT * FROM users"):
-            usernames[(name["username"])
+            usernames[name["id"]] = name["username"]
 
         opponent["username"] = db.execute("SELECT username FROM users WHERE id = ?", game[opponent["player"] + "_id"])[0]["username"]
         opponent["cards"] = len(list(game[opponent["player"] + "_hand"].split(",")))
