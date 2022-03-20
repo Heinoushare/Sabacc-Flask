@@ -11,6 +11,7 @@ $(document).ready(function() {
 
         /* Alert the copied text */
         document.getElementById(link).innerHTML = "Copied!";
+        document.getElementById(link).setAttribute("style", "color: #00ff00");
 
     });
 
