@@ -27,38 +27,34 @@ $(document).ready(function() {
 	let fold_count = 0;
 
 	// Define show/hide functions
-	function show(id)
-	{
+	function show(id) {
 		document.getElementById(id).hidden = false;
 	}
 
-	function hide(id)
-	{
+	function hide(id) {
 		document.getElementById(id).hidden = true;
 	}
 
 	// Hide HTML that must be hidden from the beginning
 
-	if (phase === "betting")
-	{
+	if (phase === "betting") {
 		// First player first turn
-		if (player_turn === playerID && (player1_bet === "None" || player1_bet === "null") && (player2_bet === "None" || player2_bet === "null") && player_phrase === "player1")
-		{
+		if (player_turn === playerID && (player1_bet === "None" || player1_bet === "null") && (player2_bet === "None" ||
+			player2_bet === "null") && player_phrase === "player1") {
 			hide("p2FollowBet");
 			hide("betDiv");
 			hide("followFollowRaiseActionDiv");
 		}
 		// Player 2 raised
-		else if (player_turn === playerID && player1_bet != "None" && player1_bet != "null" && player2_bet != "None" && player2_bet != "null" && player_phrase === "player1")
-		{
+		else if (player_turn === playerID && player1_bet != "None" && player1_bet != "null" && player2_bet != "None" &&
+				 player2_bet != "null" && player_phrase === "player1") {
 			document.getElementById("raiseCredits").innerHTML = game.getAttribute("player2_bet") + " credits";
 			hide("p2FollowBet");
 			hide("betDiv");
 			hide("betActionDiv");
 		}
 		// Not your turn? Well then wait.
-		else if (player_turn != playerID)
-		{
+		else if (player_turn != playerID) {
 			hide("betPhase");
 		}
 		// Player 1 just bet, show to player 2
