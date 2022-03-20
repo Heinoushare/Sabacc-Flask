@@ -617,13 +617,19 @@ def shift(data):
 
             # Go through the loop twice, once for each player
             for p in ["1", "2"]:
+
+                # How many cards need to be drawn
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
-                print(game["player" + p + "_protected"].split(","))
+
+                # If the player has no protected cards
                 if game["player" + p + "_protected"].split(",") == [""]:
                     drawCnt += 1
+
+                # If there are not enough cards left in the deck, shuffle the discard cards into it
                 if len(deckList) < drawCnt:
                     deckList = reshuffleDeck(game, game["player1_protected"].split(",") + game["player2_protected"].split(","))
 
+                # Draw the corresponding amount of cards
                 for i in range(drawCnt):
                     if p == "1":
                         if player1_hand == "":
@@ -636,6 +642,7 @@ def shift(data):
                         else:
                             player2_hand = player2_hand + "," + deckList.pop(random.randint(0, len(deckList) - 1))
 
+                # If the player has protected cards, add them once more to the player's hand
                 if game["player" + p + "_protected"].split(",") != [""]:
                     for card in game["player" + p + "_protected"].split(","):
                         if p == "1":
@@ -643,12 +650,14 @@ def shift(data):
                         elif p == "2":
                             player2_hand = player2_hand + "," + card
 
+        # Reconstruct deck
         for card in deckList:
             if deck == "":
                 deck = card
             else:
                 deck = deck + "," + card
 
+        # "Stringify" the dice rolls
         rolls = str(rollsList[0]) + "," + str(rollsList[1])
 
         db.execute(
