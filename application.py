@@ -80,17 +80,20 @@ def chat():
 @app.route("/host", methods=["GET", "POST"])
 @login_required
 def host():
-    """Make a new game of Sabacc"""
+    """Host a game of Sabacc"""
 
     if request.method == "GET":
         return render_template("host.html")
 
     elif request.method == "POST":
+
+        # Verify that player2 exists
         player2Username = request.form.get("player2")
         player2 = db.execute(f"SELECT * FROM users WHERE username = ? AND id != {session.get('user_id')}", player2Username)
         if len(player2) == 0:
             return apology("Invalid player 2 username")
 
+        # Construct the deck and deal cards
         deckData = constructDeck()
         deck = deckData["deck"]
         player1_hand = deckData["player1_hand"]
@@ -99,11 +102,16 @@ def host():
         db.execute("INSERT INTO games (player1_id, player2_id, player1_credits, player2_credits, hand_pot, sabacc_pot, deck, player1_hand, player2_hand, player_turn) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                    session.get("user_id"), player2[0]["id"], 985, 985, 10, 20, deck, player1_hand, player2_hand, session.get("user_id"))
         game_id = db.execute("SELECT game_id FROM games WHERE player2_id = ? ORDER BY game_id DESC", player2[0]["id"])[0]["game_id"]
+
+        # Redirect user to game
         return redirect(f"/game/{game_id}")
 
 
 @socketio.on("game", namespace="/game")
 def game_connect():
+    """Connect to the game"""
+
+    # Add user's Socket ID to the Socket ID dictionary for future use
     user_id = session.get("user_id")
     if not user_id:
         return
@@ -124,6 +132,7 @@ def bet(data):
     if game["phase"] != "betting":
         return
 
+    # Find player phrase
     player = ""
     opponent = ""
     if user_id == game["player1_id"]:
@@ -145,6 +154,7 @@ def bet(data):
 
         emitGame("bet", game, users)
 
+    # Player 2 calls
     elif action == "call" and player == "player2" and game["player_turn"] == game["player2_id"] and amount >= 0 and amount <= game["player2_credits"]:
 
         db.execute(f"UPDATE games SET player2_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", game[
@@ -154,6 +164,7 @@ def bet(data):
 
         emitGame("bet", game, users)
 
+    # Player 1 calls
     elif action == "call" and player == "player1" and game["player_turn"] == game["player1_id"] and amount >= 0 and amount <= game["player1_credits"]:
 
         db.execute(f"UPDATE games SET player1_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", game["player1_credits"
@@ -164,8 +175,10 @@ def bet(data):
 
         emitGame("bet", game, users)
 
+    # Player 2 folds
     elif action == "fold" and player == "player2" and game["player_turn"] == game["player2_id"]:
 
+        # 
         results = foldCards(game, game["player1_hand"], game["player2_hand"])
         deck = results["deck"]
         player1_hand = results["player1_hand"]
@@ -178,6 +191,7 @@ def bet(data):
 
         emitGame("bet", game, users)
 
+    # Player 1 folds
     elif action == "fold" and player == "player1" and game["player_turn"] == game["player1_id"]:
 
         results = foldCards(game, game["player1_hand"], game["player2_hand"])
@@ -192,6 +206,7 @@ def bet(data):
 
         emitGame("bet", game, users)
 
+    # Player 2 raises
     elif action == "raise" and player == "player2" and game["player_turn"] == game["player2_id"] and amount >= game["player1_bet"] and amount <= game["player2_credits"]:
 
         db.execute(f"UPDATE games SET player2_credits = ?, player2_bet = ?, hand_pot = ?, player_turn = ? WHERE game_id = {game_id}", game[
