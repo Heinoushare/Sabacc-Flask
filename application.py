@@ -633,6 +633,12 @@ def game(game_id):
         return redirect(f"/game/{game['game_id']}")
 
 
+@app.route("/completed")
+@login_required
+def completed():
+    
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
