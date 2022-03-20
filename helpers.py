@@ -1,3 +1,6 @@
+"""Helper file for application.py"""
+
+# Import libraries
 from flask import redirect, render_template, session
 from functools import wraps
 import random
@@ -8,7 +11,6 @@ from cs50 import SQL
 db = SQL("sqlite:///sabacc.db")
 
 # Helper functions for application.py
-
 
 
 def apology(message, code=400):
@@ -41,8 +43,13 @@ def login_required(f):
 
 
 def constructDeck():
+    """Construct deck and deal cards"""
+
+    # Declare deck variable
     deck = "1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,0,0,-2,-2,-8,-8,-11,-11,-13,-13,-14,-14,-15,-15,-17,-17"
     deckList = list(deck.split(","))
+
+    # Deal cards
     player1_hand = ""
     for i in range(2):
         randDex = random.randint(0, len(deckList) - 1)
@@ -59,6 +66,8 @@ def constructDeck():
         else:
             player2_hand = player2_hand + "," + deckList[randDex]
         deckList.pop(randDex)
+
+    # "Stringify" deck
     deck = ""
     for card in deckList:
         if deck == "":
@@ -71,6 +80,8 @@ def constructDeck():
 
 
 def reshuffleDeck(game, outCards):
+    """Reconstruct deck from disard cards"""
+
     deckList = list("1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,0,0,-2,-2,-8,-8,-11,-11,-13,-13,-14,-14,-15,-15,-17,-17".split(","))
     for card in outCards:
         if card != "":
@@ -79,6 +90,8 @@ def reshuffleDeck(game, outCards):
 
 
 def foldCards(game, p1Hand, p2Hand):
+    """Get the results of a player folding"""
+
     player1_hand = ""
     player2_hand = ""
     deckList = []
@@ -88,6 +101,7 @@ def foldCards(game, p1Hand, p2Hand):
 
     deck = ""
 
+    # Deal cards
     for i in range(2):
         randDex = random.randint(0, len(deckList) - 1)
         if player1_hand == "":
@@ -104,6 +118,7 @@ def foldCards(game, p1Hand, p2Hand):
             player2_hand = player2_hand + "," + deckList[randDex]
         deckList.pop(randDex)
 
+    # Reconstruct deck
     for card in deckList:
         if deck == "":
             deck = card
@@ -115,6 +130,8 @@ def foldCards(game, p1Hand, p2Hand):
 
 
 def emitGame(namespace, game, users):
+    """Send game data to players"""
+
     try:
         emit(namespace, game, room=users[game["player1_id"]])
     except KeyError:
@@ -127,6 +144,9 @@ def emitGame(namespace, game, users):
 
 
 def calcHandVal(strHand):
+    """Calculate the value of the players' hands"""
+
+    # Construct ordered hand
     hand = []
     for card in list(strHand.split(",")):
         hand.append(int(card))
@@ -138,6 +158,7 @@ def calcHandVal(strHand):
 
     val = str(sum)
 
+    # Special cases of the Idiot's Array and Fairy Empress
     if len(hand) == 3 and hand[0] == 0 and hand[1] == 2 and hand[2] == 3:
         val = "023"
     if len(hand) == 2 and hand[0] == -2 and hand[1] == -2:
@@ -147,6 +168,8 @@ def calcHandVal(strHand):
 
 
 def getWinner(game):
+    """Find the winner of game"""
+
     p1Val = calcHandVal(game["player1_hand"])
     p2Val = calcHandVal(game["player2_hand"])
 
