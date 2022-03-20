@@ -132,7 +132,7 @@ def bet(data):
     if game["phase"] != "betting":
         return
 
-    # Find player phrase
+    # Find player phrases
     player = ""
     opponent = ""
     if user_id == game["player1_id"]:
@@ -178,7 +178,7 @@ def bet(data):
     # Player 2 folds
     elif action == "fold" and player == "player2" and game["player_turn"] == game["player2_id"]:
 
-        # 
+        # Re-deal cards
         results = foldCards(game, game["player1_hand"], game["player2_hand"])
         deck = results["deck"]
         player1_hand = results["player1_hand"]
@@ -194,6 +194,7 @@ def bet(data):
     # Player 1 folds
     elif action == "fold" and player == "player1" and game["player_turn"] == game["player1_id"]:
 
+        # Re-deal cards
         results = foldCards(game, game["player1_hand"], game["player2_hand"])
         deck = results["deck"]
         player1_hand = results["player1_hand"]
@@ -229,6 +230,7 @@ def card(data):
     player1_hand = game["player1_hand"]
     player2_hand = game["player2_hand"]
 
+    # Find player phrases
     player = ""
     opponent = ""
     if user_id == game["player1_id"]:
@@ -254,17 +256,22 @@ def card(data):
 
         # Draw
         elif action == "draw":
+
             deckList = list(game["deck"].split(","))
+
+            # If deck is out of cards, re-shuffle discard cards
             if len(deckList) == 0:
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
 
-            drawn = deckList[random.randint(0, len(deckList) - 1)]
+            # Add a card to player 1's hand
+            drawn = deckList.pop(random.randint(0, len(deckList) - 1))
             if player1_hand == "":
                 player1_hand = drawn
             else:
                 player1_hand = player1_hand + "," + drawn
 
+            # Re-assemble deck
             deck = ""
             for card in deckList:
                 if deck == "":
@@ -299,6 +306,8 @@ def card(data):
                         p1_proced = p1_proced + "," + card
 
             deckList = list(game["deck"].split(","))
+
+            # If deck is out of cards, re-shuffle discard cards
             if len(deckList) == 0:
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
@@ -352,7 +361,7 @@ def card(data):
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
 
-            drawn = deckList[random.randint(0, len(deckList) - 1)]
+            drawn = deckList.pop(random.randint(0, len(deckList) - 1))
             if player2_hand == "":
                 player2_hand = drawn
             else:
