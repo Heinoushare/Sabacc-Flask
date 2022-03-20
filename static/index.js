@@ -26,7 +26,7 @@ $(document).ready(function() {
         // link.setSelectionRange(0, 99999); /* For mobile devices */
 
         /* Copy the text inside the text field */
-        link
+        let link = "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/game/" + id;
         navigator.clipboard.writeText(link);
 
         /* Alert the copied text */
