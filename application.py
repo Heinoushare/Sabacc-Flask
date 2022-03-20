@@ -674,23 +674,28 @@ def shift(data):
 def game(game_id):
     """Play Sabacc!"""
 
+    # Set some basic variables
     user_id = session.get("user_id")
     user = db.execute(f"SELECT * FROM users WHERE id = {user_id}")[0]
     game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
     player = ""
     opponent = {}
 
+    # Get player phrases
     if user["id"] == game["player1_id"]:
         player = "player1"
         opponent["player"] = "player2"
     elif user_id == game["player2_id"]:
         player = "player2"
         opponent["player"] = "player1"
+
+    # If this is not the user's game, show them an apology page
     else:
         return apology("This is not one of your games")
 
     if request.method == "GET":
 
+        # Give Jinja2 some variables
         usernames = {}
         for name in db.execute("SELECT * FROM users"):
             usernames[name["id"]] = name["username"]
@@ -704,6 +709,7 @@ def game(game_id):
 
         return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen, usernames=usernames)
 
+    # If game is over 
     elif request.method == "POST":
         if game["completed"] != 1:
             return redirect(f"/game/{game['game_id']}")
