@@ -58,24 +58,19 @@ $(document).ready(function() {
 			hide("betPhase");
 		}
 		// Player 1 just bet, show to player 2
-		else if (player_turn === playerID && player1_bet != "None" && player1_bet != "null" && (player2_bet === "None" || player2_bet === "null") && player_phrase === "player2")
-		{
+		else if (player_turn === playerID && player1_bet != "None" && player1_bet != "null" && (player2_bet === "None" ||
+				 player2_bet === "null") && player_phrase === "player2") {
 			let betTxt = "";
-			if (parseInt(player1_bet) === 0)
-			{
+			if (parseInt(player1_bet) === 0) {
 				betTxt = "Checks (bets 0 credits)";
-			}
-			else
-			{
+			} else {
 				betTxt = "bets " + player1_bet + " credits"
 			}
 			document.getElementById("p1BetAction").innerHTML = betTxt;
 			hide("p1Bet");
 			hide("followBetDiv");
 		}
-	}
-	else
-	{
+	} else {
 		hide("betDiv");
 		throw '';
 	}
@@ -83,14 +78,10 @@ $(document).ready(function() {
 	// When client recieves a message through the bet_socket
 	bet_socket.on('bet', function(data) {
 
-		for (pair in data)
-		{
-			if (data[pair] === null)
-			{
+		for (pair in data) {
+			if (data[pair] === null) {
 				game.setAttribute(pair.toString(), data[pair]);
-			}
-			else
-			{
+			} else {
 				game.setAttribute(pair.toString(), data[pair].toString());
 			}
 		}
@@ -102,54 +93,43 @@ $(document).ready(function() {
 		player2_bet = game.getAttribute("player2_bet");
 		player_turn = parseInt(game.getAttribute("player_turn"));
 
-		if (phase != "betting")
-		{
+		if (phase != "betting") {
 			location.reload();
 		}
 
 		fold_count++;
-		if (fold_count === 2)
-		{
+		if (fold_count === 2) {
 			location.reload();
 		}
 
-		if (data["game_id"] === game_id)
-		{
+		if (data["game_id"] === game_id) {
 			if (data["player1_bet"] != null && data["player2_bet"] === null)
 			{
-				if (playerID === data["player2_id"])
-				{
+				if (playerID === data["player2_id"]) {
 					document.getElementById("opponent_credits").innerHTML = data["player1_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 					let betTxt = "";
-					if (parseInt(player1_bet) === 0)
-					{
+					if (parseInt(player1_bet) === 0) {
 						betTxt = "Checks (bets 0 credits)";
-					}
-					else
-					{
+					} else {
 						betTxt = "bets " + player1_bet + " credits";
 					}
 
 					document.getElementById("p1BetAction").innerHTML = betTxt;
-					document.getElementById("followBetAction").innerHTML = '<option value="" disabled selected>Action</option> <option value="call">Call</option> <option value="raise">Raise</option> <option value="fold">Fold</option>';
+					document.getElementById("followBetAction").innerHTML =
+			  '<option value="" disabled selected>Action</option> <option value="call">Call</option> <option value="raise">Raise</option> <option value="fold">Fold</option>';
 
 					show("betPhase");
 					show("p2FollowBet");
 					show("followBetActionDiv");
 					hide("p1Bet");
 					hide("followBetDiv");
-				}
-				else if (playerID === data["player1_id"])
-				{
+				} else if (playerID === data["player1_id"]) {
 					document.getElementById("credits").innerHTML = data["player1_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 				}
-			}
-			else if (data["player1_bet"] === null && data["player2_bet"] === null)
-			{
-				if (playerID === data["player2_id"])
-				{
+			} else if (data["player1_bet"] === null && data["player2_bet"] === null) {
+				if (playerID === data["player2_id"]) {
 					document.getElementById("opponent_credits").innerHTML = data["player1_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 					document.getElementById("credits").innerHTML = data["player2_credits"];
@@ -157,9 +137,7 @@ $(document).ready(function() {
 					document.getElementById("opponent_cards").innerHTML = "2";
 
 					hide("betPhase");
-				}
-				else if (playerID === data["player1_id"])
-				{
+				} else if (playerID === data["player1_id"]) {
 					document.getElementById("opponent_credits").innerHTML = data["player2_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 					document.getElementById("credits").innerHTML = data["player1_credits"];
