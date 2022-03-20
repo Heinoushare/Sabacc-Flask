@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, session
 from functools import wraps
 import random
 from flask_socketio import emit
@@ -8,6 +8,8 @@ from cs50 import SQL
 db = SQL("sqlite:///sabacc.db")
 
 # Helper functions for application.py
+
+
 
 def apology(message, code=400):
     """Render message as an apology to user."""
@@ -36,6 +38,7 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+
 
 def constructDeck():
     deck = "1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,0,0,-2,-2,-8,-8,-11,-11,-13,-13,-14,-14,-15,-15,-17,-17"
@@ -66,12 +69,14 @@ def constructDeck():
     data = {"deck": deck, "player1_hand": player1_hand, "player2_hand": player2_hand}
     return data
 
+
 def reshuffleDeck(game, outCards):
     deckList = list("1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,11,11,11,11,12,12,12,12,13,13,13,13,14,14,14,14,15,15,15,15,0,0,-2,-2,-8,-8,-11,-11,-13,-13,-14,-14,-15,-15,-17,-17".split(","))
     for card in outCards:
         if card != "":
             deckList.remove(card)
     return deckList
+
 
 def foldCards(game, p1Hand, p2Hand):
     player1_hand = ""
@@ -108,6 +113,7 @@ def foldCards(game, p1Hand, p2Hand):
     returnDict = {"deck": deck, "player1_hand": player1_hand, "player2_hand": player2_hand}
     return returnDict
 
+
 def emitGame(namespace, game, users):
     try:
         emit(namespace, game, room=users[game["player1_id"]])
@@ -118,6 +124,7 @@ def emitGame(namespace, game, users):
         emit(namespace, game, room=users[game["player2_id"]])
     except KeyError:
         pass
+
 
 def calcHandVal(strHand):
     hand = []
@@ -137,6 +144,7 @@ def calcHandVal(strHand):
         val = "-22"
 
     return val
+
 
 def getWinner(game):
     p1Val = calcHandVal(game["player1_hand"])
@@ -183,5 +191,6 @@ def getWinner(game):
                     deck = c
                 else:
                     deck = deck + "," + c
-            db.execute(f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ? WHERE game_id = {game['game_id']}", player1_hand, player2_hand, deck)
+            db.execute(
+                f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ? WHERE game_id = {game['game_id']}", player1_hand, player2_hand, deck)
             return getWinner(game)
