@@ -61,13 +61,16 @@ def index():
 
 @socketio.on("message", namespace="/chat")
 def handleMessage(msg):
+    """Global Chat Socket.IO Code"""
+
+    # Send the message that was recieved to all users in the global chat
     send(msg, broadcast=True)
 
 
 @app.route("/chat")
 @login_required
 def chat():
-    """Global Chat using Socket.IO"""
+    """Global Chat"""
 
     user_id = session.get("user_id")
     user = db.execute(f"SELECT * FROM users WHERE id = {user_id}")[0]
@@ -529,7 +532,8 @@ def shift(data):
             else:
                 revealed = revealed + "," + card
 
-        db.execute(f"UPDATE games SET player_turn = ?, player1_protected = ? WHERE game_id = {game_id}", game["player2_id"], revealed)
+        db.execute(
+            f"UPDATE games SET player_turn = ?, player1_protected = ? WHERE game_id = {game_id}", game["player2_id"], revealed)
 
     elif user_id == game["player2_id"]:
         revealed = ""
@@ -585,12 +589,14 @@ def shift(data):
 
         rolls = str(rollsList[0]) + "," + str(rollsList[1])
 
-        db.execute(f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ?, phase = ?, player_turn = ?, dice_rolls = ? WHERE game_id = {game_id}", player1_hand, player2_hand, deck, "betting", game["player1_id"], rolls)
+        db.execute(
+            f"UPDATE games SET player1_hand = ?, player2_hand = ?, deck = ?, phase = ?, player_turn = ?, dice_rolls = ? WHERE game_id = {game_id}", player1_hand, player2_hand, deck, "betting", game["player1_id"], rolls)
 
     game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
     emitGame("shift", game, users)
 
     return
+
 
 @app.route("/game/<game_id>", methods=["GET", "POST"])
 @login_required
@@ -618,7 +624,8 @@ def game(game_id):
         for name in db.execute("SELECT * FROM users"):
             usernames[name["id"]] = name["username"]
 
-        opponent["username"] = db.execute("SELECT username FROM users WHERE id = ?", game[opponent["player"] + "_id"])[0]["username"]
+        opponent["username"] = db.execute("SELECT username FROM users WHERE id = ?",
+                                          game[opponent["player"] + "_id"])[0]["username"]
         opponent["cards"] = len(list(game[opponent["player"] + "_hand"].split(",")))
         opponent["credits"] = game[opponent["player"] + "_credits"]
 
@@ -635,7 +642,8 @@ def game(game_id):
         player1_hand = deckData["player1_hand"]
         player2_hand = deckData["player2_hand"]
 
-        db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ?, phase = ?, completed = ?, player1_card = ?, player2_card = ?, winner = ?, player1_protected = ?, player2_protected = ?, dice_rolls = ? WHERE game_id = {game_id}", game["player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"], "betting", 0, None, None, None, "", "", None)
+        db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ?, phase = ?, completed = ?, player1_card = ?, player2_card = ?, winner = ?, player1_protected = ?, player2_protected = ?, dice_rolls = ? WHERE game_id = {game_id}", game[
+                   "player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"], "betting", 0, None, None, None, "", "", None)
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
         return redirect(f"/game/{game['game_id']}")
 
@@ -648,13 +656,15 @@ def completed():
     user_id = session.get("user_id")
 
     usernames = {}
-    games = db.execute(f"SELECT * FROM games WHERE (player1_id = ? OR player2_id = ?) AND completed = 1 ORDER BY game_id DESC", user_id, user_id)
+    games = db.execute(
+        f"SELECT * FROM games WHERE (player1_id = ? OR player2_id = ?) AND completed = 1 ORDER BY game_id DESC", user_id, user_id)
     users = db.execute("SELECT * FROM users")
     for user in users:
         usernames[user["id"]] = user["username"]
 
     # Render the home page with the user's active game data
     return render_template("completed.html", games=games, usernames=usernames)
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
