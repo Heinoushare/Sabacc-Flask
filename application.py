@@ -32,7 +32,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 link = "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev"
 socketio = SocketIO(app, cors_allowed_origins=[link, f"{link}/chat",
-                     f"{link}/game", f"{link}/bet", f"{link}/card", f"{link}/shift"])
+                                                f"{link}/game", f"{link}/bet", f"{link}/card", f"{link}/shift"])
 
 # Declare dictionary to store key-value pairs of user ids and session ids
 users = {}
@@ -93,9 +93,10 @@ def host():
         player1_hand = deckData["player1_hand"]
         player2_hand = deckData["player2_hand"]
 
-        db.execute("INSERT INTO games (player1_id, player2_id, player1_credits, player2_credits, hand_pot, sabacc_pot, deck, player1_hand, player2_hand, player_turn) VALUES(?, ?, ?, ?,
- ?, ?, ?, ?, ?, ?)",
-                     session.get("user_id"), player2[0]["id"], 985, 985, 10, 20, deck, player1_hand, player2_hand, session.get("user_id"))
+        db.execute("INSERT INTO games(player1_id, player2_id, player1_credits, player2_credits, hand_pot, sabacc_pot, deck, player1_hand, player2_hand, player_turn) VALUES(?, ?, ?, ?,
+                                                                                                                                                                            ?, ?, ?, ?,
+                                                                                                                                                                            ?, ?)",
+                   session.get("user_id"), player2[0]["id"], 985, 985, 10, 20, deck, player1_hand, player2_hand, session.get("user_id"))
         game_id = db.execute("SELECT game_id FROM games WHERE player2_id = ? ORDER BY game_id DESC", player2[0]["id"])[0]["game_id"]
         return redirect(f"/game/{game_id}")
 
