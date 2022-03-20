@@ -254,13 +254,14 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"], deck)
+            db.execute(
+                f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
         # Trade
         elif action == "trade":
-            discard = data["card"] # If there's gonna be a KeyError, get it done early
+            discard = data["card"]  # If there's gonna be a KeyError, get it done early
 
             # Update shift protected cards
             p1_proced = game["player1_protected"]
@@ -306,7 +307,8 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player1_protected = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player1_hand, action, p1_proced, game["player2_id"], deck)
+            db.execute(
+                f"UPDATE games SET player1_hand = ?, player1_card = ?, player1_protected = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player1_hand, action, p1_proced, game["player2_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
@@ -321,7 +323,8 @@ def card(data):
 
         # Stand
         if action == "stand":
-            db.execute(f"UPDATE games SET player2_card = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", action, "shift", game["player1_id"])
+            db.execute(
+                f"UPDATE games SET player2_card = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", action, "shift", game["player1_id"])
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Draw
@@ -344,12 +347,13 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player2_hand, "shift", action, game["player1_id"], deck)
+            db.execute(
+                f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player2_hand, "shift", action, game["player1_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Trade
         elif action == "trade":
-            discard = data["card"] # If there's gonna be a KeyError, get it done early
+            discard = data["card"]  # If there's gonna be a KeyError, get it done early
 
             # Update shift protected cards
             p2_proced = game["player2_protected"]
@@ -395,7 +399,8 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player2_protected = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player2_hand, "shift", action, p2_proced, game["player1_id"], deck)
+            db.execute(
+                f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player2_protected = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player2_hand, "shift", action, p2_proced, game["player1_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Alderaan
@@ -437,7 +442,8 @@ def card(data):
                     p2Gain += game["sabacc_pot"]
                     sabPotLoss = game["sabacc_pot"]
 
-            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["player2_credits"] - round((game["hand_pot"] * p2BombOut)) + p2Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["hand_pot"] + round(game["hand_pot"] * p1BombOut) + round(game["hand_pot"] * p2BombOut) - handPotLoss, game["sabacc_pot"] + round((game["hand_pot"] * sabGain)) - sabPotLoss, "completed", action, -1, 1, winner)
+            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["player2_credits"] - round(
+                (game["hand_pot"] * p2BombOut)) + p2Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["hand_pot"] + round(game["hand_pot"] * p1BombOut) + round(game["hand_pot"] * p2BombOut) - handPotLoss, game["sabacc_pot"] + round((game["hand_pot"] * sabGain)) - sabPotLoss, "completed", action, -1, 1, winner)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         if game["player1_card"] == "alderaan":
@@ -478,7 +484,8 @@ def card(data):
                     p2Gain += game["sabacc_pot"]
                     sabPotLoss = game["sabacc_pot"]
 
-            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["player2_credits"] - round((game["hand_pot"] * p2BombOut)) + p2Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["hand_pot"] + round(game["hand_pot"] * p1BombOut) + round(game["hand_pot"] * p2BombOut) - handPotLoss, game["sabacc_pot"] + round((game["hand_pot"] * sabGain)) - sabPotLoss, "completed", action, -1, 1, winner)
+            db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["player2_credits"] - round(
+                (game["hand_pot"] * p2BombOut)) + p2Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["hand_pot"] + round(game["hand_pot"] * p1BombOut) + round(game["hand_pot"] * p2BombOut) - handPotLoss, game["sabacc_pot"] + round((game["hand_pot"] * sabGain)) - sabPotLoss, "completed", action, -1, 1, winner)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         db.execute(f"UPDATE games SET player1_card = ?, player2_card = ? WHERE game_id = {game_id}", None, None)
@@ -487,6 +494,7 @@ def card(data):
         emitGame("card", game, users)
 
     return
+
 
 @socketio.on("shift", namespace="/shift")
 def shift(data):
