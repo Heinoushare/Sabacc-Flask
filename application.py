@@ -121,6 +121,7 @@ def game_connect():
 
 @socketio.on("bet", namespace="/bet")
 def bet(data):
+    """Recieve bet message"""
 
     # Set some variables for the whole function
     game_id = data["game_id"]
@@ -222,6 +223,8 @@ def bet(data):
 
 @socketio.on("card", namespace="/card")
 def card(data):
+    """Receive card message"""
+
     # Set some variables for the whole function
     game_id = data["game_id"]
     action = data["action"]
@@ -322,7 +325,6 @@ def card(data):
             p1HandList.append(drawn)
             p1HandList.remove(discard)
 
-            # Update player 1's hand
             player1_hand = ""
             for card in p1HandList:
                 if player1_hand == "":
@@ -417,6 +419,7 @@ def card(data):
                 outCards = list(game["player1_hand"].split(",")) + list(game["player2_hand"].split(","))
                 deckList = reshuffleDeck(game, outCards)
 
+            # Randomly select a card to draw
             drawn = deckList.pop(random.randint(0, len(deckList) - 1))
 
             # Update player hand
@@ -445,8 +448,11 @@ def card(data):
 
         # Alderaan
         elif action == "alderaan":
+
+            # Find which player wins
             winner = getWinner(game)
 
+            # Find which players bomb out
             p1BombOut = 0
             p2BombOut = 0
             p1Abs = abs(int(calcHandVal(game["player1_hand"])))
@@ -462,6 +468,7 @@ def card(data):
                 p1BombOut = 0
                 p2BombOut = 0
 
+            # Calculate the winnings of players and deductions from pots
             p1Gain = 0
             p2Gain = 0
             handPotLoss = 0
@@ -487,8 +494,11 @@ def card(data):
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         if game["player1_card"] == "alderaan":
+
+            # Find which player wins
             winner = getWinner(game)
 
+            # Find which players bomb out
             p1BombOut = 0
             p2BombOut = 0
             p1Abs = abs(int(calcHandVal(game["player1_hand"])))
@@ -504,6 +514,7 @@ def card(data):
                 p1BombOut = 0
                 p2BombOut = 0
 
+            # Calculate the winnings of players and deductions from pots
             p1Gain = 0
             p2Gain = 0
             handPotLoss = 0
@@ -538,12 +549,15 @@ def card(data):
 
 @socketio.on("shift", namespace="/shift")
 def shift(data):
+    """Recieve shift message"""
+
     # Set some variables for the whole function
     game_id = data["game_id"]
     action = data["action"]
     game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
     user_id = session.get("user_id")
 
+    # Find player phrases
     player = ""
     opponent = ""
     if user_id == game["player1_id"]:
@@ -561,6 +575,7 @@ def shift(data):
     if action != "shift":
         return
 
+    # Player 1 shift
     if user_id == game["player1_id"]:
         revealed = ""
         for card in data["cards"]:
@@ -572,7 +587,9 @@ def shift(data):
         db.execute(
             f"UPDATE games SET player_turn = ?, player1_protected = ? WHERE game_id = {game_id}", game["player2_id"], revealed)
 
+    # Player 2 shift
     elif user_id == game["player2_id"]:
+        # Update shifted cards
         revealed = ""
         for card in data["cards"]:
             if revealed == "":
@@ -580,17 +597,25 @@ def shift(data):
             else:
                 revealed = revealed + "," + card
 
+        # Immidiatly update variables and the database since this information will be used shortly
         db.execute(f"UPDATE games SET player2_protected = ? WHERE game_id = {game_id}", revealed)
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
+        # Roll shift dice
         rollsList = [random.randint(1, 6), random.randint(1, 6)]
+
+        # Set some variables for modification
         deck = ""
         deckList = game["deck"].split(",")
         player1_hand = game["player1_hand"]
         player2_hand = game["player2_hand"]
+
+        # If the Sabacc shift strikes (i.e. dice rolls doubles)
         if rollsList[0] == rollsList[1]:
             player1_hand = ""
             player2_hand = ""
+
+            # Go through the loop twice, once for each player
             for p in ["1", "2"]:
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
                 print(game["player" + p + "_protected"].split(","))
