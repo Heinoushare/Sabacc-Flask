@@ -709,11 +709,13 @@ def game(game_id):
 
         return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen, usernames=usernames)
 
-    # If game is over 
+    # If game is over and a player continues it
     elif request.method == "POST":
+        # If game is not over (because someone has already continued it or it never ended), redirect player to the current game page
         if game["completed"] != 1:
             return redirect(f"/game/{game['game_id']}")
 
+        # Construct deck and deal cards
         deckData = constructDeck()
         deck = deckData["deck"]
         player1_hand = deckData["player1_hand"]
@@ -722,16 +724,20 @@ def game(game_id):
         db.execute(f"UPDATE games SET player1_id = ?, player2_id = ?, player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, deck = ?, player1_hand = ?, player2_hand = ?, player_turn = ?, phase = ?, completed = ?, player1_card = ?, player2_card = ?, winner = ?, player1_protected = ?, player2_protected = ?, dice_rolls = ? WHERE game_id = {game_id}", game[
                    "player2_id"], game["player1_id"], game["player2_credits"] - 15, game["player1_credits"] - 15, game["hand_pot"] + 10, game["sabacc_pot"] + 20, deck, player1_hand, player2_hand, game["player2_id"], "betting", 0, None, None, None, "", "", None)
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
+
+        # Redirect player to game page
         return redirect(f"/game/{game['game_id']}")
 
 
 @app.route("/completed")
 @login_required
 def completed():
+    """Display completed games"""
 
     # Get the user's id for later use
     user_id = session.get("user_id")
 
+    # Get Jinja2 some variables
     usernames = {}
     games = db.execute(
         f"SELECT * FROM games WHERE (player1_id = ? OR player2_id = ?) AND completed = 1 ORDER BY game_id DESC", user_id, user_id)
@@ -739,7 +745,7 @@ def completed():
     for user in users:
         usernames[user["id"]] = user["username"]
 
-    # Render the home page with the user's active game data
+    # Render the home page with the user's completed game data
     return render_template("completed.html", games=games, usernames=usernames)
 
 
