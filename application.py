@@ -592,9 +592,9 @@ def game(game_id):
 
     if request.method == "GET":
 
-        usernames = []
-        for name in db.execute("SELECT username FROM users"):
-            usernames.append(name["username"])
+        usernames = {}
+        for name in db.execute("SELECT * FROM users"):
+            usernames[(name["username"])
 
         opponent["username"] = db.execute("SELECT username FROM users WHERE id = ?", game[opponent["player"] + "_id"])[0]["username"]
         opponent["cards"] = len(list(game[opponent["player"] + "_hand"].split(",")))
