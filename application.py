@@ -107,6 +107,7 @@ def game_connect():
     sid = request.sid
     users[user_id] = sid
 
+
 @socketio.on("bet", namespace="/bet")
 def bet(data):
 
@@ -134,7 +135,8 @@ def bet(data):
     # If player 1 bets or checks
     if action == "bet" and player == "player1" and game["player_turn"] == game["player1_id"] and amount >= 0 and amount <= game["player1_credits"]:
 
-        db.execute(f"UPDATE games SET player1_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, player_turn = ? WHERE game_id = {game_id}", game["player1_credits"] - amount, amount, None, game["hand_pot"] + amount, game["player2_id"])
+        db.execute(f"UPDATE games SET player1_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, player_turn = ? WHERE game_id = {game_id}", game[
+                   "player1_credits"] - amount, amount, None, game["hand_pot"] + amount, game["player2_id"])
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
@@ -142,7 +144,8 @@ def bet(data):
 
     elif action == "call" and player == "player2" and game["player_turn"] == game["player2_id"] and amount >= 0 and amount <= game["player2_credits"]:
 
-        db.execute(f"UPDATE games SET player2_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", game["player2_credits"] - amount, None, None, game["hand_pot"] + amount, "card", game["player1_id"])
+        db.execute(f"UPDATE games SET player2_credits = ?, player1_bet = ?, player2_bet = ?, hand_pot = ?, phase = ?, player_turn = ? WHERE game_id = {game_id}", game[
+                   "player2_credits"] - amount, None, None, game["hand_pot"] + amount, "card", game["player1_id"])
 
         game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
