@@ -30,7 +30,8 @@ app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-socketio = SocketIO(app, cors_allowed_origins=["https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/chat", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/game", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/bet", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/card", "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/shift"])
+link = "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev"
+socketio = SocketIO(app, cors_allowed_origins=[link, f"{link}/chat", f"{link}/game", f"{link}/bet", f"{link}/card", f"{link}/shift"])
 
 # Declare dictionary to store key-value pairs of user ids and session ids
 users = {}
@@ -239,7 +240,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"])
+            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player1_hand, action, game["player2_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
@@ -265,22 +266,16 @@ def card(data):
                         p1_proced = p1_proced + "," + card
 
             deckList = list(game["deck"].split(","))
-            print(deckList)
             if len(deckList) == 0:
-                print("reshuffle")
                 outCards = list(player1_hand.split(",")) + list(player2_hand.split(","))
                 deckList = reshuffleDeck(game, outCards)
-                print(deckList)
 
             drawn = deckList.pop(random.randint(0, len(deckList) - 1))
 
             # Update player hand
             p1HandList = list(player1_hand.split(","))
-            print(p1HandList)
             p1HandList.append(drawn)
-            print(p1HandList)
             p1HandList.remove(discard)
-            print(p1HandList)
 
             player1_hand = ""
             for card in p1HandList:
@@ -297,7 +292,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player1_protected = ?, player_turn = ? WHERE game_id = {game_id}", player1_hand, action, p1_proced, game["player2_id"])
+            db.execute(f"UPDATE games SET player1_hand = ?, player1_card = ?, player1_protected = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player1_hand, action, p1_proced, game["player2_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
             emitGame("card", game, users)
 
@@ -309,7 +304,6 @@ def card(data):
 
     # Player 2
     elif player == "player2" and game["player_turn"] == game["player2_id"]:
-        print("p2")
 
         # Stand
         if action == "stand":
@@ -336,12 +330,11 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, "shift", action, game["player1_id"])
+            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player2_hand, "shift", action, game["player1_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Trade
         elif action == "trade":
-            print("trade")
             discard = data["card"] # If there's gonna be a KeyError, get it done early
 
             # Update shift protected cards
@@ -367,7 +360,6 @@ def card(data):
                 deckList = reshuffleDeck(game, outCards)
 
             drawn = deckList.pop(random.randint(0, len(deckList) - 1))
-            print(drawn)
 
             # Update player hand
             p2HandList = list(player2_hand.split(","))
@@ -389,7 +381,7 @@ def card(data):
                 else:
                     deck = deck + "," + card
 
-            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player2_protected = ?, player_turn = ? WHERE game_id = {game_id}", player2_hand, "shift", action, p2_proced, game["player1_id"])
+            db.execute(f"UPDATE games SET player2_hand = ?, phase = ?, player2_card = ?, player2_protected = ?, player_turn = ?, deck = ? WHERE game_id = {game_id}", player2_hand, "shift", action, p2_proced, game["player1_id"], deck)
             game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # Alderaan
@@ -503,15 +495,12 @@ def shift(data):
         player = "player2"
         opponent = "player1"
     else:
-        print("NaP " + user_id)
         return
 
     if game["phase"] != "shift":
-        print("wrong phase " + game["phase"])
         return
 
     if action != "shift":
-        print("wrong action " + action)
         return
 
     if user_id == game["player1_id"]:
@@ -543,19 +532,13 @@ def shift(data):
             player1_hand = ""
             player2_hand = ""
             for p in ["1", "2"]:
-                print("p " + p)
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
-                print(game["player" + p + "_protected"].split(","))
                 if game["player" + p + "_protected"].split(",") == [""]:
-                    print("procnone")
                     drawCnt += 1
-                print(drawCnt)
                 if len(deckList) < drawCnt:
-                    print("drawCnt too high")
                     deckList = reshuffleDeck(game, game["player1_protected"].split(",") + game["player2_protected"].split(","))
 
                 for i in range(drawCnt):
-                    print(i)
                     if p == "1":
                         if player1_hand == "":
                             player1_hand = deckList.pop(random.randint(0, len(deckList) - 1))
