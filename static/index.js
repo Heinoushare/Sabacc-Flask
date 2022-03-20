@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
-	$(".link").on("click", function())
+	$(".link").on("click", function() {
+
+    });
 
 });
