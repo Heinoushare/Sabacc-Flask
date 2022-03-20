@@ -523,7 +523,8 @@ def shift(data):
 
         db.execute(f"UPDATE games SET player2_protected = ? WHERE game_id = {game_id}", revealed)
 
-        rollsList = [random.randint(1, 6), random.randint(1, 6)]
+        # rollsList = [random.randint(1, 6), random.randint(1, 6)]
+        rollsList = [6, 6]
         deck = ""
         deckList = game["deck"].split(",")
         player1_hand = game["player1_hand"]
@@ -533,6 +534,7 @@ def shift(data):
             player2_hand = ""
             for p in ["1", "2"]:
                 drawCnt = len(game["player" + p + "_hand"].split(",")) - len(game["player" + p + "_protected"].split(","))
+                print(game["player" + p + "_protected"].split(","))
                 if game["player" + p + "_protected"].split(",") == [""]:
                     drawCnt += 1
                 if len(deckList) < drawCnt:
