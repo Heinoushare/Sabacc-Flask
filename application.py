@@ -522,6 +522,7 @@ def shift(data):
                 revealed = revealed + "," + card
 
         db.execute(f"UPDATE games SET player2_protected = ? WHERE game_id = {game_id}", revealed)
+        game = db.execute(f"SELECT * FROM games WHERE game_id = {game_id}")[0]
 
         # rollsList = [random.randint(1, 6), random.randint(1, 6)]
         rollsList = [6, 6]
