@@ -592,13 +592,17 @@ def game(game_id):
 
     if request.method == "GET":
 
+        usernames = []
+        for name in db.execute("SELECT username FROM users"):
+            usernames.append(name["username"])
+
         opponent["username"] = db.execute("SELECT username FROM users WHERE id = ?", game[opponent["player"] + "_id"])[0]["username"]
         opponent["cards"] = len(list(game[opponent["player"] + "_hand"].split(",")))
         opponent["credits"] = game[opponent["player"] + "_credits"]
 
         pHandLen = len(game[player + "_hand"].split(","))
 
-        return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen)
+        return render_template("game.html", game=game, player=player, opponent=opponent, username=user["username"], pHandLen=pHandLen, usernames=usernames)
 
     elif request.method == "POST":
         if game["completed"] != 1:
