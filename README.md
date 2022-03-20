@@ -5,4 +5,4 @@ Sabacc, the space card game. A fast-paced, high-risk, perfect mixture of skill a
 
 ### Files
 #### application.py
-application.py is the file that runs this show. It handles all user requests and the modification of sabacc.db.
+application.py is the file that runs this show. It handles all user requests, Socket.IO messages, and the modification of sabacc.db.
