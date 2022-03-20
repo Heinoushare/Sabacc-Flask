@@ -636,8 +636,18 @@ def game(game_id):
 @app.route("/completed")
 @login_required
 def completed():
-    
 
+    # Get the user's id for later use
+    user_id = session.get("user_id")
+
+    usernames = {}
+    games = db.execute(f"SELECT * FROM games WHERE (player1_id = ? OR player2_id = ?) AND completed = 1 ORDER BY game_id DESC", user_id, user_id)
+    users = db.execute("SELECT * FROM users")
+    for user in users:
+        usernames[user["id"]] = user["username"]
+
+    # Render the home page with the user's active game data
+    return render_template("index.html", games=games, usernames=usernames)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
