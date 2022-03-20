@@ -10,7 +10,7 @@
     <player id="player" player="{{ player }}" player_id="{{ game[player + '_id'] }}" username="{{ username }}"></player>
     <opponent id="opponent" opponent_id="{{ game[opponent['player'] + '_id'] }}" player="{{ opponent['player'] }}" username="{{ opponent['username'] }}"></opponent>
 
-    <h1>{{ username }} vs. {{ opponent["username"] }}</h1>
+    <h1>{{ usernames[game["player1_id"]] }} vs. {{ usernames[game["player2_id"]] }}</h1>
 
     <div class="parent">
         <div class="backBlue child">
