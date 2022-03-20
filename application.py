@@ -621,7 +621,7 @@ def game(game_id):
 
     elif request.method == "POST":
         if game["completed"] != 1:
-            return apology("This round has not ended")
+            return redirect(f"/game/{game['game_id']}")
 
         deckData = constructDeck()
         deck = deckData["deck"]
