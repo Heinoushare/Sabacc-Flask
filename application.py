@@ -414,15 +414,13 @@ def card(data):
                 p1Gain += game["hand_pot"]
                 handPotLoss = game["hand_pot"]
                 if abs(int(calcHandVal(game["player1_hand"]))) == 23:
-                    p1Gain += game["sabacc_pot"] + game["hand_pot"]
-                    handPotLoss = game["hand_pot"]
+                    p1Gain += game["sabacc_pot"]
                     sabPotLoss = game["sabacc_pot"]
             elif winner == game["player2_id"]:
                 p2Gain += game["hand_pot"]
                 handPotLoss = game["hand_pot"]
                 if abs(int(calcHandVal(game["player2_hand"]))) == 23:
-                    p1Gain += game["sabacc_pot"] + game["hand_pot"]
-                    handPotLoss = game["hand_pot"]
+                    p1Gain += game["sabacc_pot"]
                     sabPotLoss = game["sabacc_pot"]
 
             db.execute(f"UPDATE games SET player1_credits = ?, player2_credits = ?, hand_pot = ?, sabacc_pot = ?, phase = ?, player2_card = ?, player_turn = ?, completed = ?, winner = ? WHERE game_id = {game_id}", game["player1_credits"] - round((game["hand_pot"] * p1BombOut)) + p1Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["player2_credits"] - round((game["hand_pot"] * p2BombOut)) + p2Gain - round((game["hand_pot"] * sabBomb * 0.5)), game["hand_pot"] + round(game["hand_pot"] * p1BombOut) + round(game["hand_pot"] * p2BombOut) - handPotLoss, game["sabacc_pot"] + round((game["hand_pot"] * sabGain)) - sabPotLoss, "completed", action, -1, 1, winner)
