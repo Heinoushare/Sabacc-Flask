@@ -647,7 +647,7 @@ def completed():
         usernames[user["id"]] = user["username"]
 
     # Render the home page with the user's active game data
-    return render_template("index.html", games=games, usernames=usernames)
+    return render_template("completed.html", games=games, usernames=usernames)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
