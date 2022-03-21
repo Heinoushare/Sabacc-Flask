@@ -40,4 +40,6 @@ layout.html is the base template for all other HTML files. It contains informati
 index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
 
 ### apology.html
-apology.html simply renders a image of a cat with error text on it. Using external sources, helpers.py
+apology.html simply renders a image of a cat with error text on it. Using external sources and Jinja2, apology.html will generate said image. apology.html is rendered whenever there is an internal server error or invalid user input.
+
+### chat.html
