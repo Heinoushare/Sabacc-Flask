@@ -21,14 +21,6 @@ Werkzeug is used for generating and checking password hashes for users, making i
 
 #### helpers.py
 application.py uses helpers.py for repetitive functions and the decorated function @login_required. If @login_required is writted at the top of a page function, the website will automatically redirect the user to the login page if they are not logged in.
-<!--
-- CS50 (For the sqlite3 database)
-- Flask (For handling requests to the web application)
-- Flask-Session (For storing user sessions)
-- Flask-SocketIO (For receiving and sending messages with Socket.IO)
-- Werkzeug (For security and server error handling)
-- helpers.py (A custom helper file for functions used several times)
--->
 
 ### helpers.py
 helpers.py is a file full of custom functions used by application.py. These functions vary from emitting Socket.IO messages, shuffling the Sabacc deck, and redirecting logged out users to the login page.
