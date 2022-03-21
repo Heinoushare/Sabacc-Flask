@@ -29,3 +29,6 @@ When emitting game data to players, helpers.py uses Socket.IO *rooms*. Each clie
 
 ### requirements.txt
 requiremenets.txt is a very simple file, with no actual functionality in the web application. The use of requirements.txt is to keep track of what libraries and tools the web application uses, in case one day you need to re-install said tools. An important use of requirements.txt is to keep track of what *version* of the tool is required for the web application. Without this, the risk of using incompatible library versions or deprecated methods is high. One example of this is shown with Flask-SocketIO, python-socketio, and python-engineio, the latest versions of these libraries (as of March 2022) are **incompatible**. I had to look up which specfic versions worked and noted them down in requirements.txt for later use.
+
+### sabacc.db
+sabacc.db is an sqlite3
