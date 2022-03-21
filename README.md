@@ -79,7 +79,10 @@ game.js uses Socket.IO on the "game" *namespace* to establish a connection with 
 bet.js uses JQuery and Socket.IO to aid game.html in allowing players to make their bets in the betting phase. The JQuery show/hide functions are used to hide and reveal HTML elements, depending on circumstances such as the player and actions being taken. As bets are taken, bet.js sends betting data to the server with Socket.IO and recieves new game data from application.py.
 
 ### card.js
-card.js uses JQuery and Socket.IO to aid game.html in allowing players to make their bets in the betting phase. Show/hide functions are used to hide and reveal HTML elements, depending on circumstances such as the player and actions being taken. As cards are drawn, bet.js sends betting data to the server with Socket.IO and recieves new game data from application.py.
+card.js uses JQuery and Socket.IO to aid game.html in allowing players to make their card actions in the card phase. Show/hide functions are used to hide and reveal HTML elements, depending on circumstances such as the player and actions being taken. As cards are drawn and hands changed, card.js sends card data to the server with Socket.IO and recieves new game data from application.py.
 
-### bet.js
-bet.js uses JQuery and Socket.IO to aid game.html in allowing players to make their bets in the betting phase. The JQuery show/hide functions are used to hide and reveal HTML elements, depending on circumstances such as the player and actions being taken. As bets are taken, bet.js sends betting data to the server with Socket.IO and recieves new game data from application.py.
+### shift.js
+shift.js uses JQuery and Socket.IO to aid game.html in allowing players to protect cards from the Sabacc shift in the shift phase. Show/hide functions are used to hide and reveal HTML elements, depending on circumstances such as the player and actions being taken. As cards are protected, shift.js sends shift data to the server with Socket.IO and recieves new game data from application.py.
+
+### styles.css
+styles.css is the only CSS file in the whole web application. All HTML files use it (since they all extend layout.html and layout.html uses styles.css)
