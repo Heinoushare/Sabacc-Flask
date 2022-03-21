@@ -37,4 +37,4 @@ sabacc.db is an sqlite3 database which stores all of the web application data. I
 layout.html is the base template for all other HTML files. It contains information for CSS and Bootstrap stylesheets to be used, and HTML for the website navigation bar, title, site icon. It uses Jinja2 for blocks of code in which other HTML from other files will go, and to display different navigation bars depending on whether a user is signed in or not.
 
 ### index.html
-index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, otherwise 
+index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, otherwise, a video and rulebook on how to play Sabacc will be displayed.
