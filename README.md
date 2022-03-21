@@ -34,3 +34,4 @@ requiremenets.txt is a very simple file, with no actual functionality in the web
 sabacc.db is an sqlite3 database which stores all of the web application data. It has two tables, *users* and *games*. The table *users* stores information about every user, with a row for each user. It stores their *username*, *User ID*, and *password hash* which application.py uses to check if a user-inputted password is correct.
 
 ### layout.html
+layout.html is the base template for all other HTML files. It shows
