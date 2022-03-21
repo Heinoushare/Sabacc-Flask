@@ -175,7 +175,11 @@ $(document).ready(function() {
 					hide("betDiv");
 				}
 			} else if (data["player1_bet"] != null && data["player2_bet"] != null) {
+				// Player 2 raised
 				if (playerID === data["player1_id"]) {
+					// Player 1 recieve
+
+					// Update HTML and show forms
 					document.getElementById("raiseCredits").innerHTML = data["player2_bet"] + " credits";
 					hide("betActionDiv");
 					show("p1Bet");
@@ -183,6 +187,9 @@ $(document).ready(function() {
 					document.getElementById("opponent_credits").innerHTML = data["player2_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 				} else if (playerID === data["player2_id"]) {
+					// Player 2 recieve
+
+					// Update HTML
 					document.getElementById("credits").innerHTML = data["player2_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 				}
