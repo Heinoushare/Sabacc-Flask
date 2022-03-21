@@ -39,6 +39,9 @@ layout.html is the base template for all other HTML files. It contains informati
 ### index.html
 index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
 
+### index.js
+index.js contains code which uses JQuery to copy game links to a user's clipboard on the click of a button.
+
 ### register.html
 register.html contains an account creation form, which sends a POST request to the server containing registration details. application.py confirms that the details are valid, with a username that doesn't already exist in the database, and matching password and confirmation passwords.
 
@@ -53,6 +56,9 @@ apology.html simply renders a image of a cat with error text on it. Using extern
 
 ### completed.html
 completed.html displays a user's completed games, using data passed from application.py with Jinja2.
+
+### completed.js
+completed.js contains code which uses JQuery to copy game links to a user's clipboard on the click of a button.
 
 ### chat.html
 chat.html (*extends* layout.html) is used to render the application global chat, using chat.js to send and render messages to others on the chat page.
