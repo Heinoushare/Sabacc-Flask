@@ -15,6 +15,7 @@ The CS50 library is used to add, update, and read data from the sqlite3 database
 The entire web application is based off of Flask. application.py uses the Flask library to handle HTTP GET and POST requests, rendering HTML files and passing data to Jinja2.
 
 <!--
+- CS50 (For the sqlite3 database)
 - Flask (For handling requests to the web application)
 - Flask-Session (For storing user sessions)
 - Flask-SocketIO (For receiving and sending messages with Socket.IO)
