@@ -35,6 +35,7 @@ $(document).ready(function() {
 		document.getElementById(id).hidden = true;
 	}
 
+	// Figure out what HTML to show or hide
     if (phase === "shift") {
 		if (playerID != player_turn) {
 			hide("shiftPhase");
