@@ -65,3 +65,6 @@ chat.html (*extends* layout.html) is used to render the application global chat,
 
 ### chat.js
 chat.js uses Socket.IO to interchange messages with the server. When the client recieves a message from a user connecting or sending a text message, chat.js will use JQuery to display the message, along with the sender's username in front of the message.
+
+### game.html
+
