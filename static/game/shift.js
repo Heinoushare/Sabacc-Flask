@@ -110,15 +110,18 @@ $(document).ready(function() {
 	$("#shiftBtn").on("click", function() {
 
 		if (playerID === parseInt(game.getAttribute("player1_id"))) {
+			// Make list of revealed cards
 			let revealed = [];
 			for (card in player1_hand) {
 				if (document.getElementById(card).checked === true) {
 					revealed.push(player1_hand[card]);
 				}
 			}
+
 			data = { "game_id": game_id, "action": "shift", "cards": revealed };
 			shift_socket.emit("shift", data);
 		} else if (playerID === parseInt(game.getAttribute("player2_id"))) {
+			// Make list of revealed cards
 			let revealed = [];
 			for (card in player2_hand) {
 				if (document.getElementById(card).checked === true) {
