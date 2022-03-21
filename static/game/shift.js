@@ -106,6 +106,7 @@ $(document).ready(function() {
 
 	});
 
+	// Either player revealing cards
 	$("#shiftBtn").on("click", function() {
 
 		if (playerID === parseInt(game.getAttribute("player1_id"))) {
