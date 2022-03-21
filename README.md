@@ -31,7 +31,7 @@ When emitting game data to players, helpers.py uses Socket.IO *rooms*. Each clie
 requiremenets.txt is a very simple file, with no actual functionality in the web application. The use of requirements.txt is to keep track of what libraries and tools the web application uses, in case one day you need to re-install said tools. An important use of requirements.txt is to keep track of what *version* of the tool is required for the web application. Without this, the risk of using incompatible library versions or deprecated methods is high. One example of this is shown with Flask-SocketIO, python-socketio, and python-engineio, the latest versions of these libraries (as of March 2022) are **incompatible**. I had to look up which specfic versions worked and noted them down in requirements.txt for later use.
 
 ### sabacc.db
-sabacc.db is an sqlite3 database which stores all of the web application data. It has two tables, *users* and *games*. The table *users* stores information about every user, with a row for each user. It stores their *username*, *User ID*, and *password hash* which application.py uses to check if a user-inputted password is correct. The *games* table stores all the data neccesary to keep track of a game of Sabacc
+sabacc.db is an sqlite3 database which stores all of the web application data. It has two tables, *users* and *games*. The table *users* stores information about every user, with a row for each user. It stores their *username*, *User ID*, and *password hash* which application.py uses to check if a user-inputted password is correct. The *games* table stores all the data neccesary to keep track of a game of Sabacc, totalling at 21 rows! Some values seem as if they should be arrays or lists, but that data type doesn't exist in sqlite3, so instead, comma seperated strings are used, which application.py converts into lists using the .split(",") Python string method.
 
 ### layout.html
 layout.html is the base template for all other HTML files. It contains information for CSS and Bootstrap stylesheets to be used, and HTML for the website navigation bar, title, site icon. It uses Jinja2, a tool to make dynamic HTML, for blocks of code in which other HTML from other files will go, and to display different navigation bars depending on whether a user is signed in or not.
@@ -74,3 +74,5 @@ game.html is by far the longest HTML file made for this web application, but ver
 
 ### game.js
 game.js uses Socket.IO on the "game" *namespace* to establish a connection with the server and communicate when the game is over.
+
+### bet.js
