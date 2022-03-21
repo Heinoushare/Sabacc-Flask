@@ -34,7 +34,7 @@ requiremenets.txt is a very simple file, with no actual functionality in the web
 sabacc.db is an sqlite3 database which stores all of the web application data. It has two tables, *users* and *games*. The table *users* stores information about every user, with a row for each user. It stores their *username*, *User ID*, and *password hash* which application.py uses to check if a user-inputted password is correct.
 
 ### layout.html
-layout.html is the base template for all other HTML files. It contains information for CSS and Bootstrap stylesheets to be used, and HTML for the website navigation bar, title, site icon. It uses Jinja2 for blocks of code in which other HTML from other files will go, and to display different navigation bars depending on whether a user is signed in or not.
+layout.html is the base template for all other HTML files. It contains information for CSS and Bootstrap stylesheets to be used, and HTML for the website navigation bar, title, site icon. It uses Jinja2, a tool to make dynamic HTML, for blocks of code in which other HTML from other files will go, and to display different navigation bars depending on whether a user is signed in or not.
 
 ### index.html
 index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
@@ -66,5 +66,8 @@ chat.html (*extends* layout.html) is used to render the application global chat,
 ### chat.js
 chat.js uses Socket.IO to interchange messages with the server. When the client recieves a message from a user connecting or sending a text message, chat.js will use JQuery to display the message, along with the sender's username in front of the message.
 
+### host.html
+
+
 ### game.html
-game.html is by far the longest HTML file made for this web application, but very little of it is actually displayed to users.
+game.html is by far the longest HTML file made for this web application, but very little of it is actually displayed to users. Most of the HTML in game.html is in a Jinja2 if statement, eliminating a large part of the HTML. game.html contains all the HTML needed to play a game of Sabacc.
