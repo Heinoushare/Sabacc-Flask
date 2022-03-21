@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+    // Link copy button clicked
 	$(".link").on("click", function() {
 
         /* Get the text field */
@@ -11,7 +11,8 @@ $(document).ready(function() {
 
         /* Alert the copied text */
         document.getElementById(link).innerHTML = "Copied!";
-        document.getElementById(link).setAttribute("class", document.getElementById(link).getAttribute("class") + " green");
+        document.getElementById(link).setAttribute("class", document.getElementById(link).getAttribute("class") +
+            " green");
 
     });
 

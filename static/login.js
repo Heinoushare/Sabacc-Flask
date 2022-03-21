@@ -1,4 +1,5 @@
 function updateButton(divID, em1, em2, changeID) {
+    // Show password changing form inputs
     document.getElementById(divID).innerHTML = '';
     document.getElementById(em1).type = "password";
     document.getElementById(em1).setAttribute("required", "");
