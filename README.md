@@ -26,3 +26,5 @@ application.py uses helpers.py for repetitive functions and the decorated functi
 helpers.py is a file full of custom functions used by application.py. These functions vary from emitting Socket.IO messages, shuffling the Sabacc deck, and redirecting logged out users to the login page.
 
 When emitting game data to players, helpers.py uses Socket.IO *rooms*. Each client using Socket.IO has their own *room*. When emitting game data, helpers.py will send the message to both players, using their corresponding *rooms*. How does helpers.py know what *room* to send game data to? When a Socket.IO client connects to the server, the client is given a *Socket ID*. The server saves their *Socket ID* into a Python *dictionary*, with the key as the *User ID* (the *User ID* is stored in the sqlite3 database and is **not** the same as the *Socket ID*), and the value as the *Socket ID*. When application.py calls the *emitGame* function in helpers.py, is passes the function the game data and the users dictionary. The game data stores both players' *User IDs*, which can be used to find their *Socket IDs*.
+
+### requirements.txt
