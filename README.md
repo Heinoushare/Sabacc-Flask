@@ -70,4 +70,6 @@ chat.js uses Socket.IO to interchange messages with the server. When the client 
 host.html contains a form which prompts users to enter another user's username to play a game with them. host.html will send a POST request to the server and application.py will verify that the username inputted does exist, and then insert the game in sabacc.db.
 
 ### game.html
-game.html is by far the longest HTML file made for this web application, but very little of it is actually displayed to users. Most of the HTML in game.html is in a Jinja2 if statement, eliminating a large part of the HTML. game.html contains all the HTML needed to play a game of Sabacc.
+game.html is by far the longest HTML file made for this web application, but very little of it is actually displayed to users. Most of the HTML in game.html is in a Jinja2 if statement, eliminating a large part of the HTML. game.html contains all the HTML needed to play a game of Sabacc. game.html contains made-up HTML tags to store game and user data. game.html relies on four JavaScript files to play a game of Sabacc, game.js, bet.js, card.js, and shift.js
+
+### game.js
