@@ -63,16 +63,20 @@ $(document).ready(function() {
 			}
 		}
 	} else {
+		// If not card phase
 		hide("cardPhase");
 		throw "";
 	}
 
+	// Recieving message through card_socket
 	card_socket.on("card", function(data) {
 
+		// This isn't the game you're looking for
 		if (data["game_id"] != game_id) {
 			return;
 		}
 
+		// Update game HTML tag
 		for (pair in data) {
 			if (data[pair] === null) {
 				game.setAttribute(pair.toString(), data[pair]);
@@ -81,6 +85,7 @@ $(document).ready(function() {
 			}
 		}
 
+		// Update globabl variables
 		game = document.getElementById("game");
 		game_id = parseInt(game.getAttribute("game_id"));
 		phase = game.getAttribute("phase");
@@ -97,6 +102,7 @@ $(document).ready(function() {
 		document.getElementById("procCards").innerHTML = data[player_phrase + "_protected"];
 		document.getElementById("opponent_proc").innerHTML = data[opponent_phrase + "_protected"];
 
+		// If user is player 2 and it's their  turn
 		if (playerID === data["player2_id"] && playerID === data["player_turn"]) {
 			let p1Txt = document.getElementById("p1CardActionTxt");
 			if (data["player1_card"] === "draw") {
@@ -115,6 +121,7 @@ $(document).ready(function() {
 
 	});
 
+	// P1 card action
 	$("#p1CardActionBtn").on("click", function() {
 		let form = document.getElementById("p1CardAction").value;
 		if (form === "stand") {
@@ -138,6 +145,7 @@ $(document).ready(function() {
 		hide("p1CardActionDiv");
 	});
 
+	// P1 Trade
 	$("#p1TradeBtn").on("click", function() {
 		let card = document.getElementById("p1Trade").value;
 		let cardIn = false;
@@ -157,6 +165,7 @@ $(document).ready(function() {
 		return;
 	});
 
+	// P2 card action
 	$("#p2CardActionBtn").on("click", function() {
 		let form = document.getElementById("p2CardAction").value;
 		if (form === "stand") {
@@ -180,6 +189,7 @@ $(document).ready(function() {
 		hide("p2CardActionDiv");
 	});
 
+	// P2 trade
 	$("#p2TradeBtn").on("click", function() {
 		let card = document.getElementById("p2Trade").value;
 		let cardIn = false;
