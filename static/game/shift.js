@@ -39,23 +39,18 @@ $(document).ready(function() {
 		if (playerID != player_turn) {
 			hide("shiftPhase");
 		}
-    }
-    else
-    {
+    } else {
         hide("shiftPhase");
         throw "";
     }
 
 	let proced = game.getAttribute(player_phrase + "_protected").split(",");
 	let pHand = game.getAttribute(player_phrase + "_hand").split(",");
-	for (card in pHand)
-	{
+	for (card in pHand) {
 		console.log(pHand[card]);
 		let check = false;
-		for (c in proced)
-		{
-			if (proced[c] == pHand[card])
-			{
+		for (c in proced) {
+			if (proced[c] == pHand[card]) {
 				check = true;
 				proced.splice(c, 1);
 				break;
@@ -70,15 +65,12 @@ $(document).ready(function() {
 	shift_socket.on("shift", function(data) {
 
 		// If this is not the correct game, return
-		if (data["game_id"] != game_id)
-		{
+		if (data["game_id"] != game_id) {
 			return;
 		}
 
-		for (pair in data)
-		{
-			if (data[pair] === null)
-			{
+		for (pair in data) {
+			if (data[pair] === null) {
 				game.setAttribute(pair.toString(), data[pair]);
 			}
 			else
