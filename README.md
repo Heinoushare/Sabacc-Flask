@@ -73,3 +73,4 @@ host.html contains a form which prompts users to enter another user's username t
 game.html is by far the longest HTML file made for this web application, but very little of it is actually displayed to users. Most of the HTML in game.html is in a Jinja2 if statement, eliminating a large part of the HTML. game.html contains all the HTML needed to play a game of Sabacc. game.html contains made-up HTML tags to store game and user data. game.html relies on four JavaScript files to play a game of Sabacc, game.js, bet.js, card.js, and shift.js
 
 ### game.js
+game.js uses Socket.IO on the "game" *namespace* to establish a connection with
