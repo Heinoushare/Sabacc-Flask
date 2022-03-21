@@ -40,7 +40,13 @@ layout.html is the base template for all other HTML files. It contains informati
 index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
 
 ### register.html
-register.html contains an account creation form, which sends a POST request to the server
+register.html contains an account creation form, which sends a POST request to the server containing registration details. application.py confirms that the details are valid, with a username that doesn't already exist in the database, and matching password and confirmation passwords.
+
+### login.html
+login.html contains and login form, which sends a POST request the server with login details. Using login.js, users can also change their password on login.html. application.py will verify user input and login and save the user's session if the user input is valid.
+
+### login.js
+login.js 
 
 ### apology.html
 apology.html simply renders a image of a cat with error text on it. Using external sources and Jinja2, apology.html will generate said image. apology.html is rendered whenever there is an internal server error or invalid user input.
