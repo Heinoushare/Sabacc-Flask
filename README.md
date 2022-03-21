@@ -29,4 +29,4 @@ application.py uses helpers.py for repetitive functions and the decorated functi
 -->
 
 ### helpers.py
-helpers.py is a file full of custom functions used by application.py. These functions vary from emitting Socket.IO messages, shuffling the Sabacc deck, and redirecting logged out users to the login page
+helpers.py is a file full of custom functions used by application.py. These functions vary from emitting Socket.IO messages, shuffling the Sabacc deck, and redirecting logged out users to the login page.
