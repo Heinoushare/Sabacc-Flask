@@ -100,16 +100,22 @@ $(document).ready(function() {
 			location.reload();
 		}
 
+		// Because HTML can't show/hide more than two times
 		fold_count++;
 		if (fold_count === 2) {
 			location.reload();
 		}
 
 		if (data["game_id"] === game_id) {
+			// Player 1 just bet
 			if (data["player1_bet"] != null && data["player2_bet"] === null) {
+				// Player 2 recieve
 				if (playerID === data["player2_id"]) {
+					// Update credits HTML
 					document.getElementById("opponent_credits").innerHTML = data["player1_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
+
+					// Display different prompts for betting depending on how much player 1 bet
 					let betTxt = "";
 					if (parseInt(player1_bet) === 0) {
 						betTxt = "Checks (bets 0 credits)";
@@ -117,6 +123,7 @@ $(document).ready(function() {
 						betTxt = "bets " + player1_bet + " credits";
 					}
 
+					// Show form
 					document.getElementById("p1BetAction").innerHTML = betTxt;
 					document.getElementById("followBetAction").innerHTML =
 			  '<option value="" disabled selected>Action</option> <option value="call">Call</option> <option value="raise">Raise</option> <option value="fold">Fold</option>';
@@ -126,12 +133,18 @@ $(document).ready(function() {
 					show("followBetActionDiv");
 					hide("p1Bet");
 					hide("followBetDiv");
+
 				} else if (playerID === data["player1_id"]) {
+					// Update credits HTML
 					document.getElementById("credits").innerHTML = data["player1_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 				}
 			} else if (data["player1_bet"] === null && data["player2_bet"] === null) {
+				// Player 2 folded
 				if (playerID === data["player2_id"]) {
+					// Player 2 recieve
+
+					// Update HTML
 					document.getElementById("opponent_credits").innerHTML = data["player1_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 					document.getElementById("credits").innerHTML = data["player2_credits"];
@@ -140,12 +153,16 @@ $(document).ready(function() {
 
 					hide("betPhase");
 				} else if (playerID === data["player1_id"]) {
+					// Player 1 recieve
+
+					// Update HTML
 					document.getElementById("opponent_credits").innerHTML = data["player2_credits"];
 					document.getElementById("hand_pot").innerHTML = data["hand_pot"];
 					document.getElementById("credits").innerHTML = data["player1_credits"];
 					document.getElementById("hand").innerHTML = data["player1_hand"];
 					document.getElementById("opponent_cards").innerHTML = "2";
 
+					// Show form
 					document.getElementById("followFolded").innerHTML = "Someone folded. ";
 					document.getElementById("betAction").innerHTML =
 			  '<option value="" disabled selected>Action</option> <option value="bet">Bet</option> <option value="check">Check (Do nothing)</option>'
