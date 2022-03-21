@@ -124,6 +124,8 @@ $(document).ready(function() {
 	// P1 card action
 	$("#p1CardActionBtn").on("click", function() {
 		let form = document.getElementById("p1CardAction").value;
+
+		// Find out what action P1 is taking and act accordingly
 		if (form === "stand") {
 			let data = { "game_id": game_id, "action": "stand" };
 			card_socket.emit("card", data);
@@ -147,6 +149,8 @@ $(document).ready(function() {
 
 	// P1 Trade
 	$("#p1TradeBtn").on("click", function() {
+
+		// Confirm that card being traded is in hand
 		let card = document.getElementById("p1Trade").value;
 		let cardIn = false;
 		for (c in hand) {
@@ -159,6 +163,7 @@ $(document).ready(function() {
 			document.getElementById("p1InvalidTrade").innerHTML = "Invalid selection.";
 			return;
 		}
+
 		hide("p1TradeDiv");
 		let data = { "game_id": game_id, "action": "trade", "card": card };
 		card_socket.emit("card", data);
@@ -167,6 +172,8 @@ $(document).ready(function() {
 
 	// P2 card action
 	$("#p2CardActionBtn").on("click", function() {
+
+		// Find out what action P1 is taking and act accordingly
 		let form = document.getElementById("p2CardAction").value;
 		if (form === "stand") {
 			let data = { "game_id": game_id, "action": "stand" };
@@ -191,6 +198,8 @@ $(document).ready(function() {
 
 	// P2 trade
 	$("#p2TradeBtn").on("click", function() {
+
+		// Confirm that card being traded is in hand
 		let card = document.getElementById("p2Trade").value;
 		let cardIn = false;
 		for (c in hand) {
@@ -203,6 +212,7 @@ $(document).ready(function() {
 			document.getElementById("p2InvalidTrade").innerHTML = "Invalid selection.";
 			return;
 		}
+
 		hide("p2TradeDiv");
 		let data = { "game_id": game_id, "action": "trade", "card": card };
 		card_socket.emit("card", data);
