@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var socket = io.connect('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev');
 	var chat_socket = io('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/chat');
 
+	// Attribute "user" contains information about the user
 	let user = document.getElementById("user");
 
 	// Send connection message
@@ -13,7 +14,7 @@ $(document).ready(function() {
 
 	// Recieving message
 	chat_socket.on('message', function(msg) {
-		$("#messages").append('<p>'+msg+'</p>');
+		$("#messages").append('<p>' + msg + '</p>');
 	});
 
 	// Send text message
