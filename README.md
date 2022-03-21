@@ -76,3 +76,4 @@ game.html is by far the longest HTML file made for this web application, but ver
 game.js uses Socket.IO on the "game" *namespace* to establish a connection with the server and communicate when the game is over.
 
 ### bet.js
+bet.js uses JQuery and Socket.IO to aid game.html in allowing players to make their bets in the betting phase. The JQuery show/hide functions are used to hide and reveal HTML elements, depending on circumstances such as the player and actions being taken. As bets are taken, bet.js sends betting data to the server with Socket.IO
