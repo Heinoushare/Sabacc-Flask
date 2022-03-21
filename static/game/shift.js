@@ -119,7 +119,7 @@ $(document).ready(function() {
 					revealed.push(player2_hand[card]);
 				}
 			}
-			data = {"game_id": game_id, "action": "shift", "cards": revealed};
+			data = { "game_id": game_id, "action": "shift", "cards": revealed };
 			shift_socket.emit("shift", data);
 		}
 
