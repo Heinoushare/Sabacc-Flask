@@ -37,7 +37,7 @@ sabacc.db is an sqlite3 database which stores all of the web application data. I
 layout.html is the base template for all other HTML files. It contains information for CSS and Bootstrap stylesheets to be used, and HTML for the website navigation bar, title, site icon. It uses Jinja2, a tool to make dynamic HTML, for blocks of code in which other HTML from other files will go, and to display different navigation bars depending on whether a user is signed in or not.
 
 ### index.html
-index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
+index.html layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
 
 ### index.js
 index.js contains code which uses JQuery to copy game links to a user's clipboard on the click of a button.
@@ -61,7 +61,7 @@ completed.html displays a user's completed games, using data passed from applica
 completed.js contains code which uses JQuery to copy game links to a user's clipboard on the click of a button.
 
 ### chat.html
-chat.html (*extends* layout.html) is used to render the application global chat, using chat.js to send and render messages to others on the chat page.
+chat.html is used to render the application global chat, using chat.js to send and render messages to others on the chat page.
 
 ### chat.js
 chat.js uses Socket.IO on the "chat" *namespace* to interchange messages with the server. When the client recieves a message from a user connecting or sending a text message, chat.js will use JQuery to display the message, along with the sender's username in front of the message.
@@ -85,4 +85,4 @@ card.js uses JQuery and Socket.IO to aid game.html in allowing players to make t
 shift.js uses JQuery and Socket.IO to aid game.html in allowing players to protect cards from the Sabacc shift in the shift phase. Show/hide functions are used to hide and reveal HTML elements, depending on circumstances such as the player and actions being taken. As cards are protected, shift.js sends shift data to the server with Socket.IO and recieves new game data from application.py.
 
 ### styles.css
-styles.css is the only CSS file in the whole web application. All HTML files use it (since they all extend layout.html and layout.html uses styles.css)
+styles.css is the only CSS file in the whole web application. All HTML files use it (since they all extend layout.html and layout.html uses styles.css) for basic color coding and formatting by tag type and class.
