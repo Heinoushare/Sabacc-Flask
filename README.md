@@ -9,6 +9,7 @@ application.py is the file that runs this show. It handles all user requests, So
 
 application.py uses the following libraries and tools
 #### CS50 Library
+The CS50 library is used to add, update, and read data from the sqlite3 database sabacc.db
 <!---
 - Flask (For handling requests to the web application)
 - Flask-Session (For storing user sessions)
