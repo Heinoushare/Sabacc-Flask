@@ -32,6 +32,8 @@ app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+
+# Socket.IO message links
 link = "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev"
 socketio = SocketIO(app, cors_allowed_origins=[link, f"{link}/chat",
                                                f"{link}/game", f"{link}/bet", f"{link}/card", f"{link}/shift"])
