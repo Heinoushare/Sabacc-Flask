@@ -106,22 +106,16 @@ $(document).ready(function() {
 		if (playerID === parseInt(game.getAttribute("player1_id"))) {
 			let revealed = [];
 			for (card in player1_hand) {
-				if (document.getElementById(card).checked === true)
-				{
+				if (document.getElementById(card).checked === true) {
 					revealed.push(player1_hand[card]);
 				}
 			}
-			data = {"game_id": game_id, "action": "shift", "cards": revealed};
+			data = { "game_id": game_id, "action": "shift", "cards": revealed };
 			shift_socket.emit("shift", data);
-		}
-
-		else if (playerID === parseInt(game.getAttribute("player2_id")))
-		{
+		} else if (playerID === parseInt(game.getAttribute("player2_id"))) {
 			let revealed = [];
-			for (card in player2_hand)
-			{
-				if (document.getElementById(card).checked === true)
-				{
+			for (card in player2_hand) {
+				if (document.getElementById(card).checked === true) {
 					revealed.push(player2_hand[card]);
 				}
 			}
