@@ -16,6 +16,7 @@ The entire web application is based off of Flask. application.py uses the Flask 
 
 #### Werkzeug
 
+
 <!--
 - CS50 (For the sqlite3 database)
 - Flask (For handling requests to the web application)
