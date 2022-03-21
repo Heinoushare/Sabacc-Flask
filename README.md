@@ -64,7 +64,7 @@ completed.js contains code which uses JQuery to copy game links to a user's clip
 chat.html (*extends* layout.html) is used to render the application global chat, using chat.js to send and render messages to others on the chat page.
 
 ### chat.js
-chat.js uses Socket.IO to interchange messages with the server. When the client recieves a message from a user connecting or sending a text message, chat.js will use JQuery to display the message, along with the sender's username in front of the message.
+chat.js uses Socket.IO on the "chat" *namespace* to interchange messages with the server. When the client recieves a message from a user connecting or sending a text message, chat.js will use JQuery to display the message, along with the sender's username in front of the message.
 
 ### host.html
 host.html contains a form which prompts users to enter another user's username to play a game with them. host.html will send a POST request to the server and application.py will verify that the username inputted does exist, and then insert the game in sabacc.db.
