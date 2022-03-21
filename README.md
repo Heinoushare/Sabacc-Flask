@@ -43,3 +43,6 @@ index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2
 apology.html simply renders a image of a cat with error text on it. Using external sources and Jinja2, apology.html will generate said image. apology.html is rendered whenever there is an internal server error or invalid user input.
 
 ### chat.html
+chat.html (*extends* layout.html) is used to render the application global chat, using chat.js to send and render messages to others on the chat page.
+
+### chat.js
