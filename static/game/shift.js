@@ -27,20 +27,16 @@ $(document).ready(function() {
 	var opponent_phrase = opponent.getAttribute("player");
 
 	// Define show/hide functions
-	function show(id)
-	{
+	function show(id) {
 		document.getElementById(id).hidden = false;
 	}
 
-	function hide(id)
-	{
+	function hide(id) {
 		document.getElementById(id).hidden = true;
 	}
 
-    if (phase === "shift")
-    {
-		if (playerID != player_turn)
-		{
+    if (phase === "shift") {
+		if (playerID != player_turn) {
 			hide("shiftPhase");
 		}
     }
