@@ -46,7 +46,7 @@ register.html contains an account creation form, which sends a POST request to t
 login.html contains and login form, which sends a POST request the server with login details. Using login.js, users can also change their password on login.html. application.py will verify user input and login and save the user's session if the user input is valid.
 
 ### login.js
-login.js 
+login.js contains some plain JavaScript to reveal password changing inputs on login.html.
 
 ### apology.html
 apology.html simply renders a image of a cat with error text on it. Using external sources and Jinja2, apology.html will generate said image. apology.html is rendered whenever there is an internal server error or invalid user input.
