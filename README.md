@@ -17,6 +17,8 @@ The entire web application is based off of Flask. application.py uses the Flask 
 #### Werkzeug
 Werkzeug is used for generating and checking password hashes for users, making it difficult for even the application developers to access users' passwords. Werkzeug will also display apologies to users when there are internal server errors.
 
+#### helpers.py
+application.py uses helpers.py for repetitive functions and the decorated function @login_required. If @login_required is writted at the top of a 
 
 <!--
 - CS50 (For the sqlite3 database)
