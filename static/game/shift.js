@@ -45,6 +45,7 @@ $(document).ready(function() {
         throw "";
     }
 
+	// Check checkboxes in which the card is already protected
 	let proced = game.getAttribute(player_phrase + "_protected").split(",");
 	let pHand = game.getAttribute(player_phrase + "_hand").split(",");
 	for (card in pHand) {
@@ -63,6 +64,7 @@ $(document).ready(function() {
 		cardBox.checked = check;
 	}
 
+	// Recieve message from shift_socket
 	shift_socket.on("shift", function(data) {
 
 		// If this is not the correct game, return
@@ -70,6 +72,7 @@ $(document).ready(function() {
 			return;
 		}
 
+		// Update game HTML tag data
 		for (pair in data) {
 			if (data[pair] === null) {
 				game.setAttribute(pair.toString(), data[pair]);
@@ -78,6 +81,7 @@ $(document).ready(function() {
 			}
 		}
 
+		// Update global variables
 		game = document.getElementById("game");
 		game_id = parseInt(game.getAttribute("game_id"));
 		phase = game.getAttribute("phase");
