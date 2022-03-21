@@ -273,6 +273,7 @@ $(document).ready(function() {
 
 	});
 
+	// Player 2 raise
 	$("#followRaiseBtn").on("click", function() {
 		let raise = document.getElementById("followRaise").value;
 		if (raise === "") {
@@ -294,6 +295,7 @@ $(document).ready(function() {
 		}
 	});
 
+	// Following up on player 2's raise
 	$("#followFollowRaiseActionBtn").on("click", function() {
 
 		if (document.getElementById("followFollowRaiseAction").value === "call") {
