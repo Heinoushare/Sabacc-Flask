@@ -71,6 +71,7 @@ $(document).ready(function() {
 			hide("followBetDiv");
 		}
 	} else {
+		// Not the betting phase
 		hide("betDiv");
 		throw '';
 	}
@@ -78,6 +79,7 @@ $(document).ready(function() {
 	// When client recieves a message through the bet_socket
 	bet_socket.on('bet', function(data) {
 
+		// Update game data in the HTML
 		for (pair in data) {
 			if (data[pair] === null) {
 				game.setAttribute(pair.toString(), data[pair]);
@@ -86,6 +88,7 @@ $(document).ready(function() {
 			}
 		}
 
+		// Update global variables
 		game = document.getElementById("game");
 		game_id = parseInt(game.getAttribute("game_id"));
 		phase = game.getAttribute("phase");
