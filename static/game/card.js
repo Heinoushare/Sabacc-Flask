@@ -26,83 +26,57 @@ $(document).ready(function() {
 	var opponent_phrase = opponent.getAttribute("player");
 
 	// Define show/hide functions
-	function show(id)
-	{
+	function show(id) {
 		document.getElementById(id).hidden = false;
 	}
 
-	function hide(id)
-	{
+	function hide(id) {
 		document.getElementById(id).hidden = true;
 	}
 
 	// Figure out which HTML needs to be shown
-	if (phase === "card")
-	{
-		if (player_phrase === "player1")
-		{
+	if (phase === "card") {
+		if (player_phrase === "player1") {
 			hide("p2Card");
-			if (player1_card != "None" && player1_card != "null")
-			{
+			if (player1_card != "None" && player1_card != "null") {
 				hide("p1Card");
-			}
-			else
-			{
+			} else {
 				hide("p1TradeDiv");
 			}
-		}
-		else if (player_phrase === "player2")
-		{
+		} else if (player_phrase === "player2") {
 			hide("p1Card");
-			if (player1_card != "None" && player1_card != "null" && (player2_card === "None" || player2_card === "null"))
-			{
+			if (player1_card != "None" && player1_card != "null" && (player2_card === "None" || player2_card === "null")) {
 				let p1Txt = document.getElementById("p1CardActionTxt");
-				if (game.getAttribute("player1_card") === "draw")
-				{
+				if (game.getAttribute("player1_card") === "draw") {
 					p1Txt.innerHTML = "drew.";
-				}
-				else if (game.getAttribute("player1_card") === "trade")
-				{
+				} else if (game.getAttribute("player1_card") === "trade") {
 					p1Txt.innerHTML = "traded.";
-				}
-				else if (game.getAttribute("player1_card") === "stand")
-				{
+				} else if (game.getAttribute("player1_card") === "stand") {
 					p1Txt.innerHTML = "stood (skipped).";
-				}
-				else if (game.getAttribute("player1_card") === "alderaan")
-				{
+				} else if (game.getAttribute("player1_card") === "alderaan") {
 					p1Txt.innerHTML = "called Alderaan, this is your last turn!";
 				}
 				hide("p2TradeDiv");
-			}
-			else
-			{
+			} else {
 				hide("p2CardActionDiv");
 				hide("p2TradeDiv");
 			}
 		}
-	}
-	else
-	{
+	} else {
 		hide("cardPhase");
 		throw "";
 	}
 
 	card_socket.on("card", function(data) {
 
-		if (data["game_id"] != game_id)
-		{
+		if (data["game_id"] != game_id) {
 			return;
 		}
 
-		for (pair in data)
-		{
-			if (data[pair] === null)
-			{
+		for (pair in data) {
+			if (data[pair] === null) {
 				game.setAttribute(pair.toString(), data[pair]);
-			}
-			else
-			{
+			} else {
 				game.setAttribute(pair.toString(), data[pair].toString());
 			}
 		}
@@ -112,8 +86,7 @@ $(document).ready(function() {
 		phase = game.getAttribute("phase");
 		player_turn = parseInt(game.getAttribute("player_turn"));
 
-		if (phase != "card")
-		{
+		if (phase != "card") {
 			location.reload();
 		}
 
@@ -124,23 +97,15 @@ $(document).ready(function() {
 		document.getElementById("procCards").innerHTML = data[player_phrase + "_protected"];
 		document.getElementById("opponent_proc").innerHTML = data[opponent_phrase + "_protected"];
 
-		if (playerID === data["player2_id"] && playerID === data["player_turn"])
-		{
+		if (playerID === data["player2_id"] && playerID === data["player_turn"]) {
 			let p1Txt = document.getElementById("p1CardActionTxt");
-			if (data["player1_card"] === "draw")
-			{
+			if (data["player1_card"] === "draw") {
 				p1Txt.innerHTML = "drew.";
-			}
-			else if (data["player1_card"] === "trade")
-			{
+			} else if (data["player1_card"] === "trade") {
 				p1Txt.innerHTML = "traded.";
-			}
-			else if (data["player1_card"] === "stand")
-			{
+			} else if (data["player1_card"] === "stand") {
 				p1Txt.innerHTML = "stood (skipped).";
-			}
-			else if (data["player1_card"] === "alderaan")
-			{
+			} else if (data["player1_card"] === "alderaan") {
 				p1Txt.innerHTML = "called Alderaan, this is your last turn!";
 			}
 			show("p2CardActionDiv");
@@ -152,32 +117,23 @@ $(document).ready(function() {
 
 	$("#p1CardActionBtn").on("click", function() {
 		let form = document.getElementById("p1CardAction").value;
-		if (form === "stand")
-		{
-			let data = {"game_id": game_id, "action": "stand"};
+		if (form === "stand") {
+			let data = { "game_id": game_id, "action": "stand" };
 			card_socket.emit("card", data);
-		}
-		else if (form === "draw")
-		{
-			let data = {"game_id": game_id, "action": "draw"};
+		} else if (form === "draw") {
+			let data = { "game_id": game_id, "action": "draw" };
 			card_socket.emit("card", data);
-		}
-		else if (form === "trade")
-		{
-			for (card in hand)
-			{
+		} else if (form === "trade") {
+			for (card in hand) {
 				$("#p1Trade").append('<option value=\"' + hand[card] + '\">' + hand[card] + '</option>');
 			}
 			show("p1TradeDiv");
-		}
-		else if (form === "alderaan")
-		{
-			let data = {"game_id": game_id, "action": "alderaan"};
+		} else if (form === "alderaan") {
+			let data = { "game_id": game_id, "action": "alderaan" };
 			card_socket.emit("card", data);
-		}
-		else
-		{
-			document.getElementById("p1InvalidCardAction").innerHTML = "Invalid action, please Draw, Trade, Stand, or call Alderaan";
+		} else {
+			document.getElementById("p1InvalidCardAction").innerHTML =
+		  "Invalid action, please Draw, Trade, Stand, or call Alderaan";
 		}
 		hide("p1CardActionDiv");
 	});
@@ -185,53 +141,41 @@ $(document).ready(function() {
 	$("#p1TradeBtn").on("click", function() {
 		let card = document.getElementById("p1Trade").value;
 		let cardIn = false;
-		for (c in hand)
-		{
-			if (card === hand[c])
-			{
+		for (c in hand) {
+			if (card === hand[c]) {
 				cardIn = true;
 				break;
 			}
 		}
-		if (cardIn === false)
-		{
+		if (cardIn === false) {
 			document.getElementById("p1InvalidTrade").innerHTML = "Invalid selection.";
 			return;
 		}
 		hide("p1TradeDiv");
-		let data = {"game_id": game_id, "action": "trade", "card": card};
+		let data = { "game_id": game_id, "action": "trade", "card": card };
 		card_socket.emit("card", data);
 		return;
 	});
 
 	$("#p2CardActionBtn").on("click", function() {
 		let form = document.getElementById("p2CardAction").value;
-		if (form === "stand")
-		{
-			let data = {"game_id": game_id, "action": "stand"};
+		if (form === "stand") {
+			let data = { "game_id": game_id, "action": "stand" };
 			card_socket.emit("card", data);
-		}
-		else if (form === "draw")
-		{
-			let data = {"game_id": game_id, "action": "draw"};
+		} else if (form === "draw") {
+			let data = { "game_id": game_id, "action": "draw" };
 			card_socket.emit("card", data);
-		}
-		else if (form === "trade")
-		{
-			for (card in hand)
-			{
+		} else if (form === "trade") {
+			for (card in hand) {
 				$("#p2Trade").append('<option value=\"' + hand[card] + '\">' + hand[card] + '</option>');
 			}
 			show("p2TradeDiv");
-		}
-		else if (form === "alderaan")
-		{
-			let data = {"game_id": game_id, "action": "alderaan"};
+		} else if (form === "alderaan") {
+			let data = { "game_id": game_id, "action": "alderaan" };
 			card_socket.emit("card", data);
-		}
-		else
-		{
-			document.getElementById("p2InvalidCardAction").innerHTML = "Invalid action, please Draw, Trade, Stand, or call Alderaan";
+		} else {
+			document.getElementById("p2InvalidCardAction").innerHTML =
+		  "Invalid action, please Draw, Trade, Stand, or call Alderaan";
 		}
 		hide("p2CardActionDiv");
 	});
@@ -239,21 +183,18 @@ $(document).ready(function() {
 	$("#p2TradeBtn").on("click", function() {
 		let card = document.getElementById("p2Trade").value;
 		let cardIn = false;
-		for (c in hand)
-		{
-			if (card === hand[c])
-			{
+		for (c in hand) {
+			if (card === hand[c]) {
 				cardIn = true;
 				break;
 			}
 		}
-		if (cardIn === false)
-		{
+		if (cardIn === false) {
 			document.getElementById("p2InvalidTrade").innerHTML = "Invalid selection.";
 			return;
 		}
 		hide("p2TradeDiv");
-		let data = {"game_id": game_id, "action": "trade", "card": card};
+		let data = { "game_id": game_id, "action": "trade", "card": card };
 		card_socket.emit("card", data);
 		return;
 	});
