@@ -31,4 +31,4 @@ application.py uses helpers.py for repetitive functions and the decorated functi
 -->
 
 ### helpers.py
-helpers.py is a file full of custom functions used by application.py. These functions vary from emitting Socket.IO messages, shuffling the Sabacc deck, and redirecting logged out users to the login page. When emitting game data to players, helpers.py uses Socket.IO *rooms*. Each client using Socket.IO has their own *room*. When emitting game data,
+helpers.py is a file full of custom functions used by application.py. These functions vary from emitting Socket.IO messages, shuffling the Sabacc deck, and redirecting logged out users to the login page. When emitting game data to players, helpers.py uses Socket.IO *rooms*. Each client using Socket.IO has their own *room*. When emitting game data, helpers.py will send the message to both players, 
