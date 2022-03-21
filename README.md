@@ -39,6 +39,9 @@ layout.html is the base template for all other HTML files. It contains informati
 ### index.html
 index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
 
+### register.html
+
+
 ### apology.html
 apology.html simply renders a image of a cat with error text on it. Using external sources and Jinja2, apology.html will generate said image. apology.html is rendered whenever there is an internal server error or invalid user input.
 
@@ -46,3 +49,4 @@ apology.html simply renders a image of a cat with error text on it. Using extern
 chat.html (*extends* layout.html) is used to render the application global chat, using chat.js to send and render messages to others on the chat page.
 
 ### chat.js
+chat.js uses Socket.IO to interchange messages with the server. When the client recieves a message from a user connecting or sending a text message, chat.js will use JQuery to display the message, along with the sender's username in front of the message.
