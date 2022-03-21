@@ -51,6 +51,9 @@ login.js contains some plain JavaScript to reveal password changing inputs on lo
 ### apology.html
 apology.html simply renders a image of a cat with error text on it. Using external sources and Jinja2, apology.html will generate said image. apology.html is rendered whenever there is an internal server error or invalid user input.
 
+### completed.html
+completed.html displays a user's completed games, using data passed from application.py with Jinja2.
+
 ### chat.html
 chat.html (*extends* layout.html) is used to render the application global chat, using chat.js to send and render messages to others on the chat page.
 
