@@ -103,11 +103,9 @@ $(document).ready(function() {
 
 	$("#shiftBtn").on("click", function() {
 
-		if (playerID === parseInt(game.getAttribute("player1_id")))
-		{
+		if (playerID === parseInt(game.getAttribute("player1_id"))) {
 			let revealed = [];
-			for (card in player1_hand)
-			{
+			for (card in player1_hand) {
 				if (document.getElementById(card).checked === true)
 				{
 					revealed.push(player1_hand[card]);
