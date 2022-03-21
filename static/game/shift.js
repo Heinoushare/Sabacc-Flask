@@ -72,9 +72,7 @@ $(document).ready(function() {
 		for (pair in data) {
 			if (data[pair] === null) {
 				game.setAttribute(pair.toString(), data[pair]);
-			}
-			else
-			{
+			} else {
 				game.setAttribute(pair.toString(), data[pair].toString());
 			}
 		}
@@ -84,8 +82,7 @@ $(document).ready(function() {
 		phase = game.getAttribute("phase");
 		player_turn = parseInt(game.getAttribute("player_turn"));
 
-		if (phase != "card")
-		{
+		if (phase != "card") {
 			location.reload();
 		}
 
@@ -94,12 +91,9 @@ $(document).ready(function() {
 		document.getElementById("opponent_cards").innerHTML = data[opponent_phrase + "_protected"];
 		document.getElementById("lastRolls").inerHTML = data["dice_rolls"];
 
-		if (playerID === player_turn)
-		{
+		if (playerID === player_turn) {
 			show("shiftPhase");
-		}
-		else
-		{
+		} else {
 			hide("shiftPhase");
 		}
 
