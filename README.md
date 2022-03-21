@@ -12,7 +12,7 @@ application.py uses the following libraries and tools
 The CS50 library is used to add, update, and read data from the sqlite3 database sabacc.db. It's safety features are used to ensure that no malicious user input can damage the database.
 
 #### Flask
-The entire web application is based off of Flask. application.py uses the Flask library to handle HTTP GET and POST requests, rendering HTML files and passing data to Jinja2. application.py also uses Flask-Session and Flask-SocketIO, for saving user sessions and receiving and sending Socket.IO messages.
+The entire web application is based off of Flask. application.py uses the Flask library to handle HTTP GET and POST requests, rendering HTML files and passing data to Jinja2. Flask can also display several different HTML files per page, depending on the circumstances. application.py also uses Flask-Session and Flask-SocketIO, for saving user sessions and receiving and sending Socket.IO messages.
 
 Each part of the web application that uses Socket.IO has it's own Socket *namespace*. A *namespace* is used to tell what a message is for, sort of like the filetype at the end of a file name (.py, .png, .jpeg, etc.). Each *namespace* has a corresponding function. application.py uses a total of five seperate *namespaces*, one for the **Global Chat**, and four for a Sabacc game, with varying functions for card phases and keeping track of players.
 
@@ -40,3 +40,4 @@ layout.html is the base template for all other HTML files. It contains informati
 index.html *extends* layout.html, using Jinja2 to *extend* it and fill in Jinja2 HTML *blocks*. index.html uses Jinja2 to check whether a user is signed in or not. If they are, a table of the user's active games will be displayed, with data being passed from application.py, otherwise, a video and rulebook on how to play Sabacc will be displayed.
 
 ### apology.html
+apology.html
