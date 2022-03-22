@@ -92,4 +92,4 @@ styles.css is the only CSS file in the whole web application. All HTML files use
 I had originally tried to make this project with Django, but never finished it. After taking CS50, I learned how to use Flask, and wanted to try and make a Sabacc web application for my CS50 final project. A large part of the project would be deciding what framework to use. Comparing my knowledge, I felt I had more skill with Flask, either because I had learned more or it was more fresh in my head. I also liked the nature of Flask as compared to Django, Django is more restricting, with very specific frameworks for files and databases, whereas in Flask one has much more flexibility. As can be seen, I decided to use Flask.
 
 ### CS50 Library vs. sqlite3 library
-After deciding to use Flask, I subsequently decided to use sqlite3
+After deciding to use Flask, I subsequently decided to use sqlite3, since I had worked with both Flask and sqlite3 together before.
