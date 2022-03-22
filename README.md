@@ -86,3 +86,9 @@ shift.js uses JQuery and Socket.IO to aid game.html in allowing players to prote
 
 ### styles.css
 styles.css is the only CSS file in the whole web application. All HTML files use it (since they all extend layout.html and layout.html uses styles.css) for basic color coding and formatting by tag type and class.
+
+## Design Choices
+### Flask vs. Django
+I had originally tried to make this project with Django, but never finished it. After taking CS50, I learned how to use Flask, and wanted to try and make a Sabacc web application for my CS50 final project.
+
+### CS50 Library vs. sqlite3 library
