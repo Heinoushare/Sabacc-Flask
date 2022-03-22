@@ -89,6 +89,6 @@ styles.css is the only CSS file in the whole web application. All HTML files use
 
 ## Design Choices
 ### Flask vs. Django
-I had originally tried to make this project with Django, but never finished it. After taking CS50, I learned how to use Flask, and wanted to try and make a Sabacc web application for my CS50 final project. A large
+I had originally tried to make this project with Django, but never finished it. After taking CS50, I learned how to use Flask, and wanted to try and make a Sabacc web application for my CS50 final project. A large part of the project would be deciding what framework to use. Comparing my knowledge,
 
 ### CS50 Library vs. sqlite3 library
