@@ -3,6 +3,13 @@
 ## Description:
 Sabacc, the space card game. A fast-paced, high-risk, perfect mixture of skill and luck. Engage in this perfect blend of deception, quick calculation, and strategy, at \<INSERT WEBSITE URL\>
 
+## Design Choices
+### Flask vs. Django
+I had originally tried to make this project with Django, but never finished it. After taking CS50, I learned how to use Flask, and wanted to try and make a Sabacc web application for my CS50 final project. A large part of the project would be deciding what framework to use. Comparing my knowledge, I felt I had more skill with Flask, either because I had learned more or it was more fresh in my head. I also liked the nature of Flask as compared to Django, Django is more restricting, with very specific frameworks for files and databases, whereas in Flask one has much more flexibility. As can be seen, I decided to use Flask.
+
+### Socket.IO
+For the web application, I wanted to have a way for people to play real-time Sabacc, without having to reload the page and grab new HTML every time their opponent did their turn. In order to achieve this, I needed a way for the Flask server and client to communicate even after the client had made the HTTP request. My first thought was to have some JavaScript on the client side reloading the page every few seconds, but I immediately knew this wouldn't cut it, and would interfere with gameplay and eat up client and server resources. I looked for an alternative, and found a tool named Socket.IO, which seemed to fit my requirements. Before I dived into trying to use Socket.IO for the Sabacc game itself, I decided to try it on a smaller scale, creating a simple chatroom within the web application, which is still part of the application! After I felt comfortable with Socket.IO, I tackled using it for the Sabacc game itself. Not only did I use my already gained Socket.IO skills, I learned more about *namespaces* and emitting messages to specific users.
+
 ## Files
 ### application.py
 application.py is the file that runs this show. It handles all user requests, Socket.IO messages, and the modification of sabacc.db.
@@ -86,10 +93,3 @@ shift.js uses JQuery and Socket.IO to aid game.html in allowing players to prote
 
 ### styles.css
 styles.css is the only CSS file in the whole web application. All HTML files use it (since they all extend layout.html and layout.html uses styles.css) for basic color coding and formatting by tag type and class.
-
-## Design Choices
-### Flask vs. Django
-I had originally tried to make this project with Django, but never finished it. After taking CS50, I learned how to use Flask, and wanted to try and make a Sabacc web application for my CS50 final project. A large part of the project would be deciding what framework to use. Comparing my knowledge, I felt I had more skill with Flask, either because I had learned more or it was more fresh in my head. I also liked the nature of Flask as compared to Django, Django is more restricting, with very specific frameworks for files and databases, whereas in Flask one has much more flexibility. As can be seen, I decided to use Flask.
-
-### Socket.IO
-For the web application, I wanted to have a way for people to play real-time Sabacc, without having to reload the page and grab new HTML every time their opponent did their turn. In order to achieve this, I needed a way for the Flask server and client to communicate even after the client had made the HTTP request. My first thought was to have some JavaScript on the client side reloading the page every few seconds, but I immediately knew this wouldn't cut it, and would interfere with gameplay and eat up client and server resources. I looked for an alternative, and found a tool named Socket.IO, which seemed to fit my requirements. Before I dived into trying to use Socket.IO for the Sabacc game itself, I decided to try it on a smaller scale, creating a simple chatroom within the web application, which is still part of the application! After I felt comfortable with Socket.IO, I tackled using it for the Sabacc game itself. Not only did I use my already gained Socket.IO skills, I learned more about *namespaces* and emitting messages to specific users.
