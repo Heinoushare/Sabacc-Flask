@@ -93,7 +93,7 @@ $(document).ready(function() {
 
 		// Update HTML
 		document.getElementById("procCards").innerHTML = data[player_phrase + "_protected"];
-		document.getElementById("opponent_cards").innerHTML = data[opponent_phrase + "_protected"];
+		document.getElementById("opponent_proc").innerHTML = data[opponent_phrase + "_protected"];
 		document.getElementById("lastRolls").inerHTML = data["dice_rolls"];
 
 		if (playerID === player_turn) {
