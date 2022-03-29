@@ -1,5 +1,5 @@
 # Sabacc
-## Video Demo: \<URL HERE\>
+## Video Demo: https://youtu.be/_73Rv7OYpIg
 ## Description:
 Sabacc, the space card game. A fast-paced, high-risk, perfect mixture of skill and luck. Engage in this perfect blend of deception, quick calculation, and strategy, at \<INSERT WEBSITE URL\>
 
