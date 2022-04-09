@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
-	var socket = io.connect('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev');
-	var shift_socket = io('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/shift');
+	let domain = document.getElementById("domain").getAttribute("value");
+	let socket = io.connect(domain);
+	let shift_socket = io(domain + "/shift");
 
     // Reduce website hackability by defining variables pulled from the HTML as soon as possible
 	let game = document.getElementById("game");

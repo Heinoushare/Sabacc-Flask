@@ -10,6 +10,12 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import *
 from flask_socketio import SocketIO, send
 import random
+import yaml
+
+# Get config.yaml data
+config = {}
+with open("config.yml", "r") as f:
+    config = yaml.safe_load(f)
 
 # Configure application
 app = Flask(__name__)
@@ -34,7 +40,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Socket.IO message links
-link = "https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev"
+link = config["DOMAIN"]
 socketio = SocketIO(app, cors_allowed_origins=[link, f"{link}/chat",
                                                f"{link}/game", f"{link}/bet", f"{link}/card", f"{link}/shift"])
 
@@ -886,3 +892,7 @@ def errorhandler(e):
 # Listen for errors
 for code in default_exceptions:
     app.errorhandler(code)(errorhandler)
+
+""" For development only """
+if __name__ == "__main__":
+    app.run(host=config["IP"], port=config["PORT"], debug=config["DEBUG"])

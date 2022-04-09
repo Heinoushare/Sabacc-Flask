@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
 	// Declare socket variables
-	var socket = io.connect('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev');
-	var chat_socket = io('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/chat');
+	let domain = document.getElementById("domain").getAttribute("value");
+	let socket = io.connect(domain);
+	let chat_socket = io(domain + "/chat");
 
 	// Attribute "user" contains information about the user
 	let user = document.getElementById("user");

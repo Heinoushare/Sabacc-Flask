@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
     // Define Sockets
-	var socket = io.connect('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev');
-	var card_socket = io('https://heinoushare-code50-76819177-g4x99w676fvqvg-5000.githubpreview.dev/card');
+	let domain = document.getElementById("domain").getAttribute("value");
+	let socket = io.connect(domain);
+	let card_socket = io(domain + "/card");
 
     // Reduce website hackability by defining variables pulled from the HTML as soon as possible
 	let game = document.getElementById("game");
